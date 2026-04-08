@@ -4,7 +4,8 @@ import { getDb } from "./db";
 import { users } from "../drizzle/schema";
 import { eq } from "drizzle-orm";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
+// Use placeholder if key not set to avoid crash at startup; Stripe API calls will fail gracefully
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "sk_test_placeholder_replace_me", {
   apiVersion: "2025-03-31.basil",
 });
 
@@ -61,7 +62,6 @@ export function registerStripeWebhook(app: Express) {
 
             if (!userId || !customerId || !subscriptionId) break;
 
-            // Fetch subscription to get price ID and determine tier
             const subscription = await stripe.subscriptions.retrieve(subscriptionId);
             const subItem = subscription.items.data[0];
             const priceId = subItem?.price.id ?? "";

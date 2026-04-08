@@ -1,0 +1,41 @@
+CREATE TABLE `fitted_estimates` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`userId` int,
+	`guestEmail` varchar(320),
+	`userType` varchar(32) NOT NULL,
+	`category` varchar(32) NOT NULL,
+	`supplyMode` varchar(32) NOT NULL,
+	`inputsJson` text NOT NULL,
+	`estimateRangeLow` int NOT NULL,
+	`estimateRangeHigh` int NOT NULL,
+	`grandTotalLow` int NOT NULL,
+	`grandTotalHigh` int NOT NULL,
+	`perLinearMetreLow` int,
+	`perLinearMetreHigh` int,
+	`runLengthMetres` int,
+	`aiSummary` text,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	CONSTRAINT `fitted_estimates_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `quote_requests` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`fittedEstimateId` int,
+	`userId` int,
+	`name` varchar(256) NOT NULL,
+	`email` varchar(320) NOT NULL,
+	`phone` varchar(64),
+	`userType` varchar(32) NOT NULL,
+	`category` varchar(32) NOT NULL,
+	`supplyMode` varchar(32) NOT NULL,
+	`projectSummary` text,
+	`estimateRangeLow` int,
+	`estimateRangeHigh` int,
+	`dimensionsSummary` text,
+	`specSummary` text,
+	`photoUrls` text,
+	`notes` text,
+	`status` varchar(32) NOT NULL DEFAULT 'new',
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	CONSTRAINT `quote_requests_id` PRIMARY KEY(`id`)
+);

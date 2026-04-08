@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Plotrapp — The Renovation Platform for the island of Ireland</title>
+    <meta name="description" content="Plotrapp helps homeowners and tradespeople plan renovations faster. Get instant materials estimates and trade supplier prices. Built on the island of Ireland." />
+    <meta name="keywords" content="renovation estimator, trade prices Ireland, materials list, home renovation, building supplies, tradespeople, instant quote, Plotrapp" />
+    <meta property="og:title" content="Plotrapp — The Renovation Platform for the island of Ireland" />
+    <meta property="og:description" content="Upload your room photos, add measurements, and Plotrapp builds your estimate, materials list, and supplier discount plan. Built on the island of Ireland." />
+    <meta property="og:url" content="https://plotrapp.co.uk" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Plotrapp — The Renovation Platform for the island of Ireland" />
+    <meta name="twitter:description" content="Upload your room photos, add measurements, and Plotrapp builds your estimate, materials list, and supplier discount plan. Built on the island of Ireland." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- ============================================================ -->
+    <!-- META PIXEL — REPLACE PIXEL ID BELOW BEFORE GOING LIVE       -->
+    <!-- Replace REPLACE_WITH_META_PIXEL_ID with your real Pixel ID  -->
+    <!-- from Meta Events Manager (Business Settings → Data Sources)  -->
+    <!-- ============================================================ -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'REPLACE_WITH_META_PIXEL_ID');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=REPLACE_WITH_META_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- END META PIXEL -->
+
+    <!-- ============================================================ -->
+    <!-- GOOGLE ANALYTICS 4 — REPLACE MEASUREMENT ID BELOW           -->
+    <!-- Replace REPLACE_WITH_GA4_ID with your real GA4 Measurement  -->
+    <!-- ID (format: G-XXXXXXXXXX) from Google Analytics → Admin     -->
+    <!-- ============================================================ -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=REPLACE_WITH_GA4_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'REPLACE_WITH_GA4_ID');
+    </script>
+    <!-- END GOOGLE ANALYTICS 4 -->
+
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script
+      defer
+      src="%VITE_ANALYTICS_ENDPOINT%/umami"
+      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+  </body>
+
+</html>

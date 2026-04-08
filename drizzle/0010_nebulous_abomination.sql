@@ -1,0 +1,1 @@
+ALTER TABLE `project_visualisations` ADD `sourcePhotoUrl` text;

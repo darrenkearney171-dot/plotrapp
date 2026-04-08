@@ -1,0 +1,10 @@
+CREATE TABLE `trade_applications` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`fullName` varchar(255) NOT NULL,
+	`trade` varchar(255) NOT NULL,
+	`town` varchar(255) NOT NULL,
+	`phone` varchar(50) NOT NULL,
+	`email` varchar(320) NOT NULL,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	CONSTRAINT `trade_applications_id` PRIMARY KEY(`id`)
+);

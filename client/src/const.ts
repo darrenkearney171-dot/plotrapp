@@ -7,7 +7,7 @@ export const getLoginUrl = () => {
 
   // Guard: if OAuth is not configured, return "/" so the app still loads
   if (!oauthPortalUrl || !appId) {
-    console.warn("[Auth] VITE_OAUTH_PORTAL_URL or VITE_APP_ID not set â login disabled");
+    console.warn("[Auth] VITE_OAUTH_PORTAL_URL or VITE_APP_ID not set — login disabled");
     return "/";
   }
 

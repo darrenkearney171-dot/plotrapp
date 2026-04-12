@@ -38,7 +38,7 @@ function NavBar() {
           <div className="w-7 h-7 rounded-md bg-primary flex items-center justify-center">
             <span className="text-white font-bold text-xs">P</span>
           </div>
-          <span className="font-bold text-lg tracking-tight">Plotrapp</span>
+          <span className="font-bold text-lg tracking-tight">Renolab</span>
         </div>
       </div>
     </header>
@@ -246,8 +246,8 @@ function RoomUploadCard({ projectId, onAnalysed }: { projectId: number; onAnalys
             <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 text-sm">
               <p className="font-medium text-primary text-xs">Calculated</p>
               <p className="text-muted-foreground text-xs mt-1">
-                Floor area: <strong>{(parseFloat(width) * parseFloat(length)).toFixed(1)} m²</strong>
-                {height && <> · Wall perimeter: <strong>{(2 * (parseFloat(width) + parseFloat(length))).toFixed(1)} m</strong></>}
+                Floor area: <strong>{(parseFloat(width) * parseFloat(length)).toFixed(1)} mÂ²</strong>
+                {height && <> Â· Wall perimeter: <strong>{(2 * (parseFloat(width) + parseFloat(length))).toFixed(1)} m</strong></>}
               </p>
             </div>
           )}
@@ -268,7 +268,7 @@ function RoomUploadCard({ projectId, onAnalysed }: { projectId: number; onAnalys
               onChange={e => setStylePrompt(e.target.value)}
               className="mt-1 min-h-[100px] resize-none"
             />
-            <p className="text-xs text-muted-foreground mt-1">Describe colours, finishes, style, mood — the more detail, the better the AI recommendations.</p>
+            <p className="text-xs text-muted-foreground mt-1">Describe colours, finishes, style, mood â the more detail, the better the AI recommendations.</p>
           </div>
 
           <div>
@@ -276,7 +276,7 @@ function RoomUploadCard({ projectId, onAnalysed }: { projectId: number; onAnalys
               <ImagePlus className="w-4 h-4" />
               Reference Images <span className="text-muted-foreground font-normal text-xs ml-1">(up to 3)</span>
             </Label>
-            <p className="text-xs text-muted-foreground mt-0.5 mb-2">Upload inspiration photos — the AI will align its recommendations with your chosen style.</p>
+            <p className="text-xs text-muted-foreground mt-0.5 mb-2">Upload inspiration photos â the AI will align its recommendations with your chosen style.</p>
 
             {refPreviews.length > 0 && (
               <div className="grid grid-cols-3 gap-2 mb-3">
@@ -322,7 +322,7 @@ function RoomUploadCard({ projectId, onAnalysed }: { projectId: number; onAnalys
                 <p className="font-semibold">{roomName || "Room"}</p>
                 {(width || length || height) && (
                   <p className="text-xs text-muted-foreground mt-0.5">
-                    {[width && `W: ${width}m`, length && `L: ${length}m`, height && `H: ${height}m`].filter(Boolean).join(" · ")}
+                    {[width && `W: ${width}m`, length && `L: ${length}m`, height && `H: ${height}m`].filter(Boolean).join(" Â· ")}
                   </p>
                 )}
                 {stylePrompt && <p className="text-xs text-muted-foreground mt-1 line-clamp-2 italic">"{stylePrompt}"</p>}
@@ -445,7 +445,7 @@ function AnalysisCard({ analysis, projectId, onMaterialsGenerated, onRenderGener
                   { label: "Width", value: `${dims.width?.toFixed(1)}m` },
                   { label: "Length", value: `${dims.length?.toFixed(1)}m` },
                   { label: "Height", value: `${dims.height?.toFixed(1)}m` },
-                  { label: "Floor Area", value: `${dims.area?.toFixed(1)}m²` },
+                  { label: "Floor Area", value: `${dims.area?.toFixed(1)}mÂ²` },
                   { label: "Perimeter", value: `${dims.perimeter?.toFixed(1)}m` },
                 ].map(d => (
                   <div key={d.label} className="bg-muted/50 rounded-lg p-2 text-center">
@@ -474,7 +474,7 @@ function AnalysisCard({ analysis, projectId, onMaterialsGenerated, onRenderGener
                   <ul className="mt-2 space-y-0.5">
                     {scope.recommendedWork.map((w: string) => (
                       <li key={w} className="text-xs text-muted-foreground flex gap-1.5">
-                        <span className="text-primary mt-0.5">•</span>{w}
+                        <span className="text-primary mt-0.5">â¢</span>{w}
                       </li>
                     ))}
                   </ul>
@@ -559,7 +559,7 @@ function AnalysisCard({ analysis, projectId, onMaterialsGenerated, onRenderGener
             <div className="bg-primary/5 border border-primary/15 rounded-xl p-5 text-center">
               <Wand2 className="w-8 h-8 text-primary mx-auto mb-2 animate-pulse" />
               <p className="text-sm font-medium text-primary">Generating your 3D render...</p>
-              <p className="text-xs text-muted-foreground mt-1">This takes 15–30 seconds</p>
+              <p className="text-xs text-muted-foreground mt-1">This takes 15â30 seconds</p>
               <div className="mt-3 h-1.5 bg-primary/20 rounded-full overflow-hidden">
                 <div className="h-full bg-primary rounded-full animate-[pulse_2s_ease-in-out_infinite] w-2/3" />
               </div>
@@ -598,7 +598,7 @@ function MaterialsListCard({ list }: { list: any }) {
         <div className="flex items-center gap-3">
           <div className="text-right">
             <p className="text-xs text-muted-foreground">Trade Price</p>
-            <p className="text-sm font-bold text-primary">£{list.totalTradePrice?.toFixed(2)}</p>
+            <p className="text-sm font-bold text-primary">Â£{list.totalTradePrice?.toFixed(2)}</p>
           </div>
           {expanded ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
         </div>
@@ -612,8 +612,8 @@ function MaterialsListCard({ list }: { list: any }) {
                   <th className="text-left px-4 py-2 text-xs font-semibold text-muted-foreground">Item</th>
                   <th className="text-left px-4 py-2 text-xs font-semibold text-muted-foreground">Category</th>
                   <th className="text-right px-4 py-2 text-xs font-semibold text-muted-foreground">Qty</th>
-                  <th className="text-right px-4 py-2 text-xs font-semibold text-muted-foreground">Trade £</th>
-                  <th className="text-right px-4 py-2 text-xs font-semibold text-muted-foreground">Retail £</th>
+                  <th className="text-right px-4 py-2 text-xs font-semibold text-muted-foreground">Trade Â£</th>
+                  <th className="text-right px-4 py-2 text-xs font-semibold text-muted-foreground">Retail Â£</th>
                 </tr>
               </thead>
               <tbody>
@@ -625,16 +625,16 @@ function MaterialsListCard({ list }: { list: any }) {
                     </td>
                     <td className="px-4 py-2.5 text-xs text-muted-foreground capitalize">{item.category}</td>
                     <td className="px-4 py-2.5 text-right text-xs">{item.quantity} {item.unit}</td>
-                    <td className="px-4 py-2.5 text-right text-xs font-medium text-primary">£{item.tradePrice?.toFixed(2)}</td>
-                    <td className="px-4 py-2.5 text-right text-xs text-muted-foreground">£{item.retailPrice?.toFixed(2)}</td>
+                    <td className="px-4 py-2.5 text-right text-xs font-medium text-primary">Â£{item.tradePrice?.toFixed(2)}</td>
+                    <td className="px-4 py-2.5 text-right text-xs text-muted-foreground">Â£{item.retailPrice?.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
               <tfoot className="bg-muted/50">
                 <tr>
                   <td colSpan={3} className="px-4 py-2 text-xs font-semibold">Total</td>
-                  <td className="px-4 py-2 text-right text-sm font-bold text-primary">£{list.totalTradePrice?.toFixed(2)}</td>
-                  <td className="px-4 py-2 text-right text-xs text-muted-foreground">£{list.totalRetailPrice?.toFixed(2)}</td>
+                  <td className="px-4 py-2 text-right text-sm font-bold text-primary">Â£{list.totalTradePrice?.toFixed(2)}</td>
+                  <td className="px-4 py-2 text-right text-xs text-muted-foreground">Â£{list.totalRetailPrice?.toFixed(2)}</td>
                 </tr>
               </tfoot>
             </table>
@@ -701,7 +701,7 @@ export default function ProjectDetail() {
           {project.description && <p className="text-muted-foreground mt-1">{project.description}</p>}
           <div className="flex items-center gap-2 mt-2">
             <Badge variant="outline" className="capitalize text-xs">{project.status}</Badge>
-            {project.totalEstimatedCost && <span className="text-xs text-muted-foreground">Budget: £{project.totalEstimatedCost.toLocaleString()}</span>}
+            {project.totalEstimatedCost && <span className="text-xs text-muted-foreground">Budget: Â£{project.totalEstimatedCost.toLocaleString()}</span>}
           </div>
         </div>
 

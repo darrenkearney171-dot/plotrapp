@@ -44,7 +44,7 @@ export function registerOAuthRoutes(app: Express) {
         const email = userInfo.email || "No email provided";
         const signedUpAt = new Date().toLocaleString("en-GB", { timeZone: "Europe/London" });
         const title = `New user signed up: ${name}`;
-        const content = `A new user has registered on Plotrapp.\n\nName: ${name}\nEmail: ${email}\nSigned up: ${signedUpAt}`;
+        const content = `A new user has registered on Renolab.\n\nName: ${name}\nEmail: ${email}\nSigned up: ${signedUpAt}`;
         notifyOwner({ title, content }).catch(() => {});
         sendOwnerEmail(title, content).catch(() => {});
       }

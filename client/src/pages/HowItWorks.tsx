@@ -22,7 +22,7 @@ import {
   Zap,
 } from "lucide-react";
 
-// ─── Step component ───────────────────────────────────────────────────────────
+// âââ Step component âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function Step({
   number,
@@ -59,7 +59,7 @@ function Step({
   );
 }
 
-// ─── Feature row ──────────────────────────────────────────────────────────────
+// âââ Feature row ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function FeatureRow({ icon: Icon, title, desc }: { icon: React.ElementType; title: string; desc: string }) {
   return (
@@ -75,23 +75,23 @@ function FeatureRow({ icon: Icon, title, desc }: { icon: React.ElementType; titl
   );
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
+// âââ Page âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 export default function HowItWorks() {
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>How It Works — Plotrapp. The Renovation Platform for the island of Ireland.</title>
+      <title>How It Works â Renolab. The Renovation Platform for the island of Ireland.</title>
       <NavBar />
 
-      {/* ── Hero ──────────────────────────────────────────────────────────── */}
+      {/* ââ Hero ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="bg-[#0f1c2e] text-white py-20">
         <div className="container max-w-3xl mx-auto text-center">
-          <Badge className="mb-5 bg-primary/20 text-primary border-primary/30">How Plotrapp Works</Badge>
+          <Badge className="mb-5 bg-primary/20 text-primary border-primary/30">How Renolab Works</Badge>
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">
-            From rough idea to priced project — in minutes.
+            From rough idea to priced project â in minutes.
           </h1>
           <p className="text-white/70 text-lg max-w-xl mx-auto mb-8">
-            Plotrapp takes the guesswork out of renovation. Whether you're a homeowner planning a bathroom or a tradesperson pricing a kitchen, here's exactly what Plotrapp does for you.
+            Renolab takes the guesswork out of renovation. Whether you're a homeowner planning a bathroom or a tradesperson pricing a kitchen, here's exactly what Renolab does for you.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/estimate">
@@ -108,7 +108,7 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* ── Who it's for ──────────────────────────────────────────────────── */}
+      {/* ââ Who it's for ââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-16 bg-muted/30">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-2xl font-extrabold text-center mb-10">Built for two types of people</h2>
@@ -125,11 +125,11 @@ export default function HowItWorks() {
                 </div>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                You've got a room that needs work but no idea what it'll cost, what materials you need, or who to trust. Plotrapp gives you an instant, itemised estimate based on your actual room — so you can walk into any supplier or tradesperson conversation knowing your numbers.
+                You've got a room that needs work but no idea what it'll cost, what materials you need, or who to trust. Renolab gives you an instant, itemised estimate based on your actual room â so you can walk into any supplier or tradesperson conversation knowing your numbers.
               </p>
               <ul className="space-y-2">
                 {[
-                  "No experience needed — just answer a few questions",
+                  "No experience needed â just answer a few questions",
                   "Instant cost range based on your room and finishes",
                   "Full materials list with quantities and trade pricing",
                   "Find vetted local tradespeople when you're ready",
@@ -154,14 +154,14 @@ export default function HowItWorks() {
                 </div>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                You're spending hours pricing jobs that don't convert, sourcing materials manually, and dealing with customers who have no idea what things cost. Plotrapp speeds up your estimating workflow and connects you with homeowners who are already priced and ready to proceed.
+                You're spending hours pricing jobs that don't convert, sourcing materials manually, and dealing with customers who have no idea what things cost. Renolab speeds up your estimating workflow and connects you with homeowners who are already priced and ready to proceed.
               </p>
               <ul className="space-y-2">
                 {[
                   "Price a job in minutes, not hours",
                   "Generate client-facing estimates with your margin built in",
                   "Access trade-priced materials from our supplier network",
-                  "Get listed in the Plotrapp tradesperson directory",
+                  "Get listed in the Renolab tradesperson directory",
                 ].map(item => (
                   <li key={item} className="flex items-start gap-2 text-sm">
                     <CheckCircle className="w-4 h-4 text-primary mt-0.5 shrink-0" />
@@ -174,7 +174,7 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* ── Step by step — Homeowners ──────────────────────────────────────── */}
+      {/* ââ Step by step â Homeowners ââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-background">
         <div className="container max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16">
@@ -188,38 +188,38 @@ export default function HowItWorks() {
                 number={1}
                 icon={Camera}
                 title="Upload a photo of your room"
-                description="Take a photo of the room you want to renovate and upload it. Plotrapp's AI analyses the space — identifying the room type, approximate dimensions, and current condition."
+                description="Take a photo of the room you want to renovate and upload it. Renolab's AI analyses the space â identifying the room type, approximate dimensions, and current condition."
               />
               <Step
                 number={2}
                 icon={Ruler}
                 title="Enter your measurements"
-                description="Add the room dimensions — length, width, and height. If you don't have exact figures, a rough estimate is fine. Plotrapp uses these to calculate material quantities accurately."
+                description="Add the room dimensions â length, width, and height. If you don't have exact figures, a rough estimate is fine. Renolab uses these to calculate material quantities accurately."
               />
               <Step
                 number={3}
                 icon={Layers}
                 title="Choose your finishes and style"
-                description="Pick your preferred finish level — budget, mid-range, or premium — and describe the style you're going for. Plotrapp uses this to tailor the materials list and cost range to your actual choices."
+                description="Pick your preferred finish level â budget, mid-range, or premium â and describe the style you're going for. Renolab uses this to tailor the materials list and cost range to your actual choices."
               />
               <Step
                 number={4}
                 icon={ClipboardList}
                 title="Get your instant estimate"
-                description="Plotrapp generates a cost range and itemised materials list in seconds. You'll see exactly what materials you likely need, in what quantities, and at what trade price — before you've spoken to a single supplier."
+                description="Renolab generates a cost range and itemised materials list in seconds. You'll see exactly what materials you likely need, in what quantities, and at what trade price â before you've spoken to a single supplier."
               />
               <Step
                 number={5}
                 icon={Sparkles}
                 title="Visualise the finished room"
                 badge="AI"
-                description="Generate a photorealistic AI render of your finished room based on your inputs. See what your choices look like — tiles, fittings, finishes — before you spend a penny. Free users get 3 renders. Pro members get unlimited."
+                description="Generate a photorealistic AI render of your finished room based on your inputs. See what your choices look like â tiles, fittings, finishes â before you spend a penny. Free users get 3 renders. Pro members get unlimited."
               />
               <Step
                 number={6}
                 icon={ShoppingBag}
                 title="Buy at trade prices"
-                description="Use your materials list to shop directly with Plotrapp's partner suppliers at member-only trade prices. No more paying retail when trade accounts are available."
+                description="Use your materials list to shop directly with Renolab's partner suppliers at member-only trade prices. No more paying retail when trade accounts are available."
               />
               <div className="mt-2">
                 <Link href="/estimate">
@@ -240,19 +240,19 @@ export default function HowItWorks() {
                 number={1}
                 icon={Camera}
                 title="Upload a site photo"
-                description="On a customer visit, take a photo of the room and upload it to Plotrapp. The AI analyses the space instantly — no tape measure needed for a first-pass estimate."
+                description="On a customer visit, take a photo of the room and upload it to Renolab. The AI analyses the space instantly â no tape measure needed for a first-pass estimate."
               />
               <Step
                 number={2}
                 icon={Ruler}
                 title="Add dimensions and spec"
-                description="Enter the room dimensions and the specification your customer wants. Plotrapp builds the materials list from your inputs — not from generic templates."
+                description="Enter the room dimensions and the specification your customer wants. Renolab builds the materials list from your inputs â not from generic templates."
               />
               <Step
                 number={3}
                 icon={CreditCard}
                 title="Add your margin"
-                description="Trade members can add a labour rate and margin percentage on top of the materials cost. Plotrapp calculates the full job price — materials plus labour — ready to present to your customer."
+                description="Trade members can add a labour rate and margin percentage on top of the materials cost. Renolab calculates the full job price â materials plus labour â ready to present to your customer."
               />
               <Step
                 number={4}
@@ -265,13 +265,13 @@ export default function HowItWorks() {
                 icon={ImageIcon}
                 title="Visualise the finished room for your client"
                 badge="Trade"
-                description="Generate an AI visualisation of the finished room and save it to your client's project folder. Show customers exactly what their renovation will look like — before any work starts."
+                description="Generate an AI visualisation of the finished room and save it to your client's project folder. Show customers exactly what their renovation will look like â before any work starts."
               />
               <Step
                 number={6}
                 icon={MapPin}
                 title="Get found by local homeowners"
-                description="Join the Plotrapp tradesperson directory and get introduced to homeowners in the island of Ireland who are already priced, ready to proceed, and looking for someone they can trust."
+                description="Join the Renolab tradesperson directory and get introduced to homeowners in the island of Ireland who are already priced, ready to proceed, and looking for someone they can trust."
               />
               <div className="mt-2">
                 <Link href="/tradespeople">
@@ -285,17 +285,17 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* ── New Build Mode ────────────────────────────────────────── */}
+      {/* ââ New Build Mode ââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-muted/30">
         <div className="container max-w-5xl mx-auto">
           <div className="flex items-center gap-2 mb-3 justify-center">
             <Badge className="bg-primary/10 text-primary border-primary/20 text-sm px-3 py-1">
-              🏗️ New Build Mode
+              ðï¸ New Build Mode
             </Badge>
           </div>
           <h2 className="text-2xl font-extrabold text-center mb-3">Building a new house? No photos needed.</h2>
           <p className="text-muted-foreground text-center text-sm mb-12 max-w-2xl mx-auto">
-            If you're a self-builder, developer, or working from house plans, Plotrapp's New Build mode lets you get a full room-by-room fit-out estimate without needing a single photo. Just select your rooms, enter rough dimensions, and choose a finish level.
+            If you're a self-builder, developer, or working from house plans, Renolab's New Build mode lets you get a full room-by-room fit-out estimate without needing a single photo. Just select your rooms, enter rough dimensions, and choose a finish level.
           </p>
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="space-y-0">
@@ -303,25 +303,25 @@ export default function HowItWorks() {
                 number={1}
                 icon={Home}
                 title="Select your rooms"
-                description="Choose every room in your new build from a list — kitchen, bathrooms, bedrooms, living room, hallway, utility, and more. Add duplicates for houses with multiple bathrooms or bedrooms."
+                description="Choose every room in your new build from a list â kitchen, bathrooms, bedrooms, living room, hallway, utility, and more. Add duplicates for houses with multiple bathrooms or bedrooms."
               />
               <Step
                 number={2}
                 icon={Ruler}
                 title="Enter rough dimensions"
-                description="Add the approximate width, length, and height for each room. You don't need exact measurements — estimates from your house plans are fine at this stage."
+                description="Add the approximate width, length, and height for each room. You don't need exact measurements â estimates from your house plans are fine at this stage."
               />
               <Step
                 number={3}
                 icon={Layers}
                 title="Choose a finish level"
-                description="Select budget, mid-range, or premium finishes. Plotrapp adjusts the materials list and cost range for every room based on the spec level you choose."
+                description="Select budget, mid-range, or premium finishes. Renolab adjusts the materials list and cost range for every room based on the spec level you choose."
               />
               <Step
                 number={4}
                 icon={ClipboardList}
                 title="Get a full house estimate"
-                description="Plotrapp generates a per-room cost breakdown and a grand total for your entire build. Each room shows a cost range, recommended work, and key materials — all in one place."
+                description="Renolab generates a per-room cost breakdown and a grand total for your entire build. Each room shows a cost range, recommended work, and key materials â all in one place."
               />
               <div className="mt-2">
                 <Link href="/new-build">
@@ -332,15 +332,15 @@ export default function HowItWorks() {
               </div>
             </div>
             <div className="bg-card border border-border rounded-2xl p-6">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-5">What you get — 3-bed house example</p>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-5">What you get â 3-bed house example</p>
               <div className="space-y-3">
                 {[
-                  { room: "Kitchen", range: "£4,200 – £6,800", note: "Units, worktops, splashback, flooring" },
-                  { room: "Master Bathroom", range: "£2,800 – £4,500", note: "Full suite, tiling, flooring" },
-                  { room: "En-Suite", range: "£1,600 – £2,800", note: "Shower, basin, tiling" },
-                  { room: "Living Room", range: "£1,200 – £2,200", note: "Flooring, painting, skirting" },
-                  { room: "3× Bedrooms", range: "£900 – £1,800", note: "Flooring, painting per room" },
-                  { room: "Hallway", range: "£600 – £1,100", note: "Flooring, painting, stairs" },
+                  { room: "Kitchen", range: "Â£4,200 â Â£6,800", note: "Units, worktops, splashback, flooring" },
+                  { room: "Master Bathroom", range: "Â£2,800 â Â£4,500", note: "Full suite, tiling, flooring" },
+                  { room: "En-Suite", range: "Â£1,600 â Â£2,800", note: "Shower, basin, tiling" },
+                  { room: "Living Room", range: "Â£1,200 â Â£2,200", note: "Flooring, painting, skirting" },
+                  { room: "3Ã Bedrooms", range: "Â£900 â Â£1,800", note: "Flooring, painting per room" },
+                  { room: "Hallway", range: "Â£600 â Â£1,100", note: "Flooring, painting, stairs" },
                 ].map((row) => (
                   <div key={row.room} className="flex items-start justify-between text-sm gap-4">
                     <div>
@@ -352,7 +352,7 @@ export default function HowItWorks() {
                 ))}
                 <div className="border-t border-border pt-3 mt-1 flex items-center justify-between">
                   <span className="font-bold">Total estimate</span>
-                  <span className="text-primary font-extrabold">£11,300 – £19,200</span>
+                  <span className="text-primary font-extrabold">Â£11,300 â Â£19,200</span>
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-4">Indicative estimate. Actual costs vary by specification and contractor.</p>
@@ -361,53 +361,53 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* ── What makes Plotrapp different ───────────────────────────── */}
+      {/* ââ What makes Renolab different âââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-[#0f1c2e] text-white">
         <div className="container max-w-4xl mx-auto">
-          <h2 className="text-2xl font-extrabold text-center mb-3">What makes Plotrapp different</h2>
+          <h2 className="text-2xl font-extrabold text-center mb-3">What makes Renolab different</h2>
           <p className="text-white/60 text-center text-sm mb-12 max-w-xl mx-auto">
-            There are other estimating tools out there. Here's why Plotrapp is built differently.
+            There are other estimating tools out there. Here's why Renolab is built differently.
           </p>
           <div className="grid md:grid-cols-2 gap-x-12">
             <div>
               <FeatureRow
                 icon={Camera}
                 title="AI photo analysis, not generic templates"
-                desc="Most estimating tools ask you to fill in a form. Plotrapp analyses your actual room photo — identifying condition, layout, and features — and builds the estimate from that."
+                desc="Most estimating tools ask you to fill in a form. Renolab analyses your actual room photo â identifying condition, layout, and features â and builds the estimate from that."
               />
               <FeatureRow
                 icon={MapPin}
                 title="Built for the island of Ireland"
-                desc="Plotrapp is built by an Irish tradesman, with Irish suppliers, tradespeople, and pricing in mind. Not a generic UK tool with Ireland bolted on."
+                desc="Renolab is built by an Irish tradesman, with Irish suppliers, tradespeople, and pricing in mind. Not a generic UK tool with Ireland bolted on."
               />
               <FeatureRow
                 icon={ShoppingBag}
                 title="Trade pricing, not retail"
-                desc="Plotrapp's supplier network gives members access to trade-account pricing. The same prices a professional builder pays — available to homeowners and tradespeople alike."
+                desc="Renolab's supplier network gives members access to trade-account pricing. The same prices a professional builder pays â available to homeowners and tradespeople alike."
               />
             </div>
             <div>
               <FeatureRow
                 icon={Sparkles}
                 title="AI room visualisation included"
-                desc="See what your finished room looks like before you buy a single tile. Plotrapp generates photorealistic renders from your project inputs — no design software needed."
+                desc="See what your finished room looks like before you buy a single tile. Renolab generates photorealistic renders from your project inputs â no design software needed."
               />
               <FeatureRow
                 icon={Users}
                 title="Vetted local tradespeople"
-                desc="Every tradesperson in the Plotrapp directory is part of our founding launch network — verified, local, and introduced by request rather than cold-called."
+                desc="Every tradesperson in the Renolab directory is part of our founding launch network â verified, local, and introduced by request rather than cold-called."
               />
               <FeatureRow
                 icon={Zap}
                 title="Fast enough to use on site"
-                desc="Plotrapp is designed to work on a phone, on a customer visit, in a van. Get a first-pass estimate in under 3 minutes — before you've left the property."
+                desc="Renolab is designed to work on a phone, on a customer visit, in a van. Get a first-pass estimate in under 3 minutes â before you've left the property."
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Pricing summary ───────────────────────────────────────────────── */}
+      {/* ââ Pricing summary âââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-muted/30">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-2xl font-extrabold text-center mb-3">Simple, honest pricing</h2>
@@ -418,8 +418,8 @@ export default function HowItWorks() {
             {[
               {
                 name: "Free",
-                price: "£0",
-                desc: "Try Plotrapp with no commitment",
+                price: "Â£0",
+                desc: "Try Renolab with no commitment",
                 features: ["Basic cost range estimate", "Preview materials list", "3 free AI room visualisations", "Browse partner suppliers"],
                 cta: "Get Started Free",
                 href: "/estimate",
@@ -427,7 +427,7 @@ export default function HowItWorks() {
               },
               {
                 name: "Pro",
-                price: "£9.99/mo",
+                price: "Â£9.99/mo",
                 desc: "For homeowners and DIY users",
                 features: ["Full guided estimates", "Full itemised shopping lists", "Downloadable PDFs", "Saved projects", "Unlimited AI visualisations", "Member-only supplier discounts"],
                 cta: "Join the Waitlist",
@@ -436,9 +436,9 @@ export default function HowItWorks() {
               },
               {
                 name: "Trade",
-                price: "£24.99/mo",
+                price: "Â£24.99/mo",
                 desc: "For installers, joiners, and builders",
-                features: ["Everything in Pro", "Labour and margin options", "Client-facing estimates", "Reusable project templates", "Unlimited visualisations — save to client folders", "Trade-focused supplier deals"],
+                features: ["Everything in Pro", "Labour and margin options", "Client-facing estimates", "Reusable project templates", "Unlimited visualisations â save to client folders", "Trade-focused supplier deals"],
                 cta: "Join the Waitlist",
                 href: "/pricing",
                 highlight: false,
@@ -473,7 +473,7 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* ── FAQ ───────────────────────────────────────────────────────────── */}
+      {/* ââ FAQ âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-background">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-2xl font-extrabold text-center mb-12">Common questions</h2>
@@ -481,7 +481,7 @@ export default function HowItWorks() {
             {[
               {
                 q: "Is the estimate accurate enough to use for a real project?",
-                a: "Plotrapp generates a cost range and materials list based on your room photo, dimensions, and finish choices. It is designed to give you a reliable ballpark — accurate enough to have an informed conversation with a supplier or tradesperson. It is not a formal quote. For a binding price, you'll need a tradesperson to survey the job in person.",
+                a: "Renolab generates a cost range and materials list based on your room photo, dimensions, and finish choices. It is designed to give you a reliable ballpark â accurate enough to have an informed conversation with a supplier or tradesperson. It is not a formal quote. For a binding price, you'll need a tradesperson to survey the job in person.",
               },
               {
                 q: "Do I need to create an account to get an estimate?",
@@ -489,19 +489,19 @@ export default function HowItWorks() {
               },
               {
                 q: "What is a project visualisation?",
-                a: "A project visualisation is a photorealistic AI-generated image of what your finished room could look like, based on the room type, dimensions, and finish choices you entered during your estimate. It is not a photo of your actual room — it is an AI render that shows you how your choices might look in a real space.",
+                a: "A project visualisation is a photorealistic AI-generated image of what your finished room could look like, based on the room type, dimensions, and finish choices you entered during your estimate. It is not a photo of your actual room â it is an AI render that shows you how your choices might look in a real space.",
               },
               {
                 q: "How does the tradesperson directory work?",
-                a: "Tradespeople in the Plotrapp directory are part of our founding launch network — verified, local, and introduced by request. Homeowners can request an introduction to a tradesperson. Tradespeople can apply to join the network via the Tradespeople page.",
+                a: "Tradespeople in the Renolab directory are part of our founding launch network â verified, local, and introduced by request. Homeowners can request an introduction to a tradesperson. Tradespeople can apply to join the network via the Tradespeople page.",
               },
               {
-                q: "When will Plotrapp fully launch?",
-                a: "Plotrapp is currently in pre-launch. The estimate tool and directory are live. Full Pro and Trade memberships, supplier discount access, and the complete feature set will be available at launch. Join the waitlist to be notified first and lock in founding member pricing.",
+                q: "When will Renolab fully launch?",
+                a: "Renolab is currently in pre-launch. The estimate tool and directory are live. Full Pro and Trade memberships, supplier discount access, and the complete feature set will be available at launch. Join the waitlist to be notified first and lock in founding member pricing.",
               },
               {
-                q: "Is Plotrapp only for the island of Ireland?",
-                a: "For now, yes. Plotrapp is built specifically for the the island of Ireland market — with local suppliers, local tradespeople, and pricing that reflects the NI trade market. We may expand to the Republic of Ireland and GB in the future.",
+                q: "Is Renolab only for the island of Ireland?",
+                a: "For now, yes. Renolab is built specifically for the the island of Ireland market â with local suppliers, local tradespeople, and pricing that reflects the NI trade market. We may expand to the Republic of Ireland and GB in the future.",
               },
             ].map(({ q, a }) => (
               <div key={q} className="border-b border-border pb-6">
@@ -513,7 +513,7 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* ── Final CTA ─────────────────────────────────────────────────────── */}
+      {/* ââ Final CTA âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-[#0f1c2e] text-white">
         <div className="container max-w-2xl mx-auto text-center">
           <Star className="w-10 h-10 text-primary mx-auto mb-5" />
@@ -537,7 +537,7 @@ export default function HowItWorks() {
       </section>
 
       <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-        Built on the island of Ireland. plotrapp.co.uk
+        Built on the island of Ireland. renolab.co.uk
       </footer>
     </div>
   );

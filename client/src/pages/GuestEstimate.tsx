@@ -20,19 +20,19 @@ import {
   X,
 } from "lucide-react";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+// âââ Types ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 type UserType = "homeowner" | "tradesperson";
 
 const PROJECT_TYPES = [
-  { id: "kitchen", label: "Kitchen", icon: "🍳" },
-  { id: "bathroom", label: "Bathroom", icon: "🛁" },
-  { id: "bedroom", label: "Bedroom", icon: "🛏️" },
-  { id: "living_room", label: "Living Room", icon: "🛋️" },
-  { id: "hallway", label: "Hallway / Landing", icon: "🚪" },
-  { id: "extension", label: "Extension", icon: "🏗️" },
-  { id: "full_house", label: "Full House", icon: "🏠" },
-  { id: "other", label: "Other", icon: "🔨" },
+  { id: "kitchen", label: "Kitchen", icon: "ð³" },
+  { id: "bathroom", label: "Bathroom", icon: "ð" },
+  { id: "bedroom", label: "Bedroom", icon: "ðï¸" },
+  { id: "living_room", label: "Living Room", icon: "ðï¸" },
+  { id: "hallway", label: "Hallway / Landing", icon: "ðª" },
+  { id: "extension", label: "Extension", icon: "ðï¸" },
+  { id: "full_house", label: "Full House", icon: "ð " },
+  { id: "other", label: "Other", icon: "ð¨" },
 ];
 
 const GUIDED_QUESTIONS: Record<string, { question: string; options: string[] }[]> = {
@@ -60,7 +60,7 @@ const GUIDED_QUESTIONS: Record<string, { question: string; options: string[] }[]
   ],
 };
 
-// ─── Step indicator ───────────────────────────────────────────────────────────
+// âââ Step indicator âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 const STEPS = [
   { id: 1, label: "About you" },
@@ -105,7 +105,7 @@ function StepIndicator({ current }: { current: number }) {
   );
 }
 
-// ─── Main Component ───────────────────────────────────────────────────────────
+// âââ Main Component âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 export default function GuestEstimate() {
   const [, navigate] = useLocation();
@@ -128,7 +128,7 @@ export default function GuestEstimate() {
 
   const questions = GUIDED_QUESTIONS[projectType ?? ""] ?? GUIDED_QUESTIONS.default;
 
-  // ── Photo upload ──────────────────────────────────────────────────────────
+  // ââ Photo upload ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   async function handlePhotoSelect(file: File) {
     setPhotoFile(file);
     setPhotoPreview(URL.createObjectURL(file));
@@ -155,7 +155,7 @@ export default function GuestEstimate() {
     }
   }
 
-  // ── Submit ────────────────────────────────────────────────────────────────
+  // ââ Submit ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   async function handleSubmit() {
     if (!userType || !projectType || !photoUrl || !email) return;
     setIsAnalysing(true);
@@ -184,7 +184,7 @@ export default function GuestEstimate() {
     }
   }
 
-  // ── Render ────────────────────────────────────────────────────────────────
+  // ââ Render ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
   // Full-screen progress screen while AI is running
   if (isAnalysing) {
@@ -195,11 +195,11 @@ export default function GuestEstimate() {
             <div className="absolute inset-0 rounded-full border-4 border-[#FF6B2C]/20" />
             <div className="absolute inset-0 rounded-full border-4 border-t-[#FF6B2C] animate-spin" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-2xl">🏠</span>
+              <span className="text-2xl">ð </span>
             </div>
           </div>
-          <h2 className="text-2xl font-bold mb-2">Building your estimate…</h2>
-          <p className="text-slate-400 text-sm mb-6">Our AI is analysing your room photo and inputs. This usually takes 10–20 seconds.</p>
+          <h2 className="text-2xl font-bold mb-2">Building your estimateâ¦</h2>
+          <p className="text-slate-400 text-sm mb-6">Our AI is analysing your room photo and inputs. This usually takes 10â20 seconds.</p>
           <div className="space-y-2 text-left bg-[#1E293B] rounded-xl p-4">
             {[
               { label: "Analysing room photo", done: true },
@@ -226,14 +226,14 @@ export default function GuestEstimate() {
     <div className="min-h-screen bg-[#0F172A] text-white">
       {/* Header */}
       <header className="border-b border-slate-800 px-6 py-4 flex items-center justify-between">
-        <a href="/" className="text-xl font-bold text-[#FF6B2C]">Plotrapp</a>
-        <span className="text-sm text-slate-400">Free Estimate — No account needed</span>
+        <a href="/" className="text-xl font-bold text-[#FF6B2C]">Renolab</a>
+        <span className="text-sm text-slate-400">Free Estimate â No account needed</span>
       </header>
 
       <div className="max-w-2xl mx-auto px-4 py-10">
         <StepIndicator current={step} />
 
-        {/* ── Step 1: User Type ── */}
+        {/* ââ Step 1: User Type ââ */}
         {step === 1 && (
           <div className="text-center">
             <h1 className="text-3xl font-bold mb-2">Who are you?</h1>
@@ -263,7 +263,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ── Step 2: Project Type ── */}
+        {/* ââ Step 2: Project Type ââ */}
         {step === 2 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">What are you renovating?</h1>
@@ -297,7 +297,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ── Step 3: Photo Upload ── */}
+        {/* ââ Step 3: Photo Upload ââ */}
         {step === 3 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Upload a room photo</h1>
@@ -329,7 +329,7 @@ export default function GuestEstimate() {
                 <>
                   <ImageIcon className="w-12 h-12 mx-auto mb-3 text-slate-500" />
                   <p className="text-slate-300 font-medium">Click to upload a photo</p>
-                  <p className="text-slate-500 text-sm mt-1">JPG, PNG or HEIC — max 10MB</p>
+                  <p className="text-slate-500 text-sm mt-1">JPG, PNG or HEIC â max 10MB</p>
                 </>
               )}
             </div>
@@ -356,12 +356,12 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ── Step 4: Measurements ── */}
+        {/* ââ Step 4: Measurements ââ */}
         {step === 4 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Add measurements</h1>
             <p className="text-slate-400 mb-2 text-center">
-              Optional — but more accurate measurements mean a better estimate.
+              Optional â but more accurate measurements mean a better estimate.
             </p>
             <p className="text-xs text-slate-500 text-center mb-8">Leave blank and our AI will estimate from your photo.</p>
             <div className="bg-[#1E293B] rounded-xl p-6 space-y-4 mb-6">
@@ -399,7 +399,7 @@ export default function GuestEstimate() {
               </div>
               {dimensions.width && dimensions.length && (
                 <p className="text-sm text-[#FF6B2C] font-medium">
-                  Floor area: {(parseFloat(dimensions.width) * parseFloat(dimensions.length)).toFixed(1)} m²
+                  Floor area: {(parseFloat(dimensions.width) * parseFloat(dimensions.length)).toFixed(1)} mÂ²
                 </p>
               )}
             </div>
@@ -414,7 +414,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ── Step 5: Style ── */}
+        {/* ââ Step 5: Style ââ */}
         {step === 5 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Describe your vision</h1>
@@ -448,7 +448,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ── Step 6: Guided Questions ── */}
+        {/* ââ Step 6: Guided Questions ââ */}
         {step === 6 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">A few quick questions</h1>
@@ -488,7 +488,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ── Step 7: Email Gate ── */}
+        {/* ââ Step 7: Email Gate ââ */}
         {step === 7 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Where do we send your estimate?</h1>
@@ -541,7 +541,7 @@ export default function GuestEstimate() {
                 {isAnalysing ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                    Analysing your room…
+                    Analysing your roomâ¦
                   </>
                 ) : (
                   <>

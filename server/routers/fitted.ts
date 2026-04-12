@@ -1,11 +1,11 @@
 /**
- * Fitted Furniture Router — Plotrapp
+ * Fitted Furniture Router â Renolab
  *
  * Procedures:
- *   fitted.calculateKitchen  — runs private pricing engine, returns plan-gated output
- *   fitted.requestQuote      — saves formal quote request, notifies owner
- *   fitted.getEstimate       — fetch a saved estimate by id (for result page)
- *   fitted.listQuotes        — admin: list all quote requests
+ *   fitted.calculateKitchen  â runs private pricing engine, returns plan-gated output
+ *   fitted.requestQuote      â saves formal quote request, notifies owner
+ *   fitted.getEstimate       â fetch a saved estimate by id (for result page)
+ *   fitted.listQuotes        â admin: list all quote requests
  */
 
 import { TRPCError } from "@trpc/server";
@@ -19,7 +19,7 @@ import { getDb, joinWaitlist } from "../db";
 import { fittedEstimates, quoteRequests } from "../../drizzle/schema";
 import { eq } from "drizzle-orm";
 
-// ─── Input schemas ────────────────────────────────────────────────────────────
+// âââ Input schemas ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 const kitchenInputSchema = z.object({
   // User context
@@ -76,7 +76,7 @@ const quoteRequestSchema = z.object({
   notes: z.string().max(2000).optional(),
 });
 
-// ─── Router ───────────────────────────────────────────────────────────────────
+// âââ Router âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 export const fittedRouter = router({
   /**
@@ -114,7 +114,7 @@ export const fittedRouter = router({
         supplyMode: input.supplyMode,
       };
 
-      // Run private engine — _private layer never leaves this function
+      // Run private engine â _private layer never leaves this function
       const result = calculateKitchenEstimate(engineInputs);
       const pub = result.public;
 
@@ -128,15 +128,15 @@ export const fittedRouter = router({
         joinWaitlist(
           input.guestEmail,
           "kitchen_estimator",
-          `Kitchen Estimator — ${input.userType} — ${input.supplyMode.replace(/_/g, " ")}`,
+          `Kitchen Estimator â ${input.userType} â ${input.supplyMode.replace(/_/g, " ")}`,
           input.userType === "trade" ? "trade" : ""
         ).catch(() => {}); // silently swallow errors
       } else if ((ctx as any)?.user?.email) {
-        // Logged-in user — capture their email too if not already in waitlist
+        // Logged-in user â capture their email too if not already in waitlist
         joinWaitlist(
           (ctx as any).user.email,
           "kitchen_estimator",
-          `Kitchen Estimator — ${input.userType} — ${input.supplyMode.replace(/_/g, " ")}`,
+          `Kitchen Estimator â ${input.userType} â ${input.supplyMode.replace(/_/g, " ")}`,
           input.userType === "trade" ? "trade" : ""
         ).catch(() => {});
       }
@@ -150,7 +150,7 @@ export const fittedRouter = router({
         userType: input.userType,
         category: "kitchen",
         supplyMode: input.supplyMode,
-        inputsJson: JSON.stringify(engineInputs), // private — never returned to client
+        inputsJson: JSON.stringify(engineInputs), // private â never returned to client
         estimateRangeLow: pub.estimateRangeLow,
         estimateRangeHigh: pub.estimateRangeHigh,
         grandTotalLow: pub.grandTotalLow,
@@ -163,7 +163,7 @@ export const fittedRouter = router({
 
       const estimateId = (saved as any).insertId as number;
 
-      // ── Build plan-gated response ──────────────────────────────────────────
+      // ââ Build plan-gated response ââââââââââââââââââââââââââââââââââââââââââ
       // FREE / GUEST
       if (!isPro) {
         return {
@@ -191,7 +191,7 @@ export const fittedRouter = router({
         return {
           estimateId,
           tier: "trade" as const,
-          // Blended per-LM — the key trade output
+          // Blended per-LM â the key trade output
           perLinearMetreLow: pub.perLinearMetreLow,
           perLinearMetreHigh: pub.perLinearMetreHigh,
           totalCabinetryLow: pub.totalCabinetryLow,
@@ -199,7 +199,7 @@ export const fittedRouter = router({
           grandTotalLow: pub.grandTotalLow,
           grandTotalHigh: pub.grandTotalHigh,
           runLengthMetres: pub.runLengthMetres,
-          // Optional extras separated out — no line-by-line cabinetry breakdown
+          // Optional extras separated out â no line-by-line cabinetry breakdown
           worktopCost: pub.worktopCost,
           fittingCost: pub.fittingCost,
           deliveryCost: pub.deliveryCost,
@@ -257,7 +257,7 @@ export const fittedRouter = router({
           runLengthMetres: fittedEstimates.runLengthMetres,
           aiSummary: fittedEstimates.aiSummary,
           createdAt: fittedEstimates.createdAt,
-          // inputsJson is intentionally excluded — private
+          // inputsJson is intentionally excluded â private
         })
         .from(fittedEstimates)
         .where(eq(fittedEstimates.id, input.id))
@@ -298,7 +298,7 @@ export const fittedRouter = router({
       const quoteId = (saved as any).insertId as number;
 
       // Notify owner
-      const title = `New formal quote request — ${input.category} (${input.userType})`;
+      const title = `New formal quote request â ${input.category} (${input.userType})`;
       const content = [
         `Name: ${input.name}`,
         `Email: ${input.email}`,
@@ -306,7 +306,7 @@ export const fittedRouter = router({
         `User type: ${input.userType}`,
         `Category: ${input.category}`,
         `Supply mode: ${input.supplyMode}`,
-        `Estimate range: £${input.estimateRangeLow?.toLocaleString() ?? "?"} – £${input.estimateRangeHigh?.toLocaleString() ?? "?"}`,
+        `Estimate range: Â£${input.estimateRangeLow?.toLocaleString() ?? "?"} â Â£${input.estimateRangeHigh?.toLocaleString() ?? "?"}`,
         `Dimensions: ${input.dimensionsSummary ?? "not provided"}`,
         `Spec: ${input.specSummary ?? "not provided"}`,
         `Notes: ${input.notes ?? "none"}`,
@@ -317,7 +317,7 @@ export const fittedRouter = router({
 
       // Send confirmation email to the person who requested the quote
       const estimateRange = input.estimateRangeLow != null && input.estimateRangeHigh != null
-        ? `£${input.estimateRangeLow.toLocaleString()} – £${input.estimateRangeHigh.toLocaleString()}`
+        ? `Â£${input.estimateRangeLow.toLocaleString()} â Â£${input.estimateRangeHigh.toLocaleString()}`
         : undefined;
       sendQuoteConfirmationEmail(input.email, input.name, input.category, estimateRange).catch(() => {});
 

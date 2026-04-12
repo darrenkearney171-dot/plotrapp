@@ -64,7 +64,7 @@ import {
   deleteProjectTemplate,
 } from "./db";
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+// âââ Helpers ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function requireOwnership(resourceUserId: number, ctxUserId: number) {
   if (resourceUserId !== ctxUserId) {
@@ -79,7 +79,7 @@ function adminProcedure() {
   });
 }
 
-// ─── App Router ───────────────────────────────────────────────────────────────
+// âââ App Router âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 export const appRouter = router({
   system: systemRouter,
@@ -94,7 +94,7 @@ export const appRouter = router({
     }),
   }),
 
-  // ─── Projects ───────────────────────────────────────────────────────────────
+  // âââ Projects âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   projects: router({
     list: protectedProcedure.query(async ({ ctx }) => {
       return getProjectsByUser(ctx.user.id);
@@ -148,7 +148,7 @@ export const appRouter = router({
       }),
   }),
 
-  // ─── Room Analysis ──────────────────────────────────────────────────────────
+  // âââ Room Analysis ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   analysis: router({
     listByProject: protectedProcedure
       .input(z.object({ projectId: z.number() }))
@@ -249,7 +249,7 @@ export const appRouter = router({
               {
                 role: "system",
                 content: `You are an expert renovation estimator and interior designer. Analyse the provided room photo(s) and extract:
-1. Dimensions (width, length, height in metres, floor area in m², wall perimeter in m) — use manual measurements if provided, otherwise estimate from the photo
+1. Dimensions (width, length, height in metres, floor area in mÂ², wall perimeter in m) â use manual measurements if provided, otherwise estimate from the photo
 2. Room type and current condition
 3. Identified features (windows, doors, radiators, built-ins, etc.)
 4. Renovation scope and recommendations tailored to the homeowner's stated style preferences and any reference images
@@ -360,7 +360,7 @@ Respond ONLY with valid JSON matching this exact schema:
         const style = analysis.styleRecommendations as any;
 
         const dimStr = dims
-          ? `The room is ${dims.width?.toFixed(1)}m wide, ${dims.length?.toFixed(1)}m long, and ${dims.height?.toFixed(1)}m high (floor area ${dims.area?.toFixed(1)}m²).`
+          ? `The room is ${dims.width?.toFixed(1)}m wide, ${dims.length?.toFixed(1)}m long, and ${dims.height?.toFixed(1)}m high (floor area ${dims.area?.toFixed(1)}mÂ²).`
           : "";
 
         const scopeStr = scope
@@ -381,7 +381,7 @@ Respond ONLY with valid JSON matching this exact schema:
           scopeStr,
           styleStr,
           userStyleStr,
-          "Professional interior photography style, soft natural lighting, ultra-high detail, 8K resolution, wide-angle lens perspective showing the full room. The renovation is complete and pristine — no construction materials visible.",
+          "Professional interior photography style, soft natural lighting, ultra-high detail, 8K resolution, wide-angle lens perspective showing the full room. The renovation is complete and pristine â no construction materials visible.",
         ].filter(Boolean).join(" ");
 
         // Mark as generating
@@ -504,7 +504,7 @@ AI Summary: ${analysis.aiSummary}`,
       }),
   }),
 
-  // ─── Materials Lists ────────────────────────────────────────────────────────
+  // âââ Materials Lists ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   materials: router({
     listByProject: protectedProcedure
       .input(z.object({ projectId: z.number() }))
@@ -525,7 +525,7 @@ AI Summary: ${analysis.aiSummary}`,
       }),
   }),
 
-  // ─── Suppliers ──────────────────────────────────────────────────────────────
+  // âââ Suppliers ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   suppliers: router({
     list: publicProcedure
       .input(z.object({
@@ -556,7 +556,7 @@ AI Summary: ${analysis.aiSummary}`,
       }),
   }),
 
-  // ─── Tradespeople ───────────────────────────────────────────────────────────
+  // âââ Tradespeople âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   tradespeople: router({
     list: publicProcedure
       .input(z.object({
@@ -610,7 +610,7 @@ AI Summary: ${analysis.aiSummary}`,
         });
 
         // Notify owner about the introduction request
-        const title = `New introduction request — ${tradesperson.name} (${tradesperson.trade})`;
+        const title = `New introduction request â ${tradesperson.name} (${tradesperson.trade})`;
         const content = [
           `Requester: ${input.requesterName}`,
           `Email: ${input.requesterEmail}`,
@@ -625,7 +625,7 @@ AI Summary: ${analysis.aiSummary}`,
       }),
   }),
 
-  // ─── Subscriptions ──────────────────────────────────────────────────────────
+  // âââ Subscriptions ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   subscriptions: router({
     getCurrent: protectedProcedure.query(async ({ ctx }) => {
       return {
@@ -710,7 +710,7 @@ AI Summary: ${analysis.aiSummary}`,
       }),
   }),
 
-  // ─── Admin ──────────────────────────────────────────────────────────────────
+  // âââ Admin ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   admin: router({
     stats: adminProcedure()
       .query(async () => {
@@ -814,7 +814,7 @@ AI Summary: ${analysis.aiSummary}`,
         return { success: true };
       }),
 
-    // ─── Funnel & Lead Visibility ─────────────────────────────────────────────
+    // âââ Funnel & Lead Visibility âââââââââââââââââââââââââââââââââââââââââââââ
     funnelStats: adminProcedure()
       .query(async () => {
         return getAdminFunnelStats();
@@ -851,9 +851,9 @@ AI Summary: ${analysis.aiSummary}`,
       }),
   }),
 
-  // ─── Guest Estimate (no auth required) ──────────────────────────────────────
+  // âââ Guest Estimate (no auth required) ââââââââââââââââââââââââââââââââââââââ
   guest: router({
-    // Step 1: Start a guest estimate — upload photo, dimensions, answers, style
+    // Step 1: Start a guest estimate â upload photo, dimensions, answers, style
     // Returns a leadId used to poll/retrieve the result
     startEstimate: publicProcedure
       .input(z.object({
@@ -925,7 +925,7 @@ AI Summary: ${analysis.aiSummary}`,
   "timeEstimate": string,
   "aiSummary": string
 }
-All costs in GBP (£). Be realistic and conservative. costRangeLow and costRangeHigh are integers.`,
+All costs in GBP (Â£). Be realistic and conservative. costRangeLow and costRangeHigh are integers.`,
             },
             { role: "user", content: userContent },
           ],
@@ -984,7 +984,7 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
         return lead;
       }),
 
-    // ─── New Build Estimate (no photo required, multi-room)
+    // âââ New Build Estimate (no photo required, multi-room)
     startNewBuildEstimate: publicProcedure
       .input(z.object({
         email: z.string().email(),
@@ -1004,18 +1004,18 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
       .mutation(async ({ input }) => {
         const roomDescriptions = input.rooms.map((r, i) =>
           `Room ${i + 1}: ${r.label} (${r.type})` +
-          (r.width && r.length ? ` — ${r.width}m × ${r.length}m` : "") +
-          (r.height ? ` × ${r.height}m high` : "")
+          (r.width && r.length ? ` â ${r.width}m Ã ${r.length}m` : "") +
+          (r.height ? ` Ã ${r.height}m high` : "")
         ).join("\n");
         const finishDesc = { standard: "standard/budget", mid: "mid-range", premium: "premium/high-spec" }[input.finishLevel];
         const tradeCtx = input.userType === "tradesperson"
-          ? " This estimate is being prepared by a tradesperson — include labour time and material quantities suitable for a professional quote."
+          ? " This estimate is being prepared by a tradesperson â include labour time and material quantities suitable for a professional quote."
           : "";
         const aiResponse = await invokeLLM({
           messages: [
             {
               role: "system",
-              content: `You are an expert new-build cost estimator and interior designer for the UK and Ireland market. The user is building a new house and needs a full fit-out estimate for each room. Respond ONLY with valid JSON matching this exact schema:\n{\n  "totalCostLow": number,\n  "totalCostHigh": number,\n  "timeEstimate": string,\n  "aiSummary": string,\n  "designSummary": string,\n  "rooms": [\n    {\n      "type": string,\n      "label": string,\n      "costLow": number,\n      "costHigh": number,\n      "keyMaterials": string[],\n      "recommendedWork": string[]\n    }\n  ]\n}\nAll costs in GBP (£). Be realistic and conservative. Use ${finishDesc} finish level throughout. The designSummary should be 2-3 sentences of practical interior design recommendations suited to the finish level and room mix — suggest colour palettes, flooring choices, and key style decisions.${tradeCtx}`,
+              content: `You are an expert new-build cost estimator and interior designer for the UK and Ireland market. The user is building a new house and needs a full fit-out estimate for each room. Respond ONLY with valid JSON matching this exact schema:\n{\n  "totalCostLow": number,\n  "totalCostHigh": number,\n  "timeEstimate": string,\n  "aiSummary": string,\n  "designSummary": string,\n  "rooms": [\n    {\n      "type": string,\n      "label": string,\n      "costLow": number,\n      "costHigh": number,\n      "keyMaterials": string[],\n      "recommendedWork": string[]\n    }\n  ]\n}\nAll costs in GBP (Â£). Be realistic and conservative. Use ${finishDesc} finish level throughout. The designSummary should be 2-3 sentences of practical interior design recommendations suited to the finish level and room mix â suggest colour palettes, flooring choices, and key style decisions.${tradeCtx}`,
             },
             {
               role: "user",
@@ -1089,7 +1089,7 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
         return { leadId, result };
       }),
 
-    // ─── Scan House Plans (AI extracts rooms + dimensions from 1-5 uploaded plan images/PDFs)
+    // âââ Scan House Plans (AI extracts rooms + dimensions from 1-5 uploaded plan images/PDFs)
     scanHousePlan: publicProcedure
       .input(z.object({
         // Accept either a single plan (legacy) or an array of plans
@@ -1117,7 +1117,7 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
 
         // Build content array: text instruction + one media item per plan
         const userContent: any[] = [
-          { type: "text", text: `Please scan ${planList.length > 1 ? `these ${planList.length} house plan pages` : "this house plan"} and extract all rooms with their dimensions. Merge rooms across pages — do not duplicate rooms that appear on multiple pages.` },
+          { type: "text", text: `Please scan ${planList.length > 1 ? `these ${planList.length} house plan pages` : "this house plan"} and extract all rooms with their dimensions. Merge rooms across pages â do not duplicate rooms that appear on multiple pages.` },
           ...planList.map((p) =>
             p.mimeType === "application/pdf"
               ? { type: "file_url", file_url: { url: p.url, mime_type: "application/pdf" } }
@@ -1174,7 +1174,7 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
         return scanResult;
       }),
 
-    // ─── Generate AI Room Photo (renders a room based on style prompt)
+    // âââ Generate AI Room Photo (renders a room based on style prompt)
     generateRoomPhoto: publicProcedure
       .input(z.object({
         roomLabel: z.string(),
@@ -1203,7 +1203,7 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
 
   }),
 
-  // ─── Trade Applications
+  // âââ Trade Applications
   trade: router({
     submitApplication: publicProcedure
       .input(z.object({
@@ -1229,7 +1229,7 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
       }),
   }),
 
-  // ─── Project Templates (Trade tier)
+  // âââ Project Templates (Trade tier)
   templates: router({
     list: protectedProcedure
       .query(async ({ ctx }) => {
@@ -1269,7 +1269,7 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
       }),
   }),
 
-  // ─── Project Visualisations
+  // âââ Project Visualisations
   visualisation: router({
     // Get current user's allowance status
     status: protectedProcedure.query(async ({ ctx }) => {
@@ -1301,19 +1301,19 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
         if (status.tier === "free" && status.freeUsed >= FREE_VISUALISATION_LIMIT) {
           throw new TRPCError({ code: "FORBIDDEN", message: "FREE_LIMIT_REACHED" });
         }
-        // Resolve photo URL — prefer explicit input, fall back to the lead's photo
+        // Resolve photo URL â prefer explicit input, fall back to the lead's photo
         let resolvedPhotoUrl: string | null = input.photoUrl ?? null;
         if (!resolvedPhotoUrl && input.leadId) {
           const lead = await getGuestLeadById(input.leadId);
           resolvedPhotoUrl = lead?.photoUrl ?? null;
         }
-        // Build AI prompt — instruct the model to renovate the actual room in the photo
+        // Build AI prompt â instruct the model to renovate the actual room in the photo
         const dimStr = input.dimensions
           ? `The room is approximately ${[input.dimensions.width && `${input.dimensions.width}m wide`, input.dimensions.length && `${input.dimensions.length}m long`, input.dimensions.height && `${input.dimensions.height}m high`].filter(Boolean).join(", ")}.`
           : "";
         const materialsStr = input.materials?.length ? `Key materials include: ${input.materials.join(", ")}.` : "";
         const baseInstruction = resolvedPhotoUrl
-          ? `Renovate this exact ${input.roomType.replace("_", " ")} — keep the same layout, walls, windows, and proportions but apply the following updates to produce a photorealistic result of the finished renovation:`
+          ? `Renovate this exact ${input.roomType.replace("_", " ")} â keep the same layout, walls, windows, and proportions but apply the following updates to produce a photorealistic result of the finished renovation:`
           : `A photorealistic interior render of a fully renovated ${input.roomType.replace("_", " ")} in a modern Irish home.`;
         const prompt = [
           baseInstruction,
@@ -1323,7 +1323,7 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
           input.stylePrompt ? `Style: ${input.stylePrompt}.` : "",
           "Show the finished renovation. High quality, professional interior photography, bright natural lighting, clean and finished.",
         ].filter(Boolean).join(" ");
-        // Generate image — pass the room photo as the base image when available so the AI edits the actual room
+        // Generate image â pass the room photo as the base image when available so the AI edits the actual room
         const originalImages = resolvedPhotoUrl
           ? [{ url: resolvedPhotoUrl, mimeType: "image/jpeg" as const }]
           : undefined;
@@ -1353,7 +1353,7 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
         return { success: true };
       }),
   }),
-  // ─── Waitlist
+  // âââ Waitlist
   waitlist: router({
     join: publicProcedure
       .input(z.object({
@@ -1371,7 +1371,7 @@ All costs in GBP (£). Be realistic and conservative. costRangeLow and costRange
         // Notify owner of new waitlist sign-up
         const joinedAt = new Date().toLocaleString("en-GB", { timeZone: "Europe/London" });
         const title = `New waitlist sign-up: ${input.email}`;
-        const content = `Someone has joined the Plotrapp waitlist.\n\nEmail: ${input.email}\nSource: ${source}\nButton: ${buttonLabel || "(not specified)"}\nTier interest: ${tier || "(not specified)"}\nTime: ${joinedAt}`;
+        const content = `Someone has joined the Renolab waitlist.\n\nEmail: ${input.email}\nSource: ${source}\nButton: ${buttonLabel || "(not specified)"}\nTier interest: ${tier || "(not specified)"}\nTime: ${joinedAt}`;
         notifyOwner({ title, content }).catch(() => {});
         sendOwnerEmail(title, content).catch(() => {});
 

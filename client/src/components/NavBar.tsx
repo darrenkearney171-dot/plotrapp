@@ -52,7 +52,7 @@ export default function NavBar() {
               <div className="w-8 h-8 rounded-md bg-[#f97316] flex items-center justify-center">
                 <span className="text-white font-bold text-sm">P</span>
               </div>
-              <span className="text-white font-bold text-lg tracking-tight">Plotrapp</span>
+              <span className="text-white font-bold text-lg tracking-tight">Renolab</span>
             </Link>
 
             {/* Desktop nav */}
@@ -181,10 +181,10 @@ export default function NavBar() {
       <Dialog open={waitlistOpen} onOpenChange={setWaitlistOpen}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold">Join the Plotrapp Waitlist</DialogTitle>
+            <DialogTitle className="text-xl font-bold">Join the Renolab Waitlist</DialogTitle>
           </DialogHeader>
           <p className="text-sm text-muted-foreground mb-4">
-            Plotrapp is launching soon in the island of Ireland. Enter your email to get early access and be first to know when we go live.
+            Renolab is launching soon in the island of Ireland. Enter your email to get early access and be first to know when we go live.
           </p>
           <form onSubmit={handleWaitlist} className="flex gap-2">
             <Input
@@ -200,7 +200,7 @@ export default function NavBar() {
               className="bg-[#f97316] hover:bg-[#ea6c0a] text-white font-semibold"
               disabled={joinWaitlist.isPending}
             >
-              {joinWaitlist.isPending ? "Saving…" : "Save my spot"}
+              {joinWaitlist.isPending ? "Savingâ¦" : "Save my spot"}
             </Button>
           </form>
         </DialogContent>

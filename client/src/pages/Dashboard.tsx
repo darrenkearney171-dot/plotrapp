@@ -33,7 +33,7 @@ import {
 } from "lucide-react";
 import NavBar from "@/components/NavBar";
 
-// ─── Create Project Dialog ─────────────────────────────────────────────────────
+// âââ Create Project Dialog âââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function CreateProjectDialog({ onCreated }: { onCreated: () => void }) {
   const [open, setOpen] = useState(false);
@@ -84,7 +84,7 @@ function CreateProjectDialog({ onCreated }: { onCreated: () => void }) {
   );
 }
 
-// ─── Generate Visualisation Dialog ────────────────────────────────────────────
+// âââ Generate Visualisation Dialog ââââââââââââââââââââââââââââââââââââââââââââ
 
 const ROOM_TYPES = [
   { value: "bathroom", label: "Bathroom" },
@@ -172,7 +172,7 @@ function GenerateVisualisationDialog({ onGenerated, photoUrl }: { onGenerated: (
             />
           </div>
           <p className="text-xs text-muted-foreground">
-            AI image generation takes 10–20 seconds. The result is saved to your gallery.
+            AI image generation takes 10â20 seconds. The result is saved to your gallery.
           </p>
           <Button
             className="w-full"
@@ -180,7 +180,7 @@ function GenerateVisualisationDialog({ onGenerated, photoUrl }: { onGenerated: (
             onClick={() => generateMutation.mutate({ roomType, finishes, stylePrompt: stylePrompt || undefined, photoUrl: photoUrl || undefined })}
           >
             {generateMutation.isPending ? (
-              <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Generating…</>
+              <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Generatingâ¦</>
             ) : (
               <><Sparkles className="w-4 h-4 mr-2" />Generate</>
             )}
@@ -191,7 +191,7 @@ function GenerateVisualisationDialog({ onGenerated, photoUrl }: { onGenerated: (
   );
 }
 
-// ─── Upgrade Modal ─────────────────────────────────────────────────────────────
+// âââ Upgrade Modal âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function UpgradeVisualisationModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
@@ -203,11 +203,11 @@ function UpgradeVisualisationModal({ open, onClose }: { open: boolean; onClose: 
           </DialogTitle>
         </DialogHeader>
         <p className="text-sm text-muted-foreground mt-2">
-          You have used your 3 free project visualisations. Upgrade to Plotrapp Pro to unlock unlimited visualisations for every room in your project.
+          You have used your 3 free project visualisations. Upgrade to Renolab Pro to unlock unlimited visualisations for every room in your project.
         </p>
         <div className="flex flex-col gap-3 mt-4">
           <Link href="/pricing">
-            <Button className="w-full" onClick={onClose}>Upgrade to Pro — £9.99/month</Button>
+            <Button className="w-full" onClick={onClose}>Upgrade to Pro â Â£9.99/month</Button>
           </Link>
           <Button variant="ghost" className="w-full" onClick={onClose}>Not now</Button>
         </div>
@@ -216,7 +216,7 @@ function UpgradeVisualisationModal({ open, onClose }: { open: boolean; onClose: 
   );
 }
 
-// ─── Status helpers ────────────────────────────────────────────────────────────
+// âââ Status helpers ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 const STATUS_COLORS: Record<string, string> = {
   planning: "bg-blue-100 text-blue-700",
@@ -230,7 +230,7 @@ const STATUS_LABELS: Record<string, string> = {
   completed: "Completed",
 };
 
-// ─── Trade Templates ──────────────────────────────────────────────────────────
+// âââ Trade Templates ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 const TEMPLATE_CATEGORIES = [
   { value: "kitchen", label: "Kitchen" },
@@ -334,7 +334,7 @@ function TradeTemplates() {
                 <p className="text-sm font-medium truncate">{tpl.name}</p>
                 <p className="text-xs text-muted-foreground">
                   {TEMPLATE_CATEGORIES.find(c => c.value === tpl.category)?.label ?? tpl.category}
-                  {tpl.description ? ` · ${tpl.description}` : ""}
+                  {tpl.description ? ` Â· ${tpl.description}` : ""}
                 </p>
               </div>
               <Button
@@ -360,7 +360,7 @@ function TradeTemplates() {
   );
 }
 
-// ─── Dashboard ────────────────────────────────────────────────────────────────
+// âââ Dashboard ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 export default function Dashboard() {
   const { user, isAuthenticated, loading } = useAuth();
@@ -449,7 +449,7 @@ export default function Dashboard() {
           ))}
         </div>
 
-        {/* Trade Dashboard — only for Trade tier users */}
+        {/* Trade Dashboard â only for Trade tier users */}
         {subscription?.tier === "trade" && (
           <div className="mb-10">
             <div className="flex items-center gap-2 mb-4">
@@ -526,7 +526,7 @@ export default function Dashboard() {
                 </div>
                 {project.totalEstimatedCost && (
                   <p className="text-sm text-muted-foreground">
-                    Est. cost: <span className="font-semibold text-foreground">£{project.totalEstimatedCost.toLocaleString()}</span>
+                    Est. cost: <span className="font-semibold text-foreground">Â£{project.totalEstimatedCost.toLocaleString()}</span>
                   </p>
                 )}
                 <div className="flex items-center justify-between mt-auto pt-2 border-t border-border">
@@ -558,7 +558,7 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* ─── Project Visualisations ─────────────────────────────────────────── */}
+        {/* âââ Project Visualisations âââââââââââââââââââââââââââââââââââââââââââ */}
         <div className="mt-14">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
             <div>
@@ -575,7 +575,7 @@ export default function Dashboard() {
               {/* Allowance indicator */}
               {visStatus && visStatus.tier === "free" && visStatus.remaining === 1 && (
                 <span className="text-xs text-amber-600 font-medium max-w-xs">
-                  1 project visualisation remaining — upgrade to Pro for unlimited visualisations across every room in your project.
+                  1 project visualisation remaining â upgrade to Pro for unlimited visualisations across every room in your project.
                 </span>
               )}
               {visStatus && visStatus.tier === "free" && visStatus.remaining !== null && visStatus.remaining > 1 && (
@@ -679,7 +679,7 @@ export default function Dashboard() {
       )}
 
       <footer className="border-t border-border mt-16 py-6 text-center text-xs text-muted-foreground">
-        Built on the island of Ireland. plotrapp.co.uk
+        Built on the island of Ireland. renolab.co.uk
       </footer>
     </div>
   );

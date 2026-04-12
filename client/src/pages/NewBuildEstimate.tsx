@@ -26,7 +26,7 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 
-// ─── Room types ──────────────────────────────────────────────────────────────
+// âââ Room types ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 const ROOM_TYPES = [
   { type: "kitchen", label: "Kitchen", icon: ChefHat },
@@ -43,7 +43,7 @@ const ROOM_TYPES = [
   { type: "other", label: "Other Room", icon: Layers },
 ];
 
-// ─── Steps ───────────────────────────────────────────────────────────────────
+// âââ Steps âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 const STEPS = [
   { id: 1, label: "About you" },
@@ -85,7 +85,7 @@ function StepIndicator({ current }: { current: number }) {
   );
 }
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+// âââ Types ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 interface PlanFile {
   file: File;
@@ -107,7 +107,7 @@ interface RoomEntry {
   photoGenerating?: boolean;
 }
 
-// ─── Room dimension row ───────────────────────────────────────────────────────
+// âââ Room dimension row âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function RoomDimensionRow({
   room,
@@ -164,7 +164,7 @@ function RoomDimensionRow({
   );
 }
 
-// ─── Spinner ──────────────────────────────────────────────────────────────────
+// âââ Spinner ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function Spinner({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -175,32 +175,32 @@ function Spinner({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-// ─── Main component ───────────────────────────────────────────────────────────
+// âââ Main component âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 export default function NewBuildEstimate() {
   const [, navigate] = useLocation();
   const [step, setStep] = useState(1);
 
-  // Step 1 — user info
+  // Step 1 â user info
   const [userType, setUserType] = useState<"homeowner" | "tradesperson">("homeowner");
 
-  // Step 2 — plan upload (multiple files)
+  // Step 2 â plan upload (multiple files)
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [planFiles, setPlanFiles] = useState<PlanFile[]>([]);
   const [scanError, setScanError] = useState("");
   const [planNotes, setPlanNotes] = useState("");
 
-  // Step 3 — room confirmation
+  // Step 3 â room confirmation
   const [selectedRooms, setSelectedRooms] = useState<RoomEntry[]>([]);
 
-  // Step 4 — style prompt
+  // Step 4 â style prompt
   const [stylePrompt, setStylePrompt] = useState("");
   const [generatePhotos, setGeneratePhotos] = useState(true);
 
-  // Step 5 — finish level
+  // Step 5 â finish level
   const [finishLevel, setFinishLevel] = useState<"standard" | "mid" | "premium">("mid");
 
-  // Step 6 — email gate
+  // Step 6 â email gate
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -237,7 +237,7 @@ export default function NewBuildEstimate() {
     },
   });
 
-  // ── Upload a single file to S3 ──
+  // ââ Upload a single file to S3 ââ
   const uploadFile = useCallback(async (file: File, index: number) => {
     setPlanFiles((prev) =>
       prev.map((pf, i) => (i === index ? { ...pf, uploading: true, error: "" } : pf))
@@ -268,7 +268,7 @@ export default function NewBuildEstimate() {
     }
   }, []);
 
-  // ── Add files from input/drop ──
+  // ââ Add files from input/drop ââ
   function addFiles(files: FileList | File[]) {
     const arr = Array.from(files);
     const remaining = 5 - planFiles.length;
@@ -291,12 +291,12 @@ export default function NewBuildEstimate() {
     });
   }
 
-  // ── Remove a plan file ──
+  // ââ Remove a plan file ââ
   function removePlanFile(index: number) {
     setPlanFiles((prev) => prev.filter((_, i) => i !== index));
   }
 
-  // ── Scan all uploaded plans ──
+  // ââ Scan all uploaded plans ââ
   function handleScanPlans() {
     const uploaded = planFiles.filter((pf) => pf.url);
     if (uploaded.length === 0) return;
@@ -309,13 +309,13 @@ export default function NewBuildEstimate() {
     });
   }
 
-  // ── Skip to manual ──
+  // ââ Skip to manual ââ
   function skipToManual() {
     setSelectedRooms([]);
     setStep(3);
   }
 
-  // ── Room management ──
+  // ââ Room management ââ
   function addRoom(type: string, label: string) {
     const count = selectedRooms.filter((r) => r.type === type).length;
     setSelectedRooms((prev) => [
@@ -338,7 +338,7 @@ export default function NewBuildEstimate() {
     setSelectedRooms((prev) => prev.filter((_, i) => i !== index));
   }
 
-  // ── Generate AI photos for all rooms ──
+  // ââ Generate AI photos for all rooms ââ
   async function handleGeneratePhotos() {
     if (!stylePrompt.trim()) return;
     const updated = [...selectedRooms];
@@ -362,7 +362,7 @@ export default function NewBuildEstimate() {
     }
   }
 
-  // ── Final submit ──
+  // ââ Final submit ââ
   function handleSubmit() {
     if (!email.includes("@")) {
       setEmailError("Please enter a valid email address.");
@@ -387,9 +387,9 @@ export default function NewBuildEstimate() {
 
   useEffect(() => {
     document.title =
-      "New Build Estimate — Plotrapp. The Renovation Platform for the island of Ireland.";
+      "New Build Estimate â Renolab. The Renovation Platform for the island of Ireland.";
     return () => {
-      document.title = "Plotrapp — The Renovation Platform for the island of Ireland.";
+      document.title = "Renolab â The Renovation Platform for the island of Ireland.";
     };
   }, []);
 
@@ -402,21 +402,21 @@ export default function NewBuildEstimate() {
           {/* Header */}
           <div className="text-center mb-6 max-w-xl">
             <span className="inline-block bg-[#FF6B2C]/10 text-[#FF6B2C] text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-[#FF6B2C]/20">
-              🏗️ New Build Estimator
+              ðï¸ New Build Estimator
             </span>
             <h1 className="text-2xl font-extrabold text-white mb-2">
               Get a room-by-room cost estimate for your new build
             </h1>
             <p className="text-slate-400 text-sm">
               Upload your house plans and our AI will scan them, extract every room and its
-              dimensions, and generate a realistic cost estimate — all in under 3 minutes.
+              dimensions, and generate a realistic cost estimate â all in under 3 minutes.
             </p>
           </div>
 
           <div className="w-full max-w-lg">
             <StepIndicator current={step} />
 
-            {/* ── Step 1: User Type ── */}
+            {/* ââ Step 1: User Type ââ */}
             {step === 1 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-4">Who is this estimate for?</h2>
@@ -431,7 +431,7 @@ export default function NewBuildEstimate() {
                           : "border-slate-600 text-slate-300 hover:border-slate-400"
                       }`}
                     >
-                      {type === "homeowner" ? "🏠 Homeowner" : "🔧 Tradesperson / Builder"}
+                      {type === "homeowner" ? "ð  Homeowner" : "ð§ Tradesperson / Builder"}
                     </button>
                   ))}
                 </div>
@@ -444,7 +444,7 @@ export default function NewBuildEstimate() {
               </div>
             )}
 
-            {/* ── Step 2: Plan Upload (multi-file) ── */}
+            {/* ââ Step 2: Plan Upload (multi-file) ââ */}
             {step === 2 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-1">Upload your house plans</h2>
@@ -487,7 +487,7 @@ export default function NewBuildEstimate() {
                       : "Click to upload or drag and drop"}
                   </p>
                   <p className="text-xs text-slate-500 mt-1">
-                    JPEG, PNG, WebP or PDF · Max 20 MB per file · Up to 5 files
+                    JPEG, PNG, WebP or PDF Â· Max 20 MB per file Â· Up to 5 files
                   </p>
                 </div>
 
@@ -504,7 +504,7 @@ export default function NewBuildEstimate() {
                           <p className="text-sm text-white truncate">{pf.file.name}</p>
                           {pf.uploading && (
                             <p className="text-xs text-slate-400 flex items-center gap-1">
-                              <Spinner className="w-3 h-3" /> Uploading…
+                              <Spinner className="w-3 h-3" /> Uploadingâ¦
                             </p>
                           )}
                           {pf.url && !pf.uploading && (
@@ -539,7 +539,7 @@ export default function NewBuildEstimate() {
                       <span className="flex items-center gap-2">
                         <Spinner />
                         Scanning {planFiles.filter((p) => p.url).length} plan
-                        {planFiles.filter((p) => p.url).length !== 1 ? "s" : ""}… ~15 seconds
+                        {planFiles.filter((p) => p.url).length !== 1 ? "s" : ""}â¦ ~15 seconds
                       </span>
                     ) : (
                       <>
@@ -577,7 +577,7 @@ export default function NewBuildEstimate() {
               </div>
             )}
 
-            {/* ── Step 3: Confirm / Edit Rooms ── */}
+            {/* ââ Step 3: Confirm / Edit Rooms ââ */}
             {step === 3 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-1">
@@ -603,7 +603,7 @@ export default function NewBuildEstimate() {
                     <p className="text-slate-400 text-sm mb-4">
                       We found {selectedRooms.length} room
                       {selectedRooms.length !== 1 ? "s" : ""} in your plans. Review and adjust
-                      dimensions below — or add more rooms.
+                      dimensions below â or add more rooms.
                     </p>
                     <div className="flex flex-col gap-3 mb-4 max-h-[45vh] overflow-y-auto pr-1">
                       {selectedRooms.map((room, i) => (
@@ -662,12 +662,12 @@ export default function NewBuildEstimate() {
               </div>
             )}
 
-            {/* ── Step 4: Style Prompt + AI Photos ── */}
+            {/* ââ Step 4: Style Prompt + AI Photos ââ */}
             {step === 4 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-1">How do you want your rooms finished?</h2>
                 <p className="text-slate-400 text-sm mb-5">
-                  Describe your vision in plain language — our AI will generate a photo of each
+                  Describe your vision in plain language â our AI will generate a photo of each
                   room styled exactly as you describe, alongside your cost estimate.
                 </p>
 
@@ -678,7 +678,7 @@ export default function NewBuildEstimate() {
                   </label>
                   <textarea
                     rows={3}
-                    placeholder="e.g. Scandinavian kitchen with oak worktops, underfloor heating throughout, modern grey bathrooms with walk-in shower, warm living room with exposed brick feature wall…"
+                    placeholder="e.g. Scandinavian kitchen with oak worktops, underfloor heating throughout, modern grey bathrooms with walk-in shower, warm living room with exposed brick feature wallâ¦"
                     value={stylePrompt}
                     onChange={(e) => setStylePrompt(e.target.value)}
                     className="w-full bg-slate-900 border border-slate-600 rounded-xl px-3 py-2.5 text-white text-sm placeholder-slate-500 resize-none focus:outline-none focus:border-[#FF6B2C] transition-colors"
@@ -734,7 +734,7 @@ export default function NewBuildEstimate() {
                         {photosGenerating ? (
                           <span className="flex items-center gap-2">
                             <Spinner />
-                            Generating room photos… ({selectedRooms.filter((r) => r.photoUrl).length}/{selectedRooms.length})
+                            Generating room photosâ¦ ({selectedRooms.filter((r) => r.photoUrl).length}/{selectedRooms.length})
                           </span>
                         ) : (
                           <>
@@ -789,7 +789,7 @@ export default function NewBuildEstimate() {
               </div>
             )}
 
-            {/* ── Step 5: Finish Level ── */}
+            {/* ââ Step 5: Finish Level ââ */}
             {step === 5 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-1">What finish level are you aiming for?</h2>
@@ -854,11 +854,11 @@ export default function NewBuildEstimate() {
               </div>
             )}
 
-            {/* ── Step 6: Email Gate + Submit ── */}
+            {/* ââ Step 6: Email Gate + Submit ââ */}
             {step === 6 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-1">
-                  Almost there — where should we send your estimate?
+                  Almost there â where should we send your estimate?
                 </h2>
                 <p className="text-slate-400 text-sm mb-5">
                   Your free estimate covers {selectedRooms.length} room
@@ -872,7 +872,7 @@ export default function NewBuildEstimate() {
                       First name (optional)
                     </label>
                     <Input
-                      placeholder="e.g. Ciarán"
+                      placeholder="e.g. CiarÃ¡n"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       className="bg-slate-900 border-slate-600 text-white"
@@ -909,7 +909,7 @@ export default function NewBuildEstimate() {
                     {generateMutation.isPending ? (
                       <span className="flex items-center gap-2">
                         <Spinner />
-                        Generating estimate…
+                        Generating estimateâ¦
                       </span>
                     ) : (
                       <>
@@ -927,7 +927,7 @@ export default function NewBuildEstimate() {
         </main>
 
         <footer className="text-center text-xs text-slate-600 py-4 border-t border-slate-800">
-          Built on the island of Ireland. plotrapp.co.uk
+          Built on the island of Ireland. renolab.co.uk
         </footer>
       </div>
     </>

@@ -15,7 +15,7 @@ const PLANS = [
   {
     id: "free" as const,
     name: "Free",
-    price: "£0",
+    price: "Â£0",
     period: "",
     badge: null,
     features: [
@@ -26,12 +26,12 @@ const PLANS = [
     ],
     cta: "Get Started Free",
     highlight: false,
-    desc: "Try Plotrapp with no commitment",
+    desc: "Try Renolab with no commitment",
   },
   {
     id: "pro" as const,
     name: "Pro",
-    price: "£9.99",
+    price: "Â£9.99",
     period: "/month",
     badge: "Most Popular",
     features: [
@@ -49,7 +49,7 @@ const PLANS = [
   {
     id: "trade" as const,
     name: "Trade",
-    price: "£24.99",
+    price: "Â£24.99",
     period: "/month",
     badge: "For Professionals",
     features: [
@@ -59,7 +59,7 @@ const PLANS = [
       "Labour and margin options",
       "Reusable project templates",
       "Trade-focused supplier deals",
-      "Unlimited visualisations — save to client project folders",
+      "Unlimited visualisations â save to client project folders",
     ],
     cta: "Join Trade",
     highlight: false,
@@ -79,7 +79,7 @@ export default function Pricing() {
   const joinWaitlist = trpc.waitlist.join.useMutation({
     onSuccess: () => {
       setModalSubmitted(true);
-      toast.success("You're on the list — we'll be in touch when your plan is ready.");
+      toast.success("You're on the list â we'll be in touch when your plan is ready.");
     },
     onError: () => toast.error("Something went wrong. Please try again."),
   });
@@ -100,7 +100,7 @@ export default function Pricing() {
       joinWaitlist.mutate({
         email: modalEmail,
         source: `pricing-${modalPlan}`,
-        buttonLabel: `Join Waitlist — ${modalPlan.charAt(0).toUpperCase() + modalPlan.slice(1)} plan`,
+        buttonLabel: `Join Waitlist â ${modalPlan.charAt(0).toUpperCase() + modalPlan.slice(1)} plan`,
         tier: modalPlan,
       });
     }
@@ -108,7 +108,7 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Plotrapp — Pricing. The Renovation Platform for the island of Ireland.</title>
+      <title>Renolab â Pricing. The Renovation Platform for the island of Ireland.</title>
       <NavBar />
 
       <main className="container py-16">
@@ -119,7 +119,7 @@ export default function Pricing() {
           </Badge>
           <h1 className="text-4xl font-extrabold mb-4">Memberships built around real value</h1>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Start free. Upgrade when you need more. Pro and Trade memberships are launching soon — join the waitlist to be first.
+            Start free. Upgrade when you need more. Pro and Trade memberships are launching soon â join the waitlist to be first.
           </p>
           {subscription && subscription.tier !== "free" && (
             <div className="mt-4">
@@ -188,7 +188,7 @@ export default function Pricing() {
             {[
               {
                 q: "How does the estimating tool work?",
-                a: "You upload a room photo, add measurements and a description of what you want done, and Plotrapp generates an estimate and materials list based on that input. The more detail you provide, the more useful the output.",
+                a: "You upload a room photo, add measurements and a description of what you want done, and Renolab generates an estimate and materials list based on that input. The more detail you provide, the more useful the output.",
               },
               {
                 q: "Are the material prices accurate?",
@@ -200,7 +200,7 @@ export default function Pricing() {
               },
               {
                 q: "What is included in the supplier discounts?",
-                a: "Pro and Trade members can access agreed discounts with Plotrapp partner suppliers. Discount availability and terms vary by supplier and are subject to change. Supplier partnerships are currently being onboarded.",
+                a: "Pro and Trade members can access agreed discounts with Renolab partner suppliers. Discount availability and terms vary by supplier and are subject to change. Supplier partnerships are currently being onboarded.",
               },
               {
                 q: "When do Pro and Trade plans launch?",
@@ -219,8 +219,8 @@ export default function Pricing() {
       {/* Footer */}
       <footer className="border-t border-border py-8 mt-8">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Plotrapp. All rights reserved.</p>
-          <p className="mt-1 font-medium text-foreground">Built on the island of Ireland. plotrapp.co.uk</p>
+          <p>Â© {new Date().getFullYear()} Renolab. All rights reserved.</p>
+          <p className="mt-1 font-medium text-foreground">Built on the island of Ireland. renolab.co.uk</p>
         </div>
       </footer>
 
@@ -247,7 +247,7 @@ export default function Pricing() {
           ) : (
             <>
               <p className="text-sm text-muted-foreground mb-4">
-                Plotrapp launches soon. Enter your email below to join the waitlist and be first to access this plan.
+                Renolab launches soon. Enter your email below to join the waitlist and be first to access this plan.
               </p>
               <form onSubmit={handleModalSubmit} className="flex flex-col gap-3">
                 <Input
@@ -262,7 +262,7 @@ export default function Pricing() {
                   className="w-full bg-primary hover:bg-primary/90 text-white font-semibold"
                   disabled={joinWaitlist.isPending}
                 >
-                  {joinWaitlist.isPending ? "Saving…" : "Save my spot"}
+                  {joinWaitlist.isPending ? "Savingâ¦" : "Save my spot"}
                 </Button>
               </form>
             </>

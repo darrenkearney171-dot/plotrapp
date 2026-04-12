@@ -257,7 +257,7 @@ export default function AdminDashboard() {
               <div className="w-7 h-7 rounded-md bg-primary flex items-center justify-center">
                 <span className="text-white font-bold text-xs">P</span>
               </div>
-              <span className="font-bold text-lg tracking-tight">Plotrapp Admin</span>
+              <span className="font-bold text-lg tracking-tight">Renolab Admin</span>
             </div>
           </div>
           <Badge className="bg-primary/10 text-primary border-primary/20">Admin Panel</Badge>
@@ -321,7 +321,7 @@ export default function AdminDashboard() {
                   <div key={`${item.type}-${item.id}-${i}`} className="flex items-center gap-3 text-sm py-1.5 border-b border-border/50 last:border-0">
                     <ActivityIcon type={item.type} />
                     <span className="font-medium text-xs capitalize">{activityLabel(item.type)}</span>
-                    <span className="text-muted-foreground text-xs truncate flex-1">{item.email ?? "—"}</span>
+                    <span className="text-muted-foreground text-xs truncate flex-1">{item.email ?? "â"}</span>
                     {item.detail && <Badge variant="outline" className="text-xs shrink-0">{item.detail}</Badge>}
                     <span className="text-muted-foreground text-xs shrink-0">{timeAgo(item.createdAt)}</span>
                   </div>
@@ -366,8 +366,8 @@ export default function AdminDashboard() {
                     <tr key={s.id} className="border-t border-border hover:bg-muted/20">
                       <td className="px-4 py-3 font-medium">{s.name}</td>
                       <td className="px-4 py-3 text-muted-foreground capitalize text-xs">{s.category?.replace(/_/g, " ")}</td>
-                      <td className="px-4 py-3 text-muted-foreground text-xs">{s.region ?? (s.isNational ? "National" : "—")}</td>
-                      <td className="px-4 py-3 text-right text-xs">{s.commissionRate ? `${(s.commissionRate * 100).toFixed(0)}%` : "—"}</td>
+                      <td className="px-4 py-3 text-muted-foreground text-xs">{s.region ?? (s.isNational ? "National" : "â")}</td>
+                      <td className="px-4 py-3 text-right text-xs">{s.commissionRate ? `${(s.commissionRate * 100).toFixed(0)}%` : "â"}</td>
                       <td className="px-4 py-3 text-right flex items-center justify-end gap-1">
                         <Button
                           size="sm"
@@ -466,8 +466,8 @@ export default function AdminDashboard() {
                 <tbody>
                   {users?.map(u => (
                     <tr key={u.id} className="border-t border-border hover:bg-muted/20">
-                      <td className="px-4 py-3 font-medium">{u.name ?? "—"}</td>
-                      <td className="px-4 py-3 text-muted-foreground text-xs">{u.email ?? "—"}</td>
+                      <td className="px-4 py-3 font-medium">{u.name ?? "â"}</td>
+                      <td className="px-4 py-3 text-muted-foreground text-xs">{u.email ?? "â"}</td>
                       <td className="px-4 py-3">
                         <Badge className={`text-xs ${u.subscriptionTier === "free" ? "bg-muted text-muted-foreground" : "bg-primary/10 text-primary border-primary/20"}`}>
                           {u.subscriptionTier}
@@ -529,7 +529,7 @@ function TradeApplicationsTab() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `plotrapp-trade-applications-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.download = `renolab-trade-applications-${new Date().toISOString().slice(0, 10)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -604,7 +604,7 @@ function EmailListTab() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `plotrapp-email-list-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.download = `renolab-email-list-${new Date().toISOString().slice(0, 10)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -665,13 +665,13 @@ function EmailListTab() {
               filtered.map((entry: any, i: number) => (
                 <tr key={i} className="hover:bg-muted/30">
                   <td className="px-4 py-3 font-medium">{entry.email}</td>
-                  <td className="px-4 py-3 text-muted-foreground">{entry.name ?? <span className="italic text-muted-foreground/50">—</span>}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{entry.name ?? <span className="italic text-muted-foreground/50">â</span>}</td>
                   <td className="px-4 py-3">
                     <Badge variant="outline" className="text-xs">{entry.source}</Badge>
                   </td>
-                  <td className="px-4 py-3 text-muted-foreground">{entry.trade ?? "—"}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{entry.trade ?? "â"}</td>
                   <td className="px-4 py-3 text-muted-foreground">
-                    {entry.joinedAt ? new Date(entry.joinedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "—"}
+                    {entry.joinedAt ? new Date(entry.joinedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "â"}
                   </td>
                 </tr>
               ))
@@ -689,7 +689,7 @@ function EmailListTab() {
   );
 }
 
-// ─── Helper Components ──────────────────────────────────────────────────────
+// âââ Helper Components ââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function FunnelStep({ icon: Icon, label, value, sub }: { icon: any; label: string; value: number; sub?: string }) {
   return (
@@ -738,7 +738,7 @@ function timeAgo(date: string | Date): string {
   return new Date(date).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
 
-// ─── Leads Tab ──────────────────────────────────────────────────────────────
+// âââ Leads Tab ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function LeadsTab() {
   const { data: leads, isLoading } = trpc.admin.listLeads.useQuery();
@@ -760,7 +760,7 @@ function LeadsTab() {
     const csv = [header, ...rows].join("\n");
     const blob = new Blob([csv], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a"); a.href = url; a.download = `plotrapp-leads-${new Date().toISOString().slice(0, 10)}.csv`; a.click(); URL.revokeObjectURL(url);
+    const a = document.createElement("a"); a.href = url; a.download = `renolab-leads-${new Date().toISOString().slice(0, 10)}.csv`; a.click(); URL.revokeObjectURL(url);
   }
 
   return (
@@ -808,15 +808,15 @@ function LeadsTab() {
               filtered.map((l: any) => (
                 <tr key={l.id} className="hover:bg-muted/30">
                   <td className="px-4 py-3 font-medium">{l.email}</td>
-                  <td className="px-4 py-3 text-muted-foreground">{l.firstName ?? "—"}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{l.firstName ?? "â"}</td>
                   <td className="px-4 py-3">
                     <Badge variant="outline" className={`text-xs ${l.estimateType === "new_build" ? "bg-blue-50 text-blue-700" : "bg-orange-50 text-orange-700"}`}>
                       {l.estimateType === "new_build" ? "New Build" : "Renovation"}
                     </Badge>
                   </td>
-                  <td className="px-4 py-3 text-muted-foreground text-xs">{l.projectType ?? "—"}</td>
+                  <td className="px-4 py-3 text-muted-foreground text-xs">{l.projectType ?? "â"}</td>
                   <td className="px-4 py-3 text-right text-xs">
-                    {l.costRangeLow != null ? `£${l.costRangeLow.toLocaleString()} – £${l.costRangeHigh?.toLocaleString()}` : "—"}
+                    {l.costRangeLow != null ? `Â£${l.costRangeLow.toLocaleString()} â Â£${l.costRangeHigh?.toLocaleString()}` : "â"}
                   </td>
                   <td className="px-4 py-3 text-center">
                     {l.convertedToUser ? <CheckCircle className="w-4 h-4 text-green-500 mx-auto" /> : <XCircle className="w-4 h-4 text-muted-foreground/40 mx-auto" />}
@@ -834,7 +834,7 @@ function LeadsTab() {
   );
 }
 
-// ─── Fitted Estimates Tab ───────────────────────────────────────────────────
+// âââ Fitted Estimates Tab âââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function FittedEstimatesTab() {
   const { data: estimates, isLoading } = trpc.admin.listFittedEstimates.useQuery();
@@ -848,7 +848,7 @@ function FittedEstimatesTab() {
     const csv = [header, ...rows].join("\n");
     const blob = new Blob([csv], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a"); a.href = url; a.download = `plotrapp-fitted-estimates-${new Date().toISOString().slice(0, 10)}.csv`; a.click(); URL.revokeObjectURL(url);
+    const a = document.createElement("a"); a.href = url; a.download = `renolab-fitted-estimates-${new Date().toISOString().slice(0, 10)}.csv`; a.click(); URL.revokeObjectURL(url);
   }
 
   return (
@@ -885,8 +885,8 @@ function FittedEstimatesTab() {
                   <td className="px-4 py-3 text-xs capitalize">{e.userType}</td>
                   <td className="px-4 py-3"><Badge variant="outline" className="text-xs capitalize">{e.category.replace(/_/g, " ")}</Badge></td>
                   <td className="px-4 py-3 text-xs capitalize">{e.supplyMode.replace(/_/g, " ")}</td>
-                  <td className="px-4 py-3 text-right text-xs">£{e.estimateRangeLow?.toLocaleString()} – £{e.estimateRangeHigh?.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-right text-xs font-medium">£{e.grandTotalLow?.toLocaleString()} – £{e.grandTotalHigh?.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-right text-xs">Â£{e.estimateRangeLow?.toLocaleString()} â Â£{e.estimateRangeHigh?.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-right text-xs font-medium">Â£{e.grandTotalLow?.toLocaleString()} â Â£{e.grandTotalHigh?.toLocaleString()}</td>
                   <td className="px-4 py-3 text-muted-foreground text-xs">{new Date(e.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</td>
                 </tr>
               ))
@@ -900,7 +900,7 @@ function FittedEstimatesTab() {
   );
 }
 
-// ─── Quote Requests Tab ─────────────────────────────────────────────────────
+// âââ Quote Requests Tab âââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function QuoteRequestsTab() {
   const utils = trpc.useUtils();
@@ -947,10 +947,10 @@ function QuoteRequestsTab() {
                 <tr key={q.id} className="hover:bg-muted/30">
                   <td className="px-4 py-3 font-medium">{q.name}</td>
                   <td className="px-4 py-3 text-muted-foreground text-xs">{q.email}</td>
-                  <td className="px-4 py-3 text-muted-foreground text-xs">{q.phone ?? "—"}</td>
+                  <td className="px-4 py-3 text-muted-foreground text-xs">{q.phone ?? "â"}</td>
                   <td className="px-4 py-3"><Badge variant="outline" className="text-xs capitalize">{q.category.replace(/_/g, " ")}</Badge></td>
                   <td className="px-4 py-3 text-right text-xs">
-                    {q.estimateRangeLow != null ? `£${q.estimateRangeLow.toLocaleString()} – £${q.estimateRangeHigh?.toLocaleString()}` : "—"}
+                    {q.estimateRangeLow != null ? `Â£${q.estimateRangeLow.toLocaleString()} â Â£${q.estimateRangeHigh?.toLocaleString()}` : "â"}
                   </td>
                   <td className="px-4 py-3 text-center">
                     <Select value={q.status} onValueChange={(v) => updateStatus.mutate({ id: q.id, status: v as any })}>
@@ -974,7 +974,7 @@ function QuoteRequestsTab() {
         </table>
       </div>
       {quotes && quotes.length > 0 && (
-        <p className="text-xs text-muted-foreground mt-3">Use the status dropdown to track each quote through your pipeline: new → contacted → quoted → won/lost.</p>
+        <p className="text-xs text-muted-foreground mt-3">Use the status dropdown to track each quote through your pipeline: new â contacted â quoted â won/lost.</p>
       )}
     </div>
   );
@@ -1013,7 +1013,7 @@ function WaitlistAdminTab() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `plotrapp-waitlist-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.download = `renolab-waitlist-${new Date().toISOString().slice(0, 10)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -1066,7 +1066,7 @@ function WaitlistAdminTab() {
                 <tr key={entry.id} className="hover:bg-muted/30">
                   <td className="px-4 py-3 font-medium">{entry.email}</td>
                   <td className="px-4 py-3"><Badge variant="outline" className="text-xs">{entry.source || "unknown"}</Badge></td>
-                  <td className="px-4 py-3 text-muted-foreground text-xs">{entry.buttonLabel || "—"}</td>
+                  <td className="px-4 py-3 text-muted-foreground text-xs">{entry.buttonLabel || "â"}</td>
                   <td className="px-4 py-3">
                     {entry.tier ? (
                       <Badge className={`text-xs ${
@@ -1074,7 +1074,7 @@ function WaitlistAdminTab() {
                         entry.tier === "trade" ? "bg-amber-100 text-amber-700" :
                         "bg-muted text-muted-foreground"
                       }`}>{entry.tier}</Badge>
-                    ) : <span className="text-muted-foreground">—</span>}
+                    ) : <span className="text-muted-foreground">â</span>}
                   </td>
                   <td className="px-4 py-3 text-muted-foreground">{new Date(entry.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</td>
                 </tr>

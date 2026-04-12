@@ -71,6 +71,17 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
 
+  // Redirect www.renolab.co.uk → renolab.co.uk
+  app.set("trust proxy", 1);
+  app.use((req, res, next) => {
+    const host = req.headers.host || "";
+    if (host.startsWith("www.")) {
+      const canonical = host.replace(/^www\./, "");
+      return res.redirect(301, `https://${canonical}${req.url}`);
+    }
+    next();
+  });
+
   app.use((req, _res, next) => {
     if (req.path === "/api/stripe/webhook") {
       let data = Buffer.alloc(0);

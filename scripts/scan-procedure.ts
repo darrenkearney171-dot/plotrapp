@@ -1,5 +1,5 @@
 // This file contains the scanHousePlan procedure to be inserted into routers.ts
-// It is a reference file only  not executed directly
+// It is a reference file only — not executed directly
 
 /*
     // --- Scan House Plan (AI extracts rooms + dimensions from uploaded plan image/PDF)

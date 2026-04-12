@@ -44,7 +44,7 @@ const FINISH_OPTIONS = [
   { value: "coastal", label: "Coastal / Light" },
 ];
 
-// âââ Helpers ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function formatCurrency(n: number) {
   return new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: 0 }).format(n);
@@ -60,7 +60,7 @@ function ConditionBadge({ condition }: { condition: string }) {
   return <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${c.color}`}>{c.label}</span>;
 }
 
-// âââ Locked Feature Card ââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Locked Feature Card ──────────────────────────────────────────────────────
 
 function LockedCard({ title, description, icon: Icon }: { title: string; description: string; icon: any }) {
   return (
@@ -86,7 +86,7 @@ function LockedCard({ title, description, icon: Icon }: { title: string; descrip
   );
 }
 
-// âââ Trade Margin Calculator ââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Trade Margin Calculator ──────────────────────────────────────────────────
 
 function TradeMarginCalculator({ materialsLow, materialsHigh }: { materialsLow: number; materialsHigh: number }) {
   const [marginPercent, setMarginPercent] = useState(20);
@@ -120,7 +120,7 @@ function TradeMarginCalculator({ materialsLow, materialsHigh }: { materialsLow: 
           />
         </div>
         <div>
-          <label className="text-xs text-slate-400 block mb-1">Day rate (Â£)</label>
+          <label className="text-xs text-slate-400 block mb-1">Day rate (£)</label>
           <Input
             type="number"
             min={0}
@@ -149,7 +149,7 @@ function TradeMarginCalculator({ materialsLow, materialsHigh }: { materialsLow: 
           <span>{formatCurrency(materialsAvg)}</span>
         </div>
         <div className="flex justify-between text-slate-400">
-          <span>Labour ({labourDays} days Ã Â£{dayRate})</span>
+          <span>Labour ({labourDays} days × £{dayRate})</span>
           <span>{formatCurrency(labourCost)}</span>
         </div>
         <div className="flex justify-between text-slate-400">
@@ -167,7 +167,7 @@ function TradeMarginCalculator({ materialsLow, materialsHigh }: { materialsLow: 
   );
 }
 
-// âââ Main âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function EstimateResult() {
   const params = useParams<{ id: string }>();
@@ -210,8 +210,8 @@ export default function EstimateResult() {
       <div className="min-h-screen bg-[#0F172A] flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-10 h-10 animate-spin text-[#FF6B2C] mx-auto mb-4" />
-          <p className="text-white font-semibold text-lg">Analysing your roomâ¦</p>
-          <p className="text-slate-400 text-sm mt-1">This usually takes 10â20 seconds</p>
+          <p className="text-white font-semibold text-lg">Analysing your room…</p>
+          <p className="text-slate-400 text-sm mt-1">This usually takes 10–20 seconds</p>
         </div>
       </div>
     );
@@ -269,22 +269,22 @@ export default function EstimateResult() {
           </div>
         </div>
 
-        {/* Cost Range â always visible */}
+        {/* Cost Range — always visible */}
         <div className="bg-gradient-to-br from-[#FF6B2C]/20 to-[#1E293B] border border-[#FF6B2C]/30 rounded-2xl p-8 mb-6 text-center">
           <p className="text-slate-400 text-sm mb-1">Estimated project cost</p>
           <div className="text-5xl font-black text-white mb-1">
             {result?.costRangeLow && result?.costRangeHigh
-              ? `${formatCurrency(result.costRangeLow)} â ${formatCurrency(result.costRangeHigh)}`
-              : "Calculatingâ¦"}
+              ? `${formatCurrency(result.costRangeLow)} – ${formatCurrency(result.costRangeHigh)}`
+              : "Calculating…"}
           </div>
           <p className="text-slate-400 text-sm">
-            {result?.roomType && <span className="capitalize">{result.roomType} Â· </span>}
-            {result?.estimatedArea && <span>{result.estimatedArea} mÂ² Â· </span>}
+            {result?.roomType && <span className="capitalize">{result.roomType} · </span>}
+            {result?.estimatedArea && <span>{result.estimatedArea} m² · </span>}
             {result?.condition && <ConditionBadge condition={result.condition} />}
           </p>
         </div>
 
-        {/* Summary â always visible */}
+        {/* Summary — always visible */}
         {result?.aiSummary && (
           <div className="bg-[#1E293B] rounded-xl p-5 mb-6 border border-slate-700">
             <h3 className="font-semibold mb-2 text-slate-200">AI Summary</h3>
@@ -292,7 +292,7 @@ export default function EstimateResult() {
           </div>
         )}
 
-        {/* Recommended Work â always visible */}
+        {/* Recommended Work — always visible */}
         {result?.recommendedWork?.length > 0 && (
           <div className="bg-[#1E293B] rounded-xl p-5 mb-6 border border-slate-700">
             <div className="flex items-center gap-2 mb-3">
@@ -310,7 +310,7 @@ export default function EstimateResult() {
           </div>
         )}
 
-        {/* Time estimate â always visible */}
+        {/* Time estimate — always visible */}
         {result?.timeEstimate && (
           <div className="bg-[#1E293B] rounded-xl p-5 mb-6 border border-slate-700 flex items-center gap-3">
             <Clock className="w-5 h-5 text-[#FF6B2C] shrink-0" />
@@ -321,7 +321,7 @@ export default function EstimateResult() {
           </div>
         )}
 
-        {/* ââ Materials Preview + Pro Upsell ââ */}
+        {/* ── Materials Preview + Pro Upsell ── */}
         {!isProUser && (
           <>
             {/* Show first 3 key materials as a teaser */}
@@ -330,7 +330,7 @@ export default function EstimateResult() {
                 <div className="flex items-center gap-2 mb-3">
                   <ShoppingCart className="w-5 h-5 text-[#FF6B2C]" />
                   <h3 className="font-semibold">Key Materials</h3>
-                  <span className="text-xs text-slate-500 ml-auto">Preview â {result.keyMaterials.length} items total</span>
+                  <span className="text-xs text-slate-500 ml-auto">Preview — {result.keyMaterials.length} items total</span>
                 </div>
                 <ul className="space-y-2">
                   {result.keyMaterials.slice(0, 3).map((item: string, i: number) => (
@@ -358,7 +358,7 @@ export default function EstimateResult() {
               </div>
             )}
 
-            {/* What you get with Pro â horizontal badges instead of 4 locked cards */}
+            {/* What you get with Pro — horizontal badges instead of 4 locked cards */}
             <div className="bg-[#1E293B]/60 rounded-xl p-5 mb-6 border border-slate-700/50">
               <p className="text-sm text-slate-400 mb-3">Included with Pro membership:</p>
               <div className="flex flex-wrap gap-2">
@@ -377,11 +377,11 @@ export default function EstimateResult() {
               </div>
             </div>
 
-            {/* Upgrade CTA â softer, less wall-like */}
+            {/* Upgrade CTA — softer, less wall-like */}
             <div className="bg-gradient-to-br from-[#FF6B2C]/10 to-[#1E293B] border border-[#FF6B2C]/30 rounded-2xl p-6 text-center mb-8">
               <h2 className="text-xl font-bold mb-1">Unlock the full estimate</h2>
               <p className="text-slate-400 text-sm mb-4 max-w-sm mx-auto">
-                Complete materials list with trade prices, PDF export, and supplier discounts â from Â£9.99/month.
+                Complete materials list with trade prices, PDF export, and supplier discounts — from £9.99/month.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button
@@ -404,19 +404,19 @@ export default function EstimateResult() {
           </>
         )}
 
-        {/* âââ Trade Margin Calculator (Trade tier only) ââââââââââââââââââ */}
+        {/* ─── Trade Margin Calculator (Trade tier only) ────────────────── */}
         {isTradeUser && result?.costRangeLow != null && result?.costRangeHigh != null && (
           <TradeMarginCalculator materialsLow={result.costRangeLow} materialsHigh={result.costRangeHigh} />
         )}
 
-        {/* âââ Visualisation Offer âââââââââââââââââââââââââââââââââââââââ */}
+        {/* ─── Visualisation Offer ─────────────────────────────────────── */}
         <div className="bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-slate-700 rounded-2xl p-8 mb-8">
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="w-5 h-5 text-[#FF6B2C]" />
             <h2 className="text-lg font-bold">See what it could look like</h2>
           </div>
           <p className="text-slate-400 text-sm mb-5">
-            Generate a photorealistic AI render of your renovated room â based on your project type and chosen finishes.
+            Generate a photorealistic AI render of your renovated room — based on your project type and chosen finishes.
             {isAuthenticated && visStatus?.tier === "free" && visStatus.remaining !== null && (
               <span className="ml-1 text-slate-500">({visStatus.remaining} free render{visStatus.remaining !== 1 ? "s" : ""} remaining)</span>
             )}
@@ -425,7 +425,7 @@ export default function EstimateResult() {
           {generatedImageUrl && (
             <div className="mb-5 rounded-xl overflow-hidden border border-slate-700 cursor-pointer" onClick={() => setLightboxOpen(true)}>
               <img src={generatedImageUrl} alt="AI Visualisation" className="w-full object-cover max-h-72" />
-              <p className="text-xs text-slate-500 text-center py-2">Click to view full size Â· Saved to your dashboard</p>
+              <p className="text-xs text-slate-500 text-center py-2">Click to view full size · Saved to your dashboard</p>
             </div>
           )}
 
@@ -437,7 +437,7 @@ export default function EstimateResult() {
                 disabled={generateVisMutation.isPending}
               >
                 {generateVisMutation.isPending ? (
-                  <><Loader2 className="w-4 h-4 animate-spin" />Generatingâ¦</>
+                  <><Loader2 className="w-4 h-4 animate-spin" />Generating…</>
                 ) : (
                   <><Sparkles className="w-4 h-4" />{generatedImageUrl ? "Generate another" : "Generate AI Visualisation"}</>
                 )}
@@ -454,7 +454,7 @@ export default function EstimateResult() {
               <Lock className="w-4 h-4 text-slate-400" />
               <span className="text-sm text-slate-400">Sign in to generate a free visualisation.</span>
               <a href={getLoginUrl()}>
-                <Button size="sm" className="bg-[#FF6B2C] hover:bg-[#e55a1f] text-white">Sign in â it's free</Button>
+                <Button size="sm" className="bg-[#FF6B2C] hover:bg-[#e55a1f] text-white">Sign in — it's free</Button>
               </a>
             </div>
           )}
@@ -511,7 +511,7 @@ export default function EstimateResult() {
                 className="mt-1 bg-[#0F172A] border-slate-700 text-white placeholder:text-slate-500"
               />
             </div>
-            <p className="text-xs text-slate-500">Generation takes 10â20 seconds. The image will be saved to your dashboard.</p>
+            <p className="text-xs text-slate-500">Generation takes 10–20 seconds. The image will be saved to your dashboard.</p>
             <Button
               className="w-full bg-[#FF6B2C] hover:bg-[#e55a1f] text-white"
               disabled={generateVisMutation.isPending}
@@ -524,7 +524,7 @@ export default function EstimateResult() {
               })}
             >
               {generateVisMutation.isPending ? (
-                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Building your project visualisation â this takes about 15 secondsâ¦</>
+                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Building your project visualisation — this takes about 15 seconds…</>
                 ) : (
                   <><Sparkles className="w-4 h-4 mr-2" />Generate</>  
                 )}

@@ -27,7 +27,7 @@ export default function HomePage() {
   const joinWaitlist = trpc.waitlist.join.useMutation({
     onSuccess: () => {
       setWaitlistSubmitted(true);
-      toast.success("You're on the list — we'll be in touch soon.");
+      toast.success("You're on the list â we'll be in touch soon.");
     },
     onError: () => toast.error("Something went wrong. Please try again."),
   });
@@ -42,10 +42,10 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Renolab — Home. The Renovation Platform for the island of Ireland.</title>
+      <title>Renolab â Home. The Renovation Platform for the island of Ireland.</title>
       <NavBar />
 
-      {/* ── Hero ───────────────────────────────────────────────────────── */}
+      {/* ââ Hero âââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="bg-[#0f1c2e] text-white pt-24 pb-20 px-4">
         <div className="container max-w-4xl mx-auto text-center">
           <Badge className="mb-6 bg-primary/20 text-primary border-primary/30 text-sm px-4 py-1.5">
@@ -76,13 +76,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Trust line ─────────────────────────────────────────────────── */}
+      {/* ââ Trust line âââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="bg-[#0a1520] text-white/60 py-5 text-center text-sm border-b border-white/5">
         <p className="font-medium text-white/80">Built for real projects in the real world.</p>
         <p className="mt-1">Made for DIY homeowners and tradespeople who want faster planning, better buying, and less guesswork.</p>
       </section>
 
-      {/* ── Who is Renolab for ─────────────────────────────────────────── */}
+      {/* ââ Who is Renolab for âââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-muted/30">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-4">Who is Renolab for?</h2>
@@ -94,7 +94,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-xl font-bold">Homeowners &amp; DIY</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Planning a renovation or building new? Renolab helps you understand what a project involves, what materials you'll likely need, and how to buy them at better prices — without needing trade experience. Use the renovation wizard for existing rooms or the New Build mode for house plans.
+                Planning a renovation or building new? Renolab helps you understand what a project involves, what materials you'll likely need, and how to buy them at better prices â without needing trade experience. Use the renovation wizard for existing rooms or the New Build mode for house plans.
               </p>
             </div>
             <div className="bg-card border border-border rounded-2xl p-8 flex flex-col gap-4">
@@ -115,7 +115,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── How it works ───────────────────────────────────────────────── */}
+      {/* ââ How it works âââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-background">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-4">How Renolab works</h2>
@@ -156,7 +156,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── What a Renolab estimate looks like ────────────────────────── */}
+      {/* ââ What a Renolab estimate looks like ââââââââââââââââââââââââââ */}
       <section className="py-20 bg-muted/30">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-4">What a Renolab estimate looks like</h2>
@@ -166,7 +166,7 @@ export default function HomePage() {
             <div className="bg-[#0f1c2e] text-white px-6 py-4 flex items-center justify-between">
               <div>
                 <p className="font-bold text-sm">Renolab Estimate</p>
-                <p className="text-white/60 text-xs mt-0.5">Bathroom Renovation — Mid-range</p>
+                <p className="text-white/60 text-xs mt-0.5">Bathroom Renovation â Mid-range</p>
               </div>
               <Badge className="bg-primary/20 text-primary border-primary/30 text-xs">Example Output</Badge>
             </div>
@@ -179,12 +179,12 @@ export default function HomePage() {
                 <span className="col-span-3 text-right">Total</span>
               </div>
               {[
-                { material: "Wall tiles (600×300mm)", qty: "18 m²", unit: "£22.50", total: "£405.00" },
-                { material: "Floor tiles (porcelain)", qty: "6 m²", unit: "£28.00", total: "£168.00" },
-                { material: "Tile adhesive (20kg bag)", qty: "6 bags", unit: "£12.00", total: "£72.00" },
-                { material: "Shower enclosure (1200mm)", qty: "1 unit", unit: "£320.00", total: "£320.00" },
-                { material: "Vanity unit + basin", qty: "1 unit", unit: "£285.00", total: "£285.00" },
-                { material: "Plasterboard (2400×1200)", qty: "8 sheets", unit: "£18.50", total: "£148.00" },
+                { material: "Wall tiles (600Ã300mm)", qty: "18 mÂ²", unit: "Â£22.50", total: "Â£405.00" },
+                { material: "Floor tiles (porcelain)", qty: "6 mÂ²", unit: "Â£28.00", total: "Â£168.00" },
+                { material: "Tile adhesive (20kg bag)", qty: "6 bags", unit: "Â£12.00", total: "Â£72.00" },
+                { material: "Shower enclosure (1200mm)", qty: "1 unit", unit: "Â£320.00", total: "Â£320.00" },
+                { material: "Vanity unit + basin", qty: "1 unit", unit: "Â£285.00", total: "Â£285.00" },
+                { material: "Plasterboard (2400Ã1200)", qty: "8 sheets", unit: "Â£18.50", total: "Â£148.00" },
               ].map((row) => (
                 <div key={row.material} className="grid grid-cols-12 px-6 py-3 text-sm hover:bg-muted/30 transition-colors">
                   <span className="col-span-5 font-medium text-foreground">{row.material}</span>
@@ -196,15 +196,15 @@ export default function HomePage() {
               {/* Total row */}
               <div className="grid grid-cols-12 px-6 py-4 bg-primary/5 border-t-2 border-primary/20">
                 <span className="col-span-9 font-bold text-base">Estimated Materials Total</span>
-                <span className="col-span-3 text-right font-extrabold text-primary text-base">£1,398.00</span>
+                <span className="col-span-3 text-right font-extrabold text-primary text-base">Â£1,398.00</span>
               </div>
             </div>
           </div>
           <p className="text-center text-sm text-muted-foreground mt-6 max-w-xl mx-auto">
-            This is the kind of output Renolab generates — an itemised materials list with real pricing, ready to take to any supplier.
+            This is the kind of output Renolab generates â an itemised materials list with real pricing, ready to take to any supplier.
           </p>
           <p className="text-center text-sm text-primary/80 mt-3 max-w-xl mx-auto font-medium">
-            Pro members can also generate a full 3D project visualisation from these inputs — see exactly what your finished room will look like.
+            Pro members can also generate a full 3D project visualisation from these inputs â see exactly what your finished room will look like.
           </p>
           <div className="text-center mt-6">
             <Link href="/estimate">
@@ -214,19 +214,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── New Build section ─────────────────────────────────────────── */}
+      {/* ââ New Build section âââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-background">
         <div className="container max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 text-sm px-3 py-1">
-                🏗️ New Build Mode
+                ðï¸ New Build Mode
               </Badge>
               <h2 className="text-3xl font-extrabold mb-4 leading-tight">
                 Building a new house? We've got you covered too.
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                No room photos yet — because the walls aren't up. Renolab's New Build mode lets you select your rooms, enter rough dimensions, choose a finish level, and get a full house fit-out estimate broken down room by room.
+                No room photos yet â because the walls aren't up. Renolab's New Build mode lets you select your rooms, enter rough dimensions, choose a finish level, and get a full house fit-out estimate broken down room by room.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
                 Perfect for self-builders, developers, and anyone working from house plans who needs a realistic budget before breaking ground.
@@ -245,15 +245,15 @@ export default function HomePage() {
               </div>
             </div>
             <div className="bg-muted/30 rounded-2xl border border-border p-6">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-4">New Build — 3-bed house example</p>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-4">New Build â 3-bed house example</p>
               <div className="flex flex-col gap-3">
                 {[
-                  { room: "Kitchen", range: "£4,200 – £6,800" },
-                  { room: "Master Bathroom", range: "£2,800 – £4,500" },
-                  { room: "En-Suite", range: "£1,600 – £2,800" },
-                  { room: "Living Room", range: "£1,200 – £2,200" },
-                  { room: "3× Bedrooms", range: "£900 – £1,800" },
-                  { room: "Hallway", range: "£600 – £1,100" },
+                  { room: "Kitchen", range: "Â£4,200 â Â£6,800" },
+                  { room: "Master Bathroom", range: "Â£2,800 â Â£4,500" },
+                  { room: "En-Suite", range: "Â£1,600 â Â£2,800" },
+                  { room: "Living Room", range: "Â£1,200 â Â£2,200" },
+                  { room: "3Ã Bedrooms", range: "Â£900 â Â£1,800" },
+                  { room: "Hallway", range: "Â£600 â Â£1,100" },
                 ].map((row) => (
                   <div key={row.room} className="flex items-center justify-between text-sm">
                     <span className="text-foreground font-medium">{row.room}</span>
@@ -262,7 +262,7 @@ export default function HomePage() {
                 ))}
                 <div className="border-t border-border pt-3 mt-1 flex items-center justify-between">
                   <span className="font-bold">Total estimate</span>
-                  <span className="text-primary font-extrabold text-base">£11,300 – £19,200</span>
+                  <span className="text-primary font-extrabold text-base">Â£11,300 â Â£19,200</span>
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-4">Indicative estimate only. Actual costs vary by specification and contractor.</p>
@@ -271,23 +271,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Why Renolab exists — Founder story ────────────────────────── */}
+      {/* ââ Why Renolab exists â Founder story ââââââââââââââââââââââââââ */}
       <section className="py-20 bg-[#0f1c2e] text-white">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-10">Why Renolab exists.</h2>
           <div className="relative">
             <Quote className="w-10 h-10 text-primary/40 mb-4" />
             <blockquote className="text-lg text-white/80 leading-relaxed">
-              Renolab was built by Darren Kearney — a joiner, carpenter, and tradesman from the island of Ireland who spent years watching homeowners get ripped off and tradespeople waste hours on admin that should take minutes. After a career in joinery, fitted furniture, kitchens, and construction, Darren built Renolab to solve the problems he lived every day on site.
+              Renolab was built by Darren Kearney â a joiner, carpenter, and tradesman from the island of Ireland who spent years watching homeowners get ripped off and tradespeople waste hours on admin that should take minutes. After a career in joinery, fitted furniture, kitchens, and construction, Darren built Renolab to solve the problems he lived every day on site.
             </blockquote>
             <p className="mt-6 text-white/60 leading-relaxed">
-              Renolab is not a tech company that discovered construction. It is a trade platform built from the inside out — by someone who has priced a job at 9pm, sourced timber at 7am, and built things with his own hands. That is the difference.
+              Renolab is not a tech company that discovered construction. It is a trade platform built from the inside out â by someone who has priced a job at 9pm, sourced timber at 7am, and built things with his own hands. That is the difference.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ── Value propositions ─────────────────────────────────────────── */}
+      {/* ââ Value propositions âââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-muted/30">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-12">Why people use Renolab</h2>
@@ -297,7 +297,7 @@ export default function HomePage() {
               { icon: ShoppingBag, title: "Buy smarter", desc: "Know what materials you likely need before you go near the trade counter." },
               { icon: ShieldCheck, title: "Avoid costly mistakes", desc: "Reduce over-ordering, missed items, and poor planning." },
               { icon: Zap, title: "Access better pricing", desc: "Use member-only supplier discounts designed to save money on real projects." },
-              { icon: Camera, title: "Visualise every room before you buy a single tile", desc: "Generate a 3D visualisation of your finished room before you spend a penny. See exactly what your choices look like — walls, floors, fittings — all rendered from your project inputs." },
+              { icon: Camera, title: "Visualise every room before you buy a single tile", desc: "Generate a 3D visualisation of your finished room before you spend a penny. See exactly what your choices look like â walls, floors, fittings â all rendered from your project inputs." },
             ].map((item) => (
               <div key={item.title} className="bg-card border border-border rounded-xl p-6 flex flex-col gap-3">
                 <item.icon className="w-6 h-6 text-primary" />
@@ -309,7 +309,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Two paths ──────────────────────────────────────────────────── */}
+      {/* ââ Two paths ââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-background">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-12">Built for two types of user</h2>
@@ -350,7 +350,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Membership ─────────────────────────────────────────────────── */}
+      {/* ââ Membership âââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-muted/30">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-4">Memberships built around real value</h2>
@@ -360,7 +360,7 @@ export default function HomePage() {
             <div className="bg-card border border-border rounded-2xl p-8 flex flex-col">
               <h3 className="font-bold text-xl mb-1">Free</h3>
               <p className="text-muted-foreground text-sm mb-4">Perfect for trying Renolab out</p>
-              <div className="text-3xl font-extrabold mb-6">£0</div>
+              <div className="text-3xl font-extrabold mb-6">Â£0</div>
               <ul className="space-y-2.5 flex-1 mb-8">
                 {["Limited project estimate", "Basic cost range", "Preview shopping list", "Browse partner suppliers"].map(f => (
                   <li key={f} className="flex items-start gap-2 text-sm">
@@ -379,7 +379,7 @@ export default function HomePage() {
               <h3 className="font-bold text-xl mb-1">Pro</h3>
               <p className="text-muted-foreground text-sm mb-4">For homeowners and DIY users</p>
               <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-3xl font-extrabold">£9.99</span>
+                <span className="text-3xl font-extrabold">Â£9.99</span>
                 <span className="text-muted-foreground text-sm">/month</span>
               </div>
               <ul className="space-y-2.5 flex-1 mb-8">
@@ -399,11 +399,11 @@ export default function HomePage() {
               <h3 className="font-bold text-xl mb-1">Trade</h3>
               <p className="text-muted-foreground text-sm mb-4">For installers, joiners, builders, and repeat users</p>
               <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-3xl font-extrabold">£24.99</span>
+                <span className="text-3xl font-extrabold">Â£24.99</span>
                 <span className="text-muted-foreground text-sm">/month</span>
               </div>
               <ul className="space-y-2.5 flex-1 mb-8">
-                {["Everything in Pro", "Faster workflow", "More saved projects", "Labour and margin options", "Reusable project templates", "Trade-focused supplier deals", "Unlimited visualisations — save to client project folders"].map(f => (
+                {["Everything in Pro", "Faster workflow", "More saved projects", "Labour and margin options", "Reusable project templates", "Trade-focused supplier deals", "Unlimited visualisations â save to client project folders"].map(f => (
                   <li key={f} className="flex items-start gap-2 text-sm">
                     <CheckCircle className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                     <span>{f}</span>
@@ -418,7 +418,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Supplier discounts ─────────────────────────────────────────── */}
+      {/* ââ Supplier discounts âââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-[#0f1c2e] text-white">
         <div className="container max-w-3xl mx-auto text-center">
           <div className="w-14 h-14 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto mb-6">
@@ -439,7 +439,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Final CTA ──────────────────────────────────────────────────── */}
+      {/* ââ Final CTA ââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-primary text-white">
         <div className="container max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-4">Stop guessing. Start planning properly.</h2>
@@ -461,7 +461,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Footer ─────────────────────────────────────────────────────── */}
+      {/* ââ Footer âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
       <footer className="bg-[#0a1520] text-white/40 py-10 text-center text-sm border-t border-white/5">
         <div className="flex items-center justify-center gap-2 mb-3">
           <div className="w-6 h-6 rounded bg-primary flex items-center justify-center">
@@ -478,7 +478,7 @@ export default function HomePage() {
           <Link href="/suppliers" className="hover:text-white/60 transition-colors">Suppliers</Link>
           <Link href="/tradespeople" className="hover:text-white/60 transition-colors">Tradespeople</Link>
         </div>
-        <p className="mt-6 text-white/20">© {new Date().getFullYear()} Renolab. All rights reserved.</p>
+        <p className="mt-6 text-white/20">Â© {new Date().getFullYear()} Renolab. All rights reserved.</p>
       </footer>
     </div>
   );

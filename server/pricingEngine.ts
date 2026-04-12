@@ -1,7 +1,7 @@
 /**
- * PRIVATE PRICING ENGINE — Renolab Fitted Furniture
+ * PRIVATE PRICING ENGINE â Renolab Fitted Furniture
  *
- * ⚠️  This file MUST NEVER be imported by client-side code.
+ * â ï¸  This file MUST NEVER be imported by client-side code.
  *     It is server-only. Do not expose raw cost layers, buy rates,
  *     margin percentages, or individual item prices to any public API response.
  *
@@ -11,39 +11,39 @@
  *   - media_wall / bespoke_storage (Phase 3)
  */
 
-// ─── BOARD / SHEET MATERIAL COSTS (ex-VAT) ───────────────────────────────────
+// âââ BOARD / SHEET MATERIAL COSTS (ex-VAT) âââââââââââââââââââââââââââââââââââ
 const BOARD = {
-  mfc_white_sheet: 40,        // 18mm white MFC 2800×2070mm per sheet
-  mdf_mr_sheet: 28,           // 18mm MR MDF 3050×1220mm per sheet
+  mfc_white_sheet: 40,        // 18mm white MFC 2800Ã2070mm per sheet
+  mdf_mr_sheet: 28,           // 18mm MR MDF 3050Ã1220mm per sheet
   premium_egger_sheet: 52,    // Uni colours / premium Egger finishes
   feelwood_sheet: 65,         // Feelwood / textured decorative premium
 };
 
-// ─── EDGING ───────────────────────────────────────────────────────────────────
+// âââ EDGING âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const EDGING = {
-  abs_08mm_per_metre: 0.17,   // £25 / 150m roll
-  abs_2mm_per_metre: 0.56,    // £42 / 75m roll
+  abs_08mm_per_metre: 0.17,   // Â£25 / 150m roll
+  abs_2mm_per_metre: 0.56,    // Â£42 / 75m roll
 };
 
-// ─── HARDWARE ─────────────────────────────────────────────────────────────────
+// âââ HARDWARE âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const HARDWARE = {
   blum_hinge_plate: 5,        // per hinge+plate set (Blum soft-close standard)
-  blum_antaro_drawer_low: 30, // per drawer set — standard spec
-  blum_antaro_drawer_high: 45,// per drawer set — premium spec
+  blum_antaro_drawer_low: 30, // per drawer set â standard spec
+  blum_antaro_drawer_high: 45,// per drawer set â premium spec
   handle_standard: 5,         // per handle
-  handle_premium: 15,         // per handle — upgraded range
+  handle_premium: 15,         // per handle â upgraded range
 };
 
-// ─── WORKTOPS (per 4.1m length) ──────────────────────────────────────────────
+// âââ WORKTOPS (per 4.1m length) ââââââââââââââââââââââââââââââââââââââââââââââ
 const WORKTOP = {
   postform_38mm_600: 103,
   square_edge_25mm_600: 145,
   bullnose_38mm_900: 245,
   square_edge_25mm_900: 245,
-  quartz_per_sqm: 400,        // planning allowance — override with live sheet
+  quartz_per_sqm: 400,        // planning allowance â override with live sheet
 };
 
-// ─── LABOUR STRUCTURE (as % of total project cost — backend only) ─────────────
+// âââ LABOUR STRUCTURE (as % of total project cost â backend only) âââââââââââââ
 // These percentages are commercial targets, never shown to users.
 const LABOUR_STRUCTURE = {
   factory_labour_pct: 0.28,   // ~high 20s
@@ -54,7 +54,7 @@ const LABOUR_STRUCTURE = {
   margin_pct: 0.20,           // standard margin
 };
 
-// ─── UNIT CARCASS MATERIAL USAGE (sheets per unit type) ──────────────────────
+// âââ UNIT CARCASS MATERIAL USAGE (sheets per unit type) ââââââââââââââââââââââ
 // Approximate sheet consumption per unit, used for material cost layer.
 const UNIT_SHEETS: Record<string, number> = {
   base_600: 0.8,
@@ -68,7 +68,7 @@ const UNIT_SHEETS: Record<string, number> = {
   drawer_pack_600: 1.0,
 };
 
-// ─── DOOR COST RANGES BY RANGE TIER ──────────────────────────────────────────
+// âââ DOOR COST RANGES BY RANGE TIER ââââââââââââââââââââââââââââââââââââââââââ
 const DOOR_COST_PER_DOOR: Record<string, { min: number; max: number }> = {
   slab_mfc: { min: 18, max: 28 },
   shaker_painted: { min: 35, max: 55 },
@@ -76,7 +76,7 @@ const DOOR_COST_PER_DOOR: Record<string, { min: number; max: number }> = {
   premium_lacquered: { min: 75, max: 120 },
 };
 
-// ─── TYPES ────────────────────────────────────────────────────────────────────
+// âââ TYPES ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 export type CarcassFinish = "white_mfc" | "premium_egger" | "feelwood";
 export type DoorRange = "slab_mfc" | "shaker_painted" | "handleless_j_pull" | "premium_lacquered";
@@ -115,7 +115,7 @@ export interface KitchenInputs {
   plinthMetres: number;
   corniceMetres: number;
   splashbackSqm: number;
-  appliancesAllowance: number; // £ user-entered or 0
+  appliancesAllowance: number; // Â£ user-entered or 0
   /** Supply mode */
   supplyMode: SupplyMode;
 }
@@ -133,7 +133,7 @@ export interface PricingLayerBreakdown {
 }
 
 export interface KitchenEstimateResult {
-  /** Public-safe outputs — these CAN be sent to the client */
+  /** Public-safe outputs â these CAN be sent to the client */
   public: {
     estimateRangeLow: number;
     estimateRangeHigh: number;
@@ -156,11 +156,11 @@ export interface KitchenEstimateResult {
     supplyMode: SupplyMode;
     runLengthMetres: number;
   };
-  /** Private layers — NEVER send to client */
+  /** Private layers â NEVER send to client */
   _private: PricingLayerBreakdown;
 }
 
-// ─── HELPERS ──────────────────────────────────────────────────────────────────
+// âââ HELPERS ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function boardCostPerSheet(finish: CarcassFinish): number {
   switch (finish) {
@@ -236,7 +236,7 @@ function drawerHardwareCost(inputs: KitchenInputs, spec: "low" | "high"): number
   return inputs.drawerPacks * cost;
 }
 
-// ─── MAIN ENGINE ──────────────────────────────────────────────────────────────
+// âââ MAIN ENGINE ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 export function calculateKitchenEstimate(inputs: KitchenInputs): KitchenEstimateResult {
   const sheetCost = boardCostPerSheet(inputs.carcassFinish);
@@ -315,12 +315,12 @@ export function calculateKitchenEstimate(inputs: KitchenInputs): KitchenEstimate
   const grandTotalLow = totalCabinetryLow + wtCost + inputs.appliancesAllowance;
   const grandTotalHigh = totalCabinetryHigh + wtCost + inputs.appliancesAllowance;
 
-  // Per-linear-metre (blended — trade output)
+  // Per-linear-metre (blended â trade output)
   const lm = Math.max(inputs.runLengthMetres, 1);
   const perLmLow = Math.round(totalCabinetryLow / lm);
   const perLmHigh = Math.round(totalCabinetryHigh / lm);
 
-  // Shopping list (quantities only — no raw prices in preview)
+  // Shopping list (quantities only â no raw prices in preview)
   const shoppingListPreview = [
     { item: "Carcass boards (18mm MFC/MDF)", qty: Math.ceil(sheets), unit: "sheets" },
     { item: "Cabinet doors", qty: doors, unit: "doors" },
@@ -398,8 +398,8 @@ function buildAISummary(
     `This is a guided estimate for a ${inputs.runLengthMetres.toFixed(1)}m kitchen run ` +
     `with ${carcassLabel} carcasses, ${doorLabel} doors, and ${wtLabel}. ` +
     `Based on the selected specification and unit mix, the estimated range is ` +
-    `£${totalLow.toLocaleString()} – £${totalHigh.toLocaleString()} (${mode}). ` +
-    `This works out to approximately £${perLmLow.toLocaleString()} – £${perLmHigh.toLocaleString()} per linear metre of cabinetry. ` +
+    `Â£${totalLow.toLocaleString()} â Â£${totalHigh.toLocaleString()} (${mode}). ` +
+    `This works out to approximately Â£${perLmLow.toLocaleString()} â Â£${perLmHigh.toLocaleString()} per linear metre of cabinetry. ` +
     `Prices are based on real fitted furniture supply costs and are intended as a planning guide. ` +
     `For confirmed pricing, request a formal quote.`
   );

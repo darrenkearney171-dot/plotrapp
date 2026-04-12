@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Label } from "A/components/ui/label";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "A/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
@@ -97,7 +97,7 @@ export default function Tradespeople() {
       {/* Launch banner */}
       <div className="bg-[#0f1c2e] text-white py-4 px-4 text-center">
         <p className="text-sm font-medium">
-          Tradespeople listed here are part of our founding launch network. Full contact and booking features go live soon.{"  }
+          Tradespeople listed here are part of our founding launch network. Full contact and booking features go live soon.{" "}
           <Link href="/pricing" className="underline text-primary hover:text-primary/80">Join the waitlist to be first.</Link>
         </p>
       </div>
@@ -159,7 +159,7 @@ export default function Tradespeople() {
                 {/* Vetted badge — replaces star rating */}
                 <div className="flex items-center gap-2">
                   <Badge className="bg-green-100 text-green-800 border-green-200 text-xs">
-                    <ShieldCheck className="v-3 h-3 mr-1" />
+                    <ShieldCheck className="w-3 h-3 mr-1" />
                     Vetted by Renolab
                   </Badge>
                 </div>
@@ -168,7 +168,7 @@ export default function Tradespeople() {
 
                 <div className="space-y-1 text-xs text-muted-foreground">
                   <div className="flex items-center gap-1.5"><MapPin className="w-3 h-3" /> {person.region}</div>
-                  {person.yearsExperience && <div className="flex items-center gap-1.5"><HardHat className="wbq�^�s h-3" /> {person.yearsExperience} years experience</div>}
+                  {person.yearsExperience && <div className="flex items-center gap-1.5"><HardHat className="w-3 h-3" /> {person.yearsExperience} years experience</div>}
                 </div>
 
                 <div className="mt-auto pt-2 border-t border-border flex flex-col gap-1.5">
@@ -187,7 +187,7 @@ export default function Tradespeople() {
           </div>
         )}
 
-        {/* ── Apply to join ��nection ─────────────────────────────────────── */}
+        {/* ── Apply to join section ─────────────────────────────────────── */}
         <section className="mt-20 bg-[#0f1c2e] text-white rounded-2xl p-10">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-2xl font-extrabold mb-3">Are you a tradesperson in the island of Ireland?</h2>
@@ -307,7 +307,7 @@ export default function Tradespeople() {
                 <Input value={introPhone} onChange={e => setIntroPhone(e.target.value)} className="mt-1" placeholder="Phone number" />
               </div>
               <div>
-                <Label>Ôell us about your project (optional)</Label>
+                <Label>Tell us about your project (optional)</Label>
                 <Textarea value={introProject} onChange={e => setIntroProject(e.target.value)} className="mt-1" rows={3} placeholder="E.g. I need a kitchen fitted in Belfast, roughly 4m run..." />
               </div>
               <Button
@@ -324,14 +324,14 @@ export default function Tradespeople() {
                 {requestIntro.isPending ? "Sending..." : "Send Introduction Request"}
               </Button>
             </div>
-          ))}
+          )}
         </DialogContent>
       </Dialog>
 
       {/* Footer */}
       <footer className="border-t border-border py-8 mt-8">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>© { new Date().getFullYear()} Renolab. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Renolab. All rights reserved.</p>
           <p className="mt-1 font-medium text-foreground">Built on the island of Ireland. renolab.co.uk</p>
         </div>
       </footer>

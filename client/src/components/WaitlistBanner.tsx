@@ -8,7 +8,7 @@ import { trackWaitlistSignup } from "@/lib/analytics";
 
 export default function WaitlistBanner() {
   const [dismissed, setDismissed] = useState(() => {
-    try { return localStorage.getItem("plotr_waitlist_dismissed") === "1"; } catch { return false; }
+    try { return localStorage.getItem("renolab_waitlist_dismissed") === "1"; } catch { return false; }
   });
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -16,7 +16,7 @@ export default function WaitlistBanner() {
   const joinWaitlist = trpc.waitlist.join.useMutation({
     onSuccess: () => {
       setSubmitted(true);
-      toast.success("You're on the list â we'll be in touch.");
+      toast.success("You're on the list — we'll be in touch.");
     },
     onError: () => toast.error("Something went wrong. Please try again."),
   });
@@ -24,7 +24,7 @@ export default function WaitlistBanner() {
   if (dismissed) return null;
 
   function dismiss() {
-    try { localStorage.setItem("plotr_waitlist_dismissed", "1"); } catch {}
+    try { localStorage.setItem("renolab_waitlist_dismissed", "1"); } catch {}
     setDismissed(true);
   }
 
@@ -32,7 +32,7 @@ export default function WaitlistBanner() {
     <div className="bg-[#0f1c2e] text-white py-3 px-4 relative">
       <div className="container flex flex-col sm:flex-row items-center justify-center gap-3 text-sm">
         <p className="font-medium text-white/90 text-center sm:text-left">
-          ð <span className="font-semibold">Renolab is launching soon</span> â join the waitlist for early access and founding member pricing.
+          🚀 <span className="font-semibold">Renolab is launching soon</span> — join the waitlist for early access and founding member pricing.
         </p>
         {submitted ? (
           <span className="text-green-400 font-semibold shrink-0">You're on the list â</span>

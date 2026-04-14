@@ -40,7 +40,7 @@ const ROOM_ICONS: Record<string, React.ElementType> = {
 };
 
 function fmt(n: number) {
-  return `Â£${n.toLocaleString("en-GB")}`;
+  return `£${n.toLocaleString("en-GB")}`;
 }
 
 // âââ Collapsible room card ââââââââââââââââââââââââââââââââââââââââââââââââââââ
@@ -108,7 +108,7 @@ function RoomCard({ room }: { room: any }) {
           </div>
           <div className="flex items-center gap-3">
             <span className="text-[#FF6B2C] font-bold text-sm">
-              {fmt(room.costLow)} â {fmt(room.costHigh)}
+              {fmt(room.costLow)} – {fmt(room.costHigh)}
             </span>
             {open ? (
               <ChevronUp className="w-4 h-4 text-slate-400" />
@@ -169,9 +169,9 @@ export default function NewBuildResult() {
   const { user } = useAuth();
 
   useEffect(() => {
-    document.title = "Your New Build Estimate â Renolab";
+    document.title = "Your New Build Estimate — Renolab";
     return () => {
-      document.title = "Renolab â The Renovation Platform for the island of Ireland.";
+      document.title = "Renolab — The Renovation Platform for the island of Ireland.";
     };
   }, []);
 
@@ -187,7 +187,7 @@ export default function NewBuildResult() {
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <div className="w-12 h-12 rounded-full border-4 border-[#FF6B2C] border-t-transparent animate-spin mx-auto mb-4" />
-            <p className="text-slate-400 text-sm">Loading your estimateâ¦</p>
+            <p className="text-slate-400 text-sm">Loading your estimate…</p>
           </div>
         </div>
       </div>
@@ -254,13 +254,13 @@ export default function NewBuildResult() {
         {/* Header */}
         <div className="mb-6">
           <span className="inline-block bg-[#FF6B2C]/10 text-[#FF6B2C] text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-[#FF6B2C]/20">
-            ðï¸ New Build Estimate
+            🏗ï¸ New Build Estimate
           </span>
           <h1 className="text-2xl font-extrabold text-white mb-1">Your house fit-out estimate</h1>
           <p className="text-slate-400 text-sm">
             Based on {rooms.length} room{rooms.length !== 1 ? "s" : ""} selected.
             {stylePrompt
-              ? ` Style: ${stylePrompt.length > 60 ? stylePrompt.slice(0, 60) + "â¦" : stylePrompt}`
+              ? ` Style: ${stylePrompt.length > 60 ? stylePrompt.slice(0, 60) + "…" : stylePrompt}`
               : ""}
           </p>
         </div>
@@ -269,7 +269,7 @@ export default function NewBuildResult() {
         <div className="bg-gradient-to-br from-[#FF6B2C]/20 to-slate-800/60 rounded-2xl border border-[#FF6B2C]/30 p-6 mb-6">
           <p className="text-slate-400 text-sm mb-1">Total estimated cost</p>
           <p className="text-4xl font-extrabold text-white mb-1">
-            {fmt(totalLow)} â {fmt(totalHigh)}
+            {fmt(totalLow)} – {fmt(totalHigh)}
           </p>
           {timeEstimate && (
             <div className="flex items-center gap-1.5 text-slate-400 text-sm mt-2">
@@ -287,7 +287,7 @@ export default function NewBuildResult() {
         {planNotes && (
           <div className="bg-blue-900/20 border border-blue-700/40 rounded-xl p-4 mb-4">
             <p className="text-xs font-semibold text-blue-400 uppercase tracking-wide mb-2">
-              ð Plan Analysis
+              📐 Plan Analysis
             </p>
             <p className="text-slate-300 text-sm leading-relaxed">{planNotes}</p>
           </div>
@@ -297,7 +297,7 @@ export default function NewBuildResult() {
         {designSummary && (
           <div className="bg-purple-900/20 border border-purple-700/40 rounded-xl p-4 mb-4">
             <p className="text-xs font-semibold text-purple-400 uppercase tracking-wide mb-2">
-              ð¨ Design Recommendations
+              🎨 Design Recommendations
             </p>
             <p className="text-slate-300 text-sm leading-relaxed">{designSummary}</p>
           </div>
@@ -364,7 +364,7 @@ export default function NewBuildResult() {
               <p className="text-slate-400 text-xs mb-3">
                 {hasPhotos
                   ? "Generate AI visualisations of renovation projects for any room. Free for new accounts."
-                  : "Generate AI visualisations of your finished rooms â kitchen, bathroom, living room and more. Free for new accounts."}
+                  : "Generate AI visualisations of your finished rooms — kitchen, bathroom, living room and more. Free for new accounts."}
               </p>
               {user ? (
                 <Button

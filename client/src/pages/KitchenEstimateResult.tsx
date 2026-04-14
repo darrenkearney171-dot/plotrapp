@@ -18,14 +18,14 @@ import {
 // âââ Helpers ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 function fmt(n: number | null | undefined) {
-  if (n == null) return "â";
-  return `Â£${n.toLocaleString("en-GB", { maximumFractionDigits: 0 })}`;
+  if (n == null) return "—";
+  return `£${n.toLocaleString("en-GB", { maximumFractionDigits: 0 })}`;
 }
 
 function fmtRange(lo: number | null | undefined, hi: number | null | undefined) {
-  if (lo == null || hi == null) return "â";
+  if (lo == null || hi == null) return "—";
   if (lo === hi) return fmt(lo);
-  return `${fmt(lo)} â ${fmt(hi)}`;
+  return `${fmt(lo)} – ${fmt(hi)}`;
 }
 
 // âââ Quote Request Modal ââââââââââââââââââââââââââââââââââââââââââââââââââââââ
@@ -97,7 +97,7 @@ function QuoteModal({
             <Label>Additional notes (optional)</Label>
             <Textarea
               value={notes} onChange={e => setNotes(e.target.value)}
-              placeholder="Any specific requirements, site access details, preferred start dateâ¦"
+              placeholder="Any specific requirements, site access details, preferred start date…"
               rows={3}
             />
           </div>
@@ -126,7 +126,7 @@ function QuoteModal({
               disabled={!name || !email || requestQuote.isPending}
               className="flex-1"
             >
-              {requestQuote.isPending ? "Sendingâ¦" : "Send quote request"}
+              {requestQuote.isPending ? "Sending…" : "Send quote request"}
             </Button>
           </div>
         </CardContent>
@@ -194,7 +194,7 @@ export default function KitchenEstimateResult() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center space-y-3">
           <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="text-muted-foreground text-sm">Loading your estimateâ¦</p>
+          <p className="text-muted-foreground text-sm">Loading your estimate…</p>
         </div>
       </div>
     );
@@ -278,7 +278,7 @@ export default function KitchenEstimateResult() {
                   </div>
                 </div>
 
-                {/* Optional extras â separated out */}
+                {/* Optional extras — separated out */}
                 <div className="space-y-2">
                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Optional extras</p>
                   <div className="grid grid-cols-3 gap-2">
@@ -338,7 +338,7 @@ export default function KitchenEstimateResult() {
                   <div>
                     <p className="font-semibold text-foreground">Ready to proceed?</p>
                     <p className="text-sm text-muted-foreground mt-0.5">
-                      Request a formal written quote â we'll confirm pricing and lead time within 1 business day.
+                      Request a formal written quote — we'll confirm pricing and lead time within 1 business day.
                     </p>
                   </div>
                   <Button onClick={() => setShowQuote(true)} size="lg" className="shrink-0">
@@ -480,7 +480,7 @@ export default function KitchenEstimateResult() {
               </CardContent>
             </Card>
 
-            {/* Preview list â names + quantities only */}
+            {/* Preview list — names + quantities only */}
             {result.shoppingListPreview?.length > 0 && (
               <Card>
                 <CardHeader className="pb-2">
@@ -513,7 +513,7 @@ export default function KitchenEstimateResult() {
                 <div className="flex items-center justify-between gap-4 flex-wrap">
                   <div>
                     <p className="font-semibold text-foreground">Want a confirmed price?</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">Request a formal quote â no account needed.</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">Request a formal quote — no account needed.</p>
                   </div>
                   <Button onClick={() => setShowQuote(true)} size="lg" className="shrink-0">
                     Request formal quote

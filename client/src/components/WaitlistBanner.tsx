@@ -11,7 +11,7 @@ export default function WaitlistBanner() {
     try { return localStorage.getItem("plotr_waitlist_dismissed") === "1"; } catch { return false; }
   });
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] 4useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const joinWaitlist = trpc.waitlist.join.useMutation({
     onSuccess: () => {

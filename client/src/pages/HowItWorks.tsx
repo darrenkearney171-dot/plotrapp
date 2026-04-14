@@ -80,7 +80,7 @@ function FeatureRow({ icon: Icon, title, desc }: { icon: React.ElementType; titl
 export default function HowItWorks() {
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>How It Works â Renolab. The Renovation Platform for the island of Ireland.</title>
+      <title>How It Works — Renolab. The Renovation Platform for the island of Ireland.</title>
       <NavBar />
 
       {/* ââ Hero ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
@@ -88,7 +88,7 @@ export default function HowItWorks() {
         <div className="container max-w-3xl mx-auto text-center">
           <Badge className="mb-5 bg-primary/20 text-primary border-primary/30">How Renolab Works</Badge>
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">
-            From rough idea to priced project â in minutes.
+            From rough idea to priced project — in minutes.
           </h1>
           <p className="text-white/70 text-lg max-w-xl mx-auto mb-8">
             Renolab takes the guesswork out of renovation. Whether you're a homeowner planning a bathroom or a tradesperson pricing a kitchen, here's exactly what Renolab does for you.
@@ -125,11 +125,11 @@ export default function HowItWorks() {
                 </div>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                You've got a room that needs work but no idea what it'll cost, what materials you need, or who to trust. Renolab gives you an instant, itemised estimate based on your actual room â so you can walk into any supplier or tradesperson conversation knowing your numbers.
+                You've got a room that needs work but no idea what it'll cost, what materials you need, or who to trust. Renolab gives you an instant, itemised estimate based on your actual room — so you can walk into any supplier or tradesperson conversation knowing your numbers.
               </p>
               <ul className="space-y-2">
                 {[
-                  "No experience needed â just answer a few questions",
+                  "No experience needed — just answer a few questions",
                   "Instant cost range based on your room and finishes",
                   "Full materials list with quantities and trade pricing",
                   "Find vetted local tradespeople when you're ready",
@@ -174,7 +174,7 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* ââ Step by step â Homeowners ââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ââ Step by step — Homeowners ââââââââââââââââââââââââââââââââââââââââ */}
       <section className="py-20 bg-background">
         <div className="container max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16">
@@ -188,32 +188,32 @@ export default function HowItWorks() {
                 number={1}
                 icon={Camera}
                 title="Upload a photo of your room"
-                description="Take a photo of the room you want to renovate and upload it. Renolab's AI analyses the space â identifying the room type, approximate dimensions, and current condition."
+                description="Take a photo of the room you want to renovate and upload it. Renolab's AI analyses the space — identifying the room type, approximate dimensions, and current condition."
               />
               <Step
                 number={2}
                 icon={Ruler}
                 title="Enter your measurements"
-                description="Add the room dimensions â length, width, and height. If you don't have exact figures, a rough estimate is fine. Renolab uses these to calculate material quantities accurately."
+                description="Add the room dimensions — length, width, and height. If you don't have exact figures, a rough estimate is fine. Renolab uses these to calculate material quantities accurately."
               />
               <Step
                 number={3}
                 icon={Layers}
                 title="Choose your finishes and style"
-                description="Pick your preferred finish level â budget, mid-range, or premium â and describe the style you're going for. Renolab uses this to tailor the materials list and cost range to your actual choices."
+                description="Pick your preferred finish level — budget, mid-range, or premium — and describe the style you're going for. Renolab uses this to tailor the materials list and cost range to your actual choices."
               />
               <Step
                 number={4}
                 icon={ClipboardList}
                 title="Get your instant estimate"
-                description="Renolab generates a cost range and itemised materials list in seconds. You'll see exactly what materials you likely need, in what quantities, and at what trade price â before you've spoken to a single supplier."
+                description="Renolab generates a cost range and itemised materials list in seconds. You'll see exactly what materials you likely need, in what quantities, and at what trade price — before you've spoken to a single supplier."
               />
               <Step
                 number={5}
                 icon={Sparkles}
                 title="Visualise the finished room"
                 badge="AI"
-                description="Generate a photorealistic AI render of your finished room based on your inputs. See what your choices look like â tiles, fittings, finishes â before you spend a penny. Free users get 3 renders. Pro members get unlimited."
+                description="Generate a photorealistic AI render of your finished room based on your inputs. See what your choices look like — tiles, fittings, finishes — before you spend a penny. Free users get 3 renders. Pro members get unlimited."
               />
               <Step
                 number={6}
@@ -240,19 +240,19 @@ export default function HowItWorks() {
                 number={1}
                 icon={Camera}
                 title="Upload a site photo"
-                description="On a customer visit, take a photo of the room and upload it to Renolab. The AI analyses the space instantly â no tape measure needed for a first-pass estimate."
+                description="On a customer visit, take a photo of the room and upload it to Renolab. The AI analyses the space instantly — no tape measure needed for a first-pass estimate."
               />
               <Step
                 number={2}
                 icon={Ruler}
                 title="Add dimensions and spec"
-                description="Enter the room dimensions and the specification your customer wants. Renolab builds the materials list from your inputs â not from generic templates."
+                description="Enter the room dimensions and the specification your customer wants. Renolab builds the materials list from your inputs — not from generic templates."
               />
               <Step
                 number={3}
                 icon={CreditCard}
                 title="Add your margin"
-                description="Trade members can add a labour rate and margin percentage on top of the materials cost. Renolab calculates the full job price â materials plus labour â ready to present to your customer."
+                description="Trade members can add a labour rate and margin percentage on top of the materials cost. Renolab calculates the full job price — materials plus labour — ready to present to your customer."
               />
               <Step
                 number={4}
@@ -265,7 +265,7 @@ export default function HowItWorks() {
                 icon={ImageIcon}
                 title="Visualise the finished room for your client"
                 badge="Trade"
-                description="Generate an AI visualisation of the finished room and save it to your client's project folder. Show customers exactly what their renovation will look like â before any work starts."
+                description="Generate an AI visualisation of the finished room and save it to your client's project folder. Show customers exactly what their renovation will look like — before any work starts."
               />
               <Step
                 number={6}
@@ -290,7 +290,7 @@ export default function HowItWorks() {
         <div className="container max-w-5xl mx-auto">
           <div className="flex items-center gap-2 mb-3 justify-center">
             <Badge className="bg-primary/10 text-primary border-primary/20 text-sm px-3 py-1">
-              ðï¸ New Build Mode
+              🏗ï¸ New Build Mode
             </Badge>
           </div>
           <h2 className="text-2xl font-extrabold text-center mb-3">Building a new house? No photos needed.</h2>
@@ -303,13 +303,13 @@ export default function HowItWorks() {
                 number={1}
                 icon={Home}
                 title="Select your rooms"
-                description="Choose every room in your new build from a list â kitchen, bathrooms, bedrooms, living room, hallway, utility, and more. Add duplicates for houses with multiple bathrooms or bedrooms."
+                description="Choose every room in your new build from a list — kitchen, bathrooms, bedrooms, living room, hallway, utility, and more. Add duplicates for houses with multiple bathrooms or bedrooms."
               />
               <Step
                 number={2}
                 icon={Ruler}
                 title="Enter rough dimensions"
-                description="Add the approximate width, length, and height for each room. You don't need exact measurements â estimates from your house plans are fine at this stage."
+                description="Add the approximate width, length, and height for each room. You don't need exact measurements — estimates from your house plans are fine at this stage."
               />
               <Step
                 number={3}
@@ -321,7 +321,7 @@ export default function HowItWorks() {
                 number={4}
                 icon={ClipboardList}
                 title="Get a full house estimate"
-                description="Renolab generates a per-room cost breakdown and a grand total for your entire build. Each room shows a cost range, recommended work, and key materials â all in one place."
+                description="Renolab generates a per-room cost breakdown and a grand total for your entire build. Each room shows a cost range, recommended work, and key materials — all in one place."
               />
               <div className="mt-2">
                 <Link href="/new-build">
@@ -332,15 +332,15 @@ export default function HowItWorks() {
               </div>
             </div>
             <div className="bg-card border border-border rounded-2xl p-6">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-5">What you get â 3-bed house example</p>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-5">What you get — 3-bed house example</p>
               <div className="space-y-3">
                 {[
-                  { room: "Kitchen", range: "Â£4,200 â Â£6,800", note: "Units, worktops, splashback, flooring" },
-                  { room: "Master Bathroom", range: "Â£2,800 â Â£4,500", note: "Full suite, tiling, flooring" },
-                  { room: "En-Suite", range: "Â£1,600 â Â£2,800", note: "Shower, basin, tiling" },
-                  { room: "Living Room", range: "Â£1,200 â Â£2,200", note: "Flooring, painting, skirting" },
-                  { room: "3Ã Bedrooms", range: "Â£900 â Â£1,800", note: "Flooring, painting per room" },
-                  { room: "Hallway", range: "Â£600 â Â£1,100", note: "Flooring, painting, stairs" },
+                  { room: "Kitchen", range: "£4,200 – £6,800", note: "Units, worktops, splashback, flooring" },
+                  { room: "Master Bathroom", range: "£2,800 – £4,500", note: "Full suite, tiling, flooring" },
+                  { room: "En-Suite", range: "£1,600 – £2,800", note: "Shower, basin, tiling" },
+                  { room: "Living Room", range: "£1,200 – £2,200", note: "Flooring, painting, skirting" },
+                  { room: "3× Bedrooms", range: "£900 – £1,800", note: "Flooring, painting per room" },
+                  { room: "Hallway", range: "£600 – £1,100", note: "Flooring, painting, stairs" },
                 ].map((row) => (
                   <div key={row.room} className="flex items-start justify-between text-sm gap-4">
                     <div>
@@ -352,7 +352,7 @@ export default function HowItWorks() {
                 ))}
                 <div className="border-t border-border pt-3 mt-1 flex items-center justify-between">
                   <span className="font-bold">Total estimate</span>
-                  <span className="text-primary font-extrabold">Â£11,300 â Â£19,200</span>
+                  <span className="text-primary font-extrabold">£11,300 – £19,200</span>
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-4">Indicative estimate. Actual costs vary by specification and contractor.</p>
@@ -373,7 +373,7 @@ export default function HowItWorks() {
               <FeatureRow
                 icon={Camera}
                 title="AI photo analysis, not generic templates"
-                desc="Most estimating tools ask you to fill in a form. Renolab analyses your actual room photo â identifying condition, layout, and features â and builds the estimate from that."
+                desc="Most estimating tools ask you to fill in a form. Renolab analyses your actual room photo — identifying condition, layout, and features — and builds the estimate from that."
               />
               <FeatureRow
                 icon={MapPin}
@@ -383,24 +383,24 @@ export default function HowItWorks() {
               <FeatureRow
                 icon={ShoppingBag}
                 title="Trade pricing, not retail"
-                desc="Renolab's supplier network gives members access to trade-account pricing. The same prices a professional builder pays â available to homeowners and tradespeople alike."
+                desc="Renolab's supplier network gives members access to trade-account pricing. The same prices a professional builder pays — available to homeowners and tradespeople alike."
               />
             </div>
             <div>
               <FeatureRow
                 icon={Sparkles}
                 title="AI room visualisation included"
-                desc="See what your finished room looks like before you buy a single tile. Renolab generates photorealistic renders from your project inputs â no design software needed."
+                desc="See what your finished room looks like before you buy a single tile. Renolab generates photorealistic renders from your project inputs — no design software needed."
               />
               <FeatureRow
                 icon={Users}
                 title="Vetted local tradespeople"
-                desc="Every tradesperson in the Renolab directory is part of our founding launch network â verified, local, and introduced by request rather than cold-called."
+                desc="Every tradesperson in the Renolab directory is part of our founding launch network — verified, local, and introduced by request rather than cold-called."
               />
               <FeatureRow
                 icon={Zap}
                 title="Fast enough to use on site"
-                desc="Renolab is designed to work on a phone, on a customer visit, in a van. Get a first-pass estimate in under 3 minutes â before you've left the property."
+                desc="Renolab is designed to work on a phone, on a customer visit, in a van. Get a first-pass estimate in under 3 minutes — before you've left the property."
               />
             </div>
           </div>
@@ -418,7 +418,7 @@ export default function HowItWorks() {
             {[
               {
                 name: "Free",
-                price: "Â£0",
+                price: "£0",
                 desc: "Try Renolab with no commitment",
                 features: ["Basic cost range estimate", "Preview materials list", "3 free AI room visualisations", "Browse partner suppliers"],
                 cta: "Get Started Free",
@@ -427,7 +427,7 @@ export default function HowItWorks() {
               },
               {
                 name: "Pro",
-                price: "Â£9.99/mo",
+                price: "£9.99/mo",
                 desc: "For homeowners and DIY users",
                 features: ["Full guided estimates", "Full itemised shopping lists", "Downloadable PDFs", "Saved projects", "Unlimited AI visualisations", "Member-only supplier discounts"],
                 cta: "Join the Waitlist",
@@ -436,9 +436,9 @@ export default function HowItWorks() {
               },
               {
                 name: "Trade",
-                price: "Â£24.99/mo",
+                price: "£24.99/mo",
                 desc: "For installers, joiners, and builders",
-                features: ["Everything in Pro", "Labour and margin options", "Client-facing estimates", "Reusable project templates", "Unlimited visualisations â save to client folders", "Trade-focused supplier deals"],
+                features: ["Everything in Pro", "Labour and margin options", "Client-facing estimates", "Reusable project templates", "Unlimited visualisations — save to client folders", "Trade-focused supplier deals"],
                 cta: "Join the Waitlist",
                 href: "/pricing",
                 highlight: false,
@@ -481,7 +481,7 @@ export default function HowItWorks() {
             {[
               {
                 q: "Is the estimate accurate enough to use for a real project?",
-                a: "Renolab generates a cost range and materials list based on your room photo, dimensions, and finish choices. It is designed to give you a reliable ballpark â accurate enough to have an informed conversation with a supplier or tradesperson. It is not a formal quote. For a binding price, you'll need a tradesperson to survey the job in person.",
+                a: "Renolab generates a cost range and materials list based on your room photo, dimensions, and finish choices. It is designed to give you a reliable ballpark — accurate enough to have an informed conversation with a supplier or tradesperson. It is not a formal quote. For a binding price, you'll need a tradesperson to survey the job in person.",
               },
               {
                 q: "Do I need to create an account to get an estimate?",
@@ -489,11 +489,11 @@ export default function HowItWorks() {
               },
               {
                 q: "What is a project visualisation?",
-                a: "A project visualisation is a photorealistic AI-generated image of what your finished room could look like, based on the room type, dimensions, and finish choices you entered during your estimate. It is not a photo of your actual room â it is an AI render that shows you how your choices might look in a real space.",
+                a: "A project visualisation is a photorealistic AI-generated image of what your finished room could look like, based on the room type, dimensions, and finish choices you entered during your estimate. It is not a photo of your actual room — it is an AI render that shows you how your choices might look in a real space.",
               },
               {
                 q: "How does the tradesperson directory work?",
-                a: "Tradespeople in the Renolab directory are part of our founding launch network â verified, local, and introduced by request. Homeowners can request an introduction to a tradesperson. Tradespeople can apply to join the network via the Tradespeople page.",
+                a: "Tradespeople in the Renolab directory are part of our founding launch network — verified, local, and introduced by request. Homeowners can request an introduction to a tradesperson. Tradespeople can apply to join the network via the Tradespeople page.",
               },
               {
                 q: "When will Renolab fully launch?",
@@ -501,7 +501,7 @@ export default function HowItWorks() {
               },
               {
                 q: "Is Renolab only for the island of Ireland?",
-                a: "For now, yes. Renolab is built specifically for the the island of Ireland market â with local suppliers, local tradespeople, and pricing that reflects the NI trade market. We may expand to the Republic of Ireland and GB in the future.",
+                a: "For now, yes. Renolab is built specifically for the the island of Ireland market — with local suppliers, local tradespeople, and pricing that reflects the NI trade market. We may expand to the Republic of Ireland and GB in the future.",
               },
             ].map(({ q, a }) => (
               <div key={q} className="border-b border-border pb-6">

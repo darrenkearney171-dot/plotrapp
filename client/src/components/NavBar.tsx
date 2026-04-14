@@ -200,7 +200,7 @@ export default function NavBar() {
               className="bg-[#f97316] hover:bg-[#ea6c0a] text-white font-semibold"
               disabled={joinWaitlist.isPending}
             >
-              {joinWaitlist.isPending ? "Savingâ¦" : "Save my spot"}
+              {joinWaitlist.isPending ? "Saving…" : "Save my spot"}
             </Button>
           </form>
         </DialogContent>

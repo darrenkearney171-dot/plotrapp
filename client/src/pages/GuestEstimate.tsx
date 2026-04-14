@@ -25,14 +25,14 @@ import {
 type UserType = "homeowner" | "tradesperson";
 
 const PROJECT_TYPES = [
-  { id: "kitchen", label: "Kitchen", icon: "ð³" },
-  { id: "bathroom", label: "Bathroom", icon: "ð" },
-  { id: "bedroom", label: "Bedroom", icon: "ðï¸" },
-  { id: "living_room", label: "Living Room", icon: "ðï¸" },
-  { id: "hallway", label: "Hallway / Landing", icon: "ðª" },
-  { id: "extension", label: "Extension", icon: "ðï¸" },
-  { id: "full_house", label: "Full House", icon: "ð " },
-  { id: "other", label: "Other", icon: "ð¨" },
+  { id: "kitchen", label: "Kitchen", icon: "🍳" },
+  { id: "bathroom", label: "Bathroom", icon: "🛁" },
+  { id: "bedroom", label: "Bedroom", icon: "🛏ï¸" },
+  { id: "living_room", label: "Living Room", icon: "🛋ï¸" },
+  { id: "hallway", label: "Hallway / Landing", icon: "🚪" },
+  { id: "extension", label: "Extension", icon: "🏗ï¸" },
+  { id: "full_house", label: "Full House", icon: "🏠" },
+  { id: "other", label: "Other", icon: "🔨" },
 ];
 
 const GUIDED_QUESTIONS: Record<string, { question: string; options: string[] }[]> = {
@@ -195,11 +195,11 @@ export default function GuestEstimate() {
             <div className="absolute inset-0 rounded-full border-4 border-[#FF6B2C]/20" />
             <div className="absolute inset-0 rounded-full border-4 border-t-[#FF6B2C] animate-spin" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-2xl">ð </span>
+              <span className="text-2xl">🏠</span>
             </div>
           </div>
-          <h2 className="text-2xl font-bold mb-2">Building your estimateâ¦</h2>
-          <p className="text-slate-400 text-sm mb-6">Our AI is analysing your room photo and inputs. This usually takes 10â20 seconds.</p>
+          <h2 className="text-2xl font-bold mb-2">Building your estimate…</h2>
+          <p className="text-slate-400 text-sm mb-6">Our AI is analysing your room photo and inputs. This usually takes 10–20 seconds.</p>
           <div className="space-y-2 text-left bg-[#1E293B] rounded-xl p-4">
             {[
               { label: "Analysing room photo", done: true },
@@ -227,7 +227,7 @@ export default function GuestEstimate() {
       {/* Header */}
       <header className="border-b border-slate-800 px-6 py-4 flex items-center justify-between">
         <a href="/" className="text-xl font-bold text-[#FF6B2C]">Renolab</a>
-        <span className="text-sm text-slate-400">Free Estimate â No account needed</span>
+        <span className="text-sm text-slate-400">Free Estimate — No account needed</span>
       </header>
 
       <div className="max-w-2xl mx-auto px-4 py-10">
@@ -329,7 +329,7 @@ export default function GuestEstimate() {
                 <>
                   <ImageIcon className="w-12 h-12 mx-auto mb-3 text-slate-500" />
                   <p className="text-slate-300 font-medium">Click to upload a photo</p>
-                  <p className="text-slate-500 text-sm mt-1">JPG, PNG or HEIC â max 10MB</p>
+                  <p className="text-slate-500 text-sm mt-1">JPG, PNG or HEIC — max 10MB</p>
                 </>
               )}
             </div>
@@ -361,7 +361,7 @@ export default function GuestEstimate() {
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Add measurements</h1>
             <p className="text-slate-400 mb-2 text-center">
-              Optional â but more accurate measurements mean a better estimate.
+              Optional — but more accurate measurements mean a better estimate.
             </p>
             <p className="text-xs text-slate-500 text-center mb-8">Leave blank and our AI will estimate from your photo.</p>
             <div className="bg-[#1E293B] rounded-xl p-6 space-y-4 mb-6">
@@ -541,7 +541,7 @@ export default function GuestEstimate() {
                 {isAnalysing ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                    Analysing your roomâ¦
+                    Analysing your room…
                   </>
                 ) : (
                   <>

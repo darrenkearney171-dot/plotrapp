@@ -4,10 +4,6 @@ import { getDb } from "./db";
 import { users } from "../drizzle/schema";
 import { eq } from "drizzle-orm";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
-  apiVersion: "2025-03-31.basil",
-});
-
 function tierFromPriceId(priceId: string): "pro" | "trade" | null {
   if (priceId === process.env.STRIPE_PRO_PRICE_ID) return "pro";
   if (priceId === process.env.STRIPE_TRADE_PRICE_ID) return "trade";
@@ -15,6 +11,15 @@ function tierFromPriceId(priceId: string): "pro" | "trade" | null {
 }
 
 export function registerStripeWebhook(app: Express) {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    console.log("[Stripe] STRIPE_SECRET_KEY not set — webhook disabled");
+    return;
+  }
+
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: "2025-03-31.basil",
+  });
+
   // MUST use raw body for Stripe signature verification
   app.post(
     "/api/stripe/webhook",
@@ -61,7 +66,6 @@ export function registerStripeWebhook(app: Express) {
 
             if (!userId || !customerId || !subscriptionId) break;
 
-            // Fetch subscription to get price ID and determine tier
             const subscription = await stripe.subscriptions.retrieve(subscriptionId);
             const subItem = subscription.items.data[0];
             const priceId = subItem?.price.id ?? "";
@@ -131,12 +135,12 @@ export function registerStripeWebhook(app: Express) {
                 .where(eq(users.stripeCustomerId, customerId));
               console.log(`[Stripe Webhook] Subscription cancelled for customer ${customerId}`);
             } else if (subscription.status === "active") {
-            const subItem = subscription.items.data[0];
-            const priceId = subItem?.price.id ?? "";
-            const tier = tierFromPriceId(priceId) ?? "pro";
-            const periodEnd = subItem?.current_period_end
-              ? new Date(subItem.current_period_end * 1000)
-              : null;
+              const subItem = subscription.items.data[0];
+              const priceId = subItem?.price.id ?? "";
+              const tier = tierFromPriceId(priceId) ?? "pro";
+              const periodEnd = subItem?.current_period_end
+                ? new Date(subItem.current_period_end * 1000)
+                : null;
               await db
                 .update(users)
                 .set({ subscriptionTier: tier, subscriptionExpiresAt: periodEnd })

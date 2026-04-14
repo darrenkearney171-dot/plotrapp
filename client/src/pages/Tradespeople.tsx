@@ -91,7 +91,7 @@ export default function Tradespeople() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Renolab â Tradespeople. The Renovation Platform for the island of Ireland.</title>
+      <title>Renolab — Tradespeople. The Renovation Platform for the island of Ireland.</title>
       <NavBar />
 
       {/* Launch banner */}
@@ -156,7 +156,7 @@ export default function Tradespeople() {
                   </div>
                 </div>
 
-                {/* Vetted badge â replaces star rating */}
+                {/* Vetted badge — replaces star rating */}
                 <div className="flex items-center gap-2">
                   <Badge className="bg-green-100 text-green-800 border-green-200 text-xs">
                     <ShieldCheck className="w-3 h-3 mr-1" />
@@ -262,7 +262,7 @@ export default function Tradespeople() {
                     className="w-full bg-primary hover:bg-primary/90 text-white font-bold"
                     disabled={submitApplication.isPending}
                   >
-                    {submitApplication.isPending ? "Submittingâ¦" : "Apply to join Renolab"}
+                    {submitApplication.isPending ? "Submitting…" : "Apply to join Renolab"}
                   </Button>
                 </div>
               </form>

@@ -321,7 +321,7 @@ export default function AdminDashboard() {
                   <div key={`${item.type}-${item.id}-${i}`} className="flex items-center gap-3 text-sm py-1.5 border-b border-border/50 last:border-0">
                     <ActivityIcon type={item.type} />
                     <span className="font-medium text-xs capitalize">{activityLabel(item.type)}</span>
-                    <span className="text-muted-foreground text-xs truncate flex-1">{item.email ?? "â"}</span>
+                    <span className="text-muted-foreground text-xs truncate flex-1">{item.email ?? "—"}</span>
                     {item.detail && <Badge variant="outline" className="text-xs shrink-0">{item.detail}</Badge>}
                     <span className="text-muted-foreground text-xs shrink-0">{timeAgo(item.createdAt)}</span>
                   </div>
@@ -366,8 +366,8 @@ export default function AdminDashboard() {
                     <tr key={s.id} className="border-t border-border hover:bg-muted/20">
                       <td className="px-4 py-3 font-medium">{s.name}</td>
                       <td className="px-4 py-3 text-muted-foreground capitalize text-xs">{s.category?.replace(/_/g, " ")}</td>
-                      <td className="px-4 py-3 text-muted-foreground text-xs">{s.region ?? (s.isNational ? "National" : "â")}</td>
-                      <td className="px-4 py-3 text-right text-xs">{s.commissionRate ? `${(s.commissionRate * 100).toFixed(0)}%` : "â"}</td>
+                      <td className="px-4 py-3 text-muted-foreground text-xs">{s.region ?? (s.isNational ? "National" : "—")}</td>
+                      <td className="px-4 py-3 text-right text-xs">{s.commissionRate ? `${(s.commissionRate * 100).toFixed(0)}%` : "—"}</td>
                       <td className="px-4 py-3 text-right flex items-center justify-end gap-1">
                         <Button
                           size="sm"
@@ -466,8 +466,8 @@ export default function AdminDashboard() {
                 <tbody>
                   {users?.map(u => (
                     <tr key={u.id} className="border-t border-border hover:bg-muted/20">
-                      <td className="px-4 py-3 font-medium">{u.name ?? "â"}</td>
-                      <td className="px-4 py-3 text-muted-foreground text-xs">{u.email ?? "â"}</td>
+                      <td className="px-4 py-3 font-medium">{u.name ?? "—"}</td>
+                      <td className="px-4 py-3 text-muted-foreground text-xs">{u.email ?? "—"}</td>
                       <td className="px-4 py-3">
                         <Badge className={`text-xs ${u.subscriptionTier === "free" ? "bg-muted text-muted-foreground" : "bg-primary/10 text-primary border-primary/20"}`}>
                           {u.subscriptionTier}
@@ -665,13 +665,13 @@ function EmailListTab() {
               filtered.map((entry: any, i: number) => (
                 <tr key={i} className="hover:bg-muted/30">
                   <td className="px-4 py-3 font-medium">{entry.email}</td>
-                  <td className="px-4 py-3 text-muted-foreground">{entry.name ?? <span className="italic text-muted-foreground/50">â</span>}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{entry.name ?? <span className="italic text-muted-foreground/50">—</span>}</td>
                   <td className="px-4 py-3">
                     <Badge variant="outline" className="text-xs">{entry.source}</Badge>
                   </td>
-                  <td className="px-4 py-3 text-muted-foreground">{entry.trade ?? "â"}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{entry.trade ?? "—"}</td>
                   <td className="px-4 py-3 text-muted-foreground">
-                    {entry.joinedAt ? new Date(entry.joinedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "â"}
+                    {entry.joinedAt ? new Date(entry.joinedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "—"}
                   </td>
                 </tr>
               ))
@@ -808,15 +808,15 @@ function LeadsTab() {
               filtered.map((l: any) => (
                 <tr key={l.id} className="hover:bg-muted/30">
                   <td className="px-4 py-3 font-medium">{l.email}</td>
-                  <td className="px-4 py-3 text-muted-foreground">{l.firstName ?? "â"}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{l.firstName ?? "—"}</td>
                   <td className="px-4 py-3">
                     <Badge variant="outline" className={`text-xs ${l.estimateType === "new_build" ? "bg-blue-50 text-blue-700" : "bg-orange-50 text-orange-700"}`}>
                       {l.estimateType === "new_build" ? "New Build" : "Renovation"}
                     </Badge>
                   </td>
-                  <td className="px-4 py-3 text-muted-foreground text-xs">{l.projectType ?? "â"}</td>
+                  <td className="px-4 py-3 text-muted-foreground text-xs">{l.projectType ?? "—"}</td>
                   <td className="px-4 py-3 text-right text-xs">
-                    {l.costRangeLow != null ? `Â£${l.costRangeLow.toLocaleString()} â Â£${l.costRangeHigh?.toLocaleString()}` : "â"}
+                    {l.costRangeLow != null ? `£${l.costRangeLow.toLocaleString()} – £${l.costRangeHigh?.toLocaleString()}` : "—"}
                   </td>
                   <td className="px-4 py-3 text-center">
                     {l.convertedToUser ? <CheckCircle className="w-4 h-4 text-green-500 mx-auto" /> : <XCircle className="w-4 h-4 text-muted-foreground/40 mx-auto" />}
@@ -885,8 +885,8 @@ function FittedEstimatesTab() {
                   <td className="px-4 py-3 text-xs capitalize">{e.userType}</td>
                   <td className="px-4 py-3"><Badge variant="outline" className="text-xs capitalize">{e.category.replace(/_/g, " ")}</Badge></td>
                   <td className="px-4 py-3 text-xs capitalize">{e.supplyMode.replace(/_/g, " ")}</td>
-                  <td className="px-4 py-3 text-right text-xs">Â£{e.estimateRangeLow?.toLocaleString()} â Â£{e.estimateRangeHigh?.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-right text-xs font-medium">Â£{e.grandTotalLow?.toLocaleString()} â Â£{e.grandTotalHigh?.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-right text-xs">£{e.estimateRangeLow?.toLocaleString()} – £{e.estimateRangeHigh?.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-right text-xs font-medium">£{e.grandTotalLow?.toLocaleString()} – £{e.grandTotalHigh?.toLocaleString()}</td>
                   <td className="px-4 py-3 text-muted-foreground text-xs">{new Date(e.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</td>
                 </tr>
               ))
@@ -947,10 +947,10 @@ function QuoteRequestsTab() {
                 <tr key={q.id} className="hover:bg-muted/30">
                   <td className="px-4 py-3 font-medium">{q.name}</td>
                   <td className="px-4 py-3 text-muted-foreground text-xs">{q.email}</td>
-                  <td className="px-4 py-3 text-muted-foreground text-xs">{q.phone ?? "â"}</td>
+                  <td className="px-4 py-3 text-muted-foreground text-xs">{q.phone ?? "—"}</td>
                   <td className="px-4 py-3"><Badge variant="outline" className="text-xs capitalize">{q.category.replace(/_/g, " ")}</Badge></td>
                   <td className="px-4 py-3 text-right text-xs">
-                    {q.estimateRangeLow != null ? `Â£${q.estimateRangeLow.toLocaleString()} â Â£${q.estimateRangeHigh?.toLocaleString()}` : "â"}
+                    {q.estimateRangeLow != null ? `£${q.estimateRangeLow.toLocaleString()} – £${q.estimateRangeHigh?.toLocaleString()}` : "—"}
                   </td>
                   <td className="px-4 py-3 text-center">
                     <Select value={q.status} onValueChange={(v) => updateStatus.mutate({ id: q.id, status: v as any })}>
@@ -974,7 +974,7 @@ function QuoteRequestsTab() {
         </table>
       </div>
       {quotes && quotes.length > 0 && (
-        <p className="text-xs text-muted-foreground mt-3">Use the status dropdown to track each quote through your pipeline: new â contacted â quoted â won/lost.</p>
+        <p className="text-xs text-muted-foreground mt-3">Use the status dropdown to track each quote through your pipeline: new → contacted → quoted → won/lost.</p>
       )}
     </div>
   );
@@ -1066,7 +1066,7 @@ function WaitlistAdminTab() {
                 <tr key={entry.id} className="hover:bg-muted/30">
                   <td className="px-4 py-3 font-medium">{entry.email}</td>
                   <td className="px-4 py-3"><Badge variant="outline" className="text-xs">{entry.source || "unknown"}</Badge></td>
-                  <td className="px-4 py-3 text-muted-foreground text-xs">{entry.buttonLabel || "â"}</td>
+                  <td className="px-4 py-3 text-muted-foreground text-xs">{entry.buttonLabel || "—"}</td>
                   <td className="px-4 py-3">
                     {entry.tier ? (
                       <Badge className={`text-xs ${
@@ -1074,7 +1074,7 @@ function WaitlistAdminTab() {
                         entry.tier === "trade" ? "bg-amber-100 text-amber-700" :
                         "bg-muted text-muted-foreground"
                       }`}>{entry.tier}</Badge>
-                    ) : <span className="text-muted-foreground">â</span>}
+                    ) : <span className="text-muted-foreground">—</span>}
                   </td>
                   <td className="px-4 py-3 text-muted-foreground">{new Date(entry.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</td>
                 </tr>

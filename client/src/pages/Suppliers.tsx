@@ -38,7 +38,7 @@ export default function Suppliers() {
   const joinWaitlist = trpc.waitlist.join.useMutation({
     onSuccess: () => {
       setWaitlistSubmitted(true);
-      toast.success("You're on the list â we'll be in touch.");
+      toast.success("You're on the list — we'll be in touch.");
     },
     onError: () => toast.error("Something went wrong. Please try again."),
   });
@@ -51,7 +51,7 @@ export default function Suppliers() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Renolab â Suppliers. The Renovation Platform for the island of Ireland.</title>
+      <title>Renolab — Suppliers. The Renovation Platform for the island of Ireland.</title>
       <NavBar />
 
       {/* Onboarding notice banner */}
@@ -137,7 +137,7 @@ export default function Suppliers() {
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
                     <h3 className="font-semibold text-base truncate">{supplier.name}</h3>
-                    <p className="text-xs text-muted-foreground mt-0.5">Coming Soon â Launching Soon</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Coming Soon — Launching Soon</p>
                     <div className="flex items-center gap-2 mt-2 flex-wrap">
                       <Badge variant="secondary" className="text-xs">
                         {CATEGORY_LABELS[supplier.category] ?? supplier.category}
@@ -172,10 +172,10 @@ export default function Suppliers() {
                   )}
                 </div>
 
-                {/* Contact via Renolab â no direct phone until confirmed */}
+                {/* Contact via Renolab — no direct phone until confirmed */}
                 <div className="mt-auto pt-2 border-t border-border">
                   <p className="text-xs text-muted-foreground text-center">
-                    Contact via Renolab â coming soon
+                    Contact via Renolab — coming soon
                   </p>
                 </div>
               </div>

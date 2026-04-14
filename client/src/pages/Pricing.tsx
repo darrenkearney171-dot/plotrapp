@@ -15,7 +15,7 @@ const PLANS = [
   {
     id: "free" as const,
     name: "Free",
-    price: "Â£0",
+    price: "£0",
     period: "",
     badge: null,
     features: [
@@ -31,7 +31,7 @@ const PLANS = [
   {
     id: "pro" as const,
     name: "Pro",
-    price: "Â£9.99",
+    price: "£9.99",
     period: "/month",
     badge: "Most Popular",
     features: [
@@ -49,7 +49,7 @@ const PLANS = [
   {
     id: "trade" as const,
     name: "Trade",
-    price: "Â£24.99",
+    price: "£24.99",
     period: "/month",
     badge: "For Professionals",
     features: [
@@ -59,7 +59,7 @@ const PLANS = [
       "Labour and margin options",
       "Reusable project templates",
       "Trade-focused supplier deals",
-      "Unlimited visualisations â save to client project folders",
+      "Unlimited visualisations — save to client project folders",
     ],
     cta: "Join Trade",
     highlight: false,
@@ -79,7 +79,7 @@ export default function Pricing() {
   const joinWaitlist = trpc.waitlist.join.useMutation({
     onSuccess: () => {
       setModalSubmitted(true);
-      toast.success("You're on the list â we'll be in touch when your plan is ready.");
+      toast.success("You're on the list — we'll be in touch when your plan is ready.");
     },
     onError: () => toast.error("Something went wrong. Please try again."),
   });
@@ -100,7 +100,7 @@ export default function Pricing() {
       joinWaitlist.mutate({
         email: modalEmail,
         source: `pricing-${modalPlan}`,
-        buttonLabel: `Join Waitlist â ${modalPlan.charAt(0).toUpperCase() + modalPlan.slice(1)} plan`,
+        buttonLabel: `Join Waitlist — ${modalPlan.charAt(0).toUpperCase() + modalPlan.slice(1)} plan`,
         tier: modalPlan,
       });
     }
@@ -108,7 +108,7 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Renolab â Pricing. The Renovation Platform for the island of Ireland.</title>
+      <title>Renolab — Pricing. The Renovation Platform for the island of Ireland.</title>
       <NavBar />
 
       <main className="container py-16">
@@ -119,7 +119,7 @@ export default function Pricing() {
           </Badge>
           <h1 className="text-4xl font-extrabold mb-4">Memberships built around real value</h1>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Start free. Upgrade when you need more. Pro and Trade memberships are launching soon â join the waitlist to be first.
+            Start free. Upgrade when you need more. Pro and Trade memberships are launching soon — join the waitlist to be first.
           </p>
           {subscription && subscription.tier !== "free" && (
             <div className="mt-4">
@@ -262,7 +262,7 @@ export default function Pricing() {
                   className="w-full bg-primary hover:bg-primary/90 text-white font-semibold"
                   disabled={joinWaitlist.isPending}
                 >
-                  {joinWaitlist.isPending ? "Savingâ¦" : "Save my spot"}
+                  {joinWaitlist.isPending ? "Saving…" : "Save my spot"}
                 </Button>
               </form>
             </>

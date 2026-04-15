@@ -51,7 +51,7 @@ export default function Suppliers() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Renolab — Suppliers. The Renovation Platform for the island of Ireland.</title>
+      <title>Renolab — Suppliers. The Renovation Platform for Northern Ireland.</title>
       <NavBar />
 
       {/* Onboarding notice banner */}
@@ -59,7 +59,7 @@ export default function Suppliers() {
         <div className="container">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <p className="text-sm font-semibold">We are currently onboarding our founding supplier partners across the island of Ireland.</p>
+              <p className="text-sm font-semibold">We are currently onboarding our founding supplier partners across Northern Ireland.</p>
               <p className="text-sm text-muted-foreground mt-0.5">Full trade pricing access launches soon. Join the waitlist to be first.</p>
             </div>
             {!waitlistSubmitted ? (
@@ -92,7 +92,7 @@ export default function Suppliers() {
       <main className="container py-10">
         <div className="mb-8">
           <h1 className="text-2xl font-bold mb-1">Supplier Directory</h1>
-          <p className="text-muted-foreground text-sm">the island of Ireland building merchants and trade suppliers. Trade pricing access coming soon.</p>
+          <p className="text-muted-foreground text-sm">Northern Ireland building merchants and trade suppliers. Trade pricing access coming soon.</p>
         </div>
 
         {/* Filters */}
@@ -196,7 +196,7 @@ export default function Suppliers() {
       <footer className="border-t border-border py-8 mt-16">
         <div className="container text-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} Renolab. All rights reserved.</p>
-          <p className="mt-1 font-medium text-foreground">Built on the island of Ireland. renolab.co.uk</p>
+          <p className="mt-1 font-medium text-foreground">Built on Northern Ireland. renolab.co.uk</p>
         </div>
       </footer>
     </div>

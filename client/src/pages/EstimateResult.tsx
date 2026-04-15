@@ -11,7 +11,7 @@ import { getLoginUrl } from "@/const";
 import { useState, useMemo, useEffect } from "react";
 import { toast } from "sonner";
 import NavBar from "@/components/NavBar";
-import { trackPageView, trackEstimateComplete } from "@/lib/analytics";
+import { trackPageView, trackEstimateComplete, trackRenovationPassClick } from "@/lib/analytics";
 import {
   CheckCircle2,
   ChevronRight,
@@ -369,29 +369,47 @@ export default function EstimateResult() {
               </div>
             </div>
 
-            {/* Upgrade CTA — softer, less wall-like */}
-            <div className="bg-gradient-to-br from-[#FF6B2C]/10 to-[#1E293B] border border-[#FF6B2C]/30 rounded-2xl p-6 text-center mb-8">
-              <h2 className="text-xl font-bold mb-1">Unlock your full estimate</h2>
-              <p className="text-slate-400 text-sm mb-4 max-w-sm mx-auto">
-                Get the full itemised materials list, downloadable PDF, and trade pricing. Join early access and be first in when paid plans go live.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button
-                  onClick={() => navigate("/pricing")}
-                  className="bg-[#FF6B2C] hover:bg-[#e55a1f] text-white font-semibold px-8"
-                >
-                  Get Early Access <ChevronRight className="w-4 h-4 ml-1" />
-                </Button>
-                {!user && (
-                  <Button
-                    variant="outline"
-                    onClick={() => window.location.href = getLoginUrl()}
-                    className="border-slate-700 text-slate-300 hover:bg-slate-800"
-                  >
-                    Sign in to save this estimate
-                  </Button>
-                )}
+            {/* ── Renovation Pass — primary one-time offer ── */}
+            <div className="bg-gradient-to-br from-[#FF6B2C]/10 to-[#1E293B] border border-[#FF6B2C]/30 rounded-xl p-6 text-center">
+              <div className="inline-flex items-center gap-1.5 bg-[#FF6B2C]/20 text-[#FF6B2C] text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                <Lock className="w-3 h-3" /> One-time unlock
               </div>
+              <h2 className="text-xl font-bold mb-1">Renovation Pass</h2>
+              <p className="text-slate-400 text-sm mb-2 max-w-md mx-auto">
+                Unlock the full breakdown for this project — itemised materials list, PDF export, and trade pricing. Valid for 90 days.
+              </p>
+              <div className="flex items-baseline justify-center gap-1 mb-4">
+                <span className="text-3xl font-extrabold text-white">£14.99</span>
+                <span className="text-slate-500 text-sm">one-time</span>
+              </div>
+              <Button
+                onClick={() => { trackRenovationPassClick(); navigate("/pricing"); }}
+                className="bg-[#FF6B2C] hover:bg-[#e55a1f] text-white font-semibold px-10 py-3 text-base mb-3"
+              >
+                Get Your Renovation Pass
+              </Button>
+              <p className="text-xs text-slate-500 mb-4">No subscription required. Pay once, access for 90 days.</p>
+              <div className="border-t border-slate-700/50 pt-4 mt-2">
+                <p className="text-xs text-slate-500 mb-2">Planning multiple projects?</p>
+                <Button
+                  variant="ghost"
+                  onClick={() => navigate("/pricing")}
+                  className="text-[#FF6B2C] hover:text-[#e55a1f] text-sm"
+                >
+                  View Pro & Trade plans →
+                </Button>
+              </div>
+              {!user && (
+                <div className="mt-3">
+                  <Button
+                    variant="ghost"
+                    onClick={() => window.location.href = getLoginUrl()}
+                    className="text-slate-400 hover:text-slate-300 text-xs"
+                  >
+                    Already have an account? Sign in
+                  </Button>
+                </div>
+              )}
             </div>
           </>
         )}

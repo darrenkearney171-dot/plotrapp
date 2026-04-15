@@ -15,7 +15,7 @@ const PLANS = [
   {
     id: "free" as const,
     name: "Free",
-    price: "£0",
+    price: "Â£0",
     period: "",
     badge: null,
     features: [
@@ -31,7 +31,7 @@ const PLANS = [
   {
     id: "pro" as const,
     name: "Pro",
-    price: "£9.99",
+    price: "Â£9.99",
     period: "/month",
     badge: "Most Popular",
     features: [
@@ -49,7 +49,7 @@ const PLANS = [
   {
     id: "trade" as const,
     name: "Trade",
-    price: "£24.99",
+    price: "Â£24.99",
     period: "/month",
     badge: "For Professionals",
     features: [
@@ -59,7 +59,7 @@ const PLANS = [
       "Reusable project templates",
       "Save visualisations to client project folders",
       "Trade-exclusive supplier pricing",
-      "Bulk estimate workflow — price multiple rooms fast",
+      "Bulk estimate workflow â price multiple rooms fast",
     ],
     cta: "Get Early Access",
     highlight: false,
@@ -79,7 +79,7 @@ export default function Pricing() {
   const joinWaitlist = trpc.waitlist.join.useMutation({
     onSuccess: () => {
       setModalSubmitted(true);
-      toast.success("You're on the list — we'll be in touch when your plan is ready.");
+      toast.success("You're on the list â we'll be in touch when your plan is ready.");
     },
     onError: () => toast.error("Something went wrong. Please try again."),
   });
@@ -100,7 +100,7 @@ export default function Pricing() {
       joinWaitlist.mutate({
         email: modalEmail,
         source: `pricing-${modalPlan}`,
-        buttonLabel: `Join Waitlist — ${modalPlan.charAt(0).toUpperCase() + modalPlan.slice(1)} plan`,
+        buttonLabel: `Join Waitlist â ${modalPlan.charAt(0).toUpperCase() + modalPlan.slice(1)} plan`,
         tier: modalPlan,
       });
     }
@@ -108,7 +108,7 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Renolab — Pricing. The Renovation Platform for Northern Ireland.</title>
+      <title>Renolab â Pricing. The Renovation Platform for Northern Ireland.</title>
       <NavBar />
 
       <main className="container py-16">
@@ -119,7 +119,7 @@ export default function Pricing() {
           </Badge>
           <h1 className="text-4xl font-extrabold mb-4">Memberships built around real value</h1>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Start free. Upgrade when you need more. Pro and Trade memberships are launching soon — join the waitlist to be first.
+            Start free. Upgrade when you need more. Pro and Trade memberships are launching soon â get early access to be first.
           </p>
           {subscription && subscription.tier !== "free" && (
             <div className="mt-4">
@@ -204,7 +204,7 @@ export default function Pricing() {
               },
               {
                 q: "When do Pro and Trade plans launch?",
-                a: "We are currently onboarding our founding supplier partners and finalising the platform. Join the waitlist above and we will contact you as soon as your plan is ready.",
+                a: "We are currently onboarding our founding supplier partners and finalising the platform. Get early access above and we will contact you as soon as your plan is ready.",
               },
             ].map(item => (
               <div key={item.q} className="bg-card border border-border rounded-xl p-5">
@@ -219,7 +219,7 @@ export default function Pricing() {
       {/* Footer */}
       <footer className="border-t border-border py-8 mt-8">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Renolab. All rights reserved.</p>
+          <p>Â© {new Date().getFullYear()} Renolab. All rights reserved.</p>
           <p className="mt-1 font-medium text-foreground">Built for Northern Ireland. renolab.co.uk</p>
         </div>
       </footer>
@@ -235,7 +235,7 @@ export default function Pricing() {
           </button>
           <DialogHeader>
             <DialogTitle className="text-xl font-bold">
-              {modalPlan === "pro" ? "Join the Pro Waitlist" : "Join the Trade Waitlist"}
+              {modalPlan === "pro" ? "Get Early Access — Pro" : "Get Early Access — Trade"}
             </DialogTitle>
           </DialogHeader>
           {modalSubmitted ? (
@@ -262,7 +262,7 @@ export default function Pricing() {
                   className="w-full bg-primary hover:bg-primary/90 text-white font-semibold"
                   disabled={joinWaitlist.isPending}
                 >
-                  {joinWaitlist.isPending ? "Saving…" : "Save my spot"}
+                  {joinWaitlist.isPending ? "Savingâ¦" : "Save my spot"}
                 </Button>
               </form>
             </>

@@ -18,33 +18,34 @@ import {
   CheckCircle2,
   ImageIcon,
   X,
+  SkipForward,
 } from "lucide-react";
 
-// âââ Types ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 type UserType = "homeowner" | "tradesperson";
 
 const PROJECT_TYPES = [
-  { id: "kitchen", label: "Kitchen", icon: "🍳" },
-  { id: "bathroom", label: "Bathroom", icon: "🛁" },
-  { id: "bedroom", label: "Bedroom", icon: "🛏ï¸" },
-  { id: "living_room", label: "Living Room", icon: "🛋ï¸" },
-  { id: "hallway", label: "Hallway / Landing", icon: "🚪" },
-  { id: "extension", label: "Extension", icon: "🏗ï¸" },
-  { id: "full_house", label: "Full House", icon: "🏠" },
-  { id: "other", label: "Other", icon: "🔨" },
+  { id: "kitchen", label: "Kitchen", icon: "\u{1F373}" },
+  { id: "bathroom", label: "Bathroom", icon: "\u{1F6C1}" },
+  { id: "bedroom", label: "Bedroom", icon: "\u{1F6CF}\uFE0F" },
+  { id: "living_room", label: "Living Room", icon: "\u{1F6CB}\uFE0F" },
+  { id: "hallway", label: "Hallway / Landing", icon: "\u{1F6AA}" },
+  { id: "extension", label: "Extension", icon: "\u{1F3D7}\uFE0F" },
+  { id: "full_house", label: "Full House", icon: "\u{1F3E0}" },
+  { id: "other", label: "Other", icon: "\u{1F528}" },
 ];
 
 const GUIDED_QUESTIONS: Record<string, { question: string; options: string[] }[]> = {
   kitchen: [
-    { question: "What's the current state of the kitchen?", options: ["Functional but dated", "Needs full replacement", "New build / empty"] },
+    { question: "What\u2019s the current state of the kitchen?", options: ["Functional but dated", "Needs full replacement", "New build / empty"] },
     { question: "Are you keeping existing plumbing positions?", options: ["Yes, keep as is", "No, moving sink/appliances", "Not sure yet"] },
-    { question: "What's your priority?", options: ["Budget-friendly refresh", "Mid-range renovation", "High-end transformation"] },
+    { question: "What\u2019s your priority?", options: ["Budget-friendly refresh", "Mid-range renovation", "High-end transformation"] },
   ],
   bathroom: [
-    { question: "What's the current state?", options: ["Functional but dated", "Needs full replacement", "New build / empty"] },
+    { question: "What\u2019s the current state?", options: ["Functional but dated", "Needs full replacement", "New build / empty"] },
     { question: "Are you keeping existing plumbing?", options: ["Yes, keep as is", "No, moving fixtures", "Not sure yet"] },
-    { question: "What's your priority?", options: ["Budget refresh", "Mid-range renovation", "Luxury transformation"] },
+    { question: "What\u2019s your priority?", options: ["Budget refresh", "Mid-range renovation", "Luxury transformation"] },
   ],
   bedroom: [
     { question: "What work is needed?", options: ["Decoration only", "Flooring + decoration", "Full renovation"] },
@@ -55,21 +56,20 @@ const GUIDED_QUESTIONS: Record<string, { question: string; options: string[] }[]
     { question: "Is a fireplace involved?", options: ["Yes, existing", "Yes, new installation", "No fireplace"] },
   ],
   default: [
-    { question: "What's the overall scope?", options: ["Light refresh", "Mid-range renovation", "Full transformation"] },
-    { question: "What's your timeline?", options: ["ASAP", "Within 3 months", "Planning ahead"] },
+    { question: "What\u2019s the overall scope?", options: ["Light refresh", "Mid-range renovation", "Full transformation"] },
+    { question: "What\u2019s your timeline?", options: ["ASAP", "Within 3 months", "Planning ahead"] },
   ],
 };
 
-// âââ Step indicator âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Step indicator ───────────────────────────────────────────────────────────
 
 const STEPS = [
   { id: 1, label: "About you" },
-  { id: 2, label: "Project type" },
-  { id: 3, label: "Room details" },
-  { id: 4, label: "Measurements" },
-  { id: 5, label: "Finishes" },
-  { id: 6, label: "Budget" },
-  { id: 7, label: "Your estimate" },
+  { id: 2, label: "Your details" },
+  { id: 3, label: "Project type" },
+  { id: 4, label: "Room photo" },
+  { id: 5, label: "Room details" },
+  { id: 6, label: "Your estimate" },
 ];
 
 function StepIndicator({ current }: { current: number }) {
@@ -105,7 +105,7 @@ function StepIndicator({ current }: { current: number }) {
   );
 }
 
-// âââ Main Component âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function GuestEstimate() {
   const [, navigate] = useLocation();
@@ -115,6 +115,7 @@ export default function GuestEstimate() {
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+  const [photoSkipped, setPhotoSkipped] = useState(false);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [dimensions, setDimensions] = useState({ width: "", length: "", height: "" });
   const [stylePrompt, setStylePrompt] = useState("");
@@ -128,10 +129,11 @@ export default function GuestEstimate() {
 
   const questions = GUIDED_QUESTIONS[projectType ?? ""] ?? GUIDED_QUESTIONS.default;
 
-  // ââ Photo upload ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // ── Photo upload ──────────────────────────────────────────────────────────
   async function handlePhotoSelect(file: File) {
     setPhotoFile(file);
     setPhotoPreview(URL.createObjectURL(file));
+    setPhotoSkipped(false);
     setUploadingPhoto(true);
     try {
       const ext = file.name.split(".").pop() ?? "jpg";
@@ -155,11 +157,11 @@ export default function GuestEstimate() {
     }
   }
 
-  // ââ Submit ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // ── Submit ────────────────────────────────────────────────────────────────
   async function handleSubmit() {
-    if (!userType || !projectType || !photoUrl || !email) return;
+    if (!userType || !projectType || !email) return;
+    if (!photoUrl && !photoSkipped) return;
     setIsAnalysing(true);
-    // Scroll to top so the full-screen progress overlay is visible
     window.scrollTo({ top: 0, behavior: "smooth" });
     try {
       const dims = {
@@ -172,7 +174,7 @@ export default function GuestEstimate() {
         firstName: firstName || undefined,
         userType,
         projectType,
-        photoUrl,
+        photoUrl: photoUrl || undefined,
         dimensions: Object.values(dims).some(Boolean) ? dims : undefined,
         stylePrompt: stylePrompt || undefined,
         guidedAnswers: Object.keys(guidedAnswers).length > 0 ? guidedAnswers : undefined,
@@ -184,7 +186,7 @@ export default function GuestEstimate() {
     }
   }
 
-  // ââ Render ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // ── Render ────────────────────────────────────────────────────────────────
 
   // Full-screen progress screen while AI is running
   if (isAnalysing) {
@@ -195,14 +197,18 @@ export default function GuestEstimate() {
             <div className="absolute inset-0 rounded-full border-4 border-[#FF6B2C]/20" />
             <div className="absolute inset-0 rounded-full border-4 border-t-[#FF6B2C] animate-spin" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-2xl">🏠</span>
+              <span className="text-2xl">{"\u{1F3E0}"}</span>
             </div>
           </div>
-          <h2 className="text-2xl font-bold mb-2">Building your estimate…</h2>
-          <p className="text-slate-400 text-sm mb-6">Our AI is analysing your room photo and inputs. This usually takes 10–20 seconds.</p>
+          <h2 className="text-2xl font-bold mb-2">Building your estimate{"\u2026"}</h2>
+          <p className="text-slate-400 text-sm mb-6">
+            {photoUrl
+              ? "Our AI is analysing your room photo and inputs. This usually takes 10\u201320 seconds."
+              : "Our AI is building your estimate from your inputs. This usually takes 10\u201320 seconds."}
+          </p>
           <div className="space-y-2 text-left bg-[#1E293B] rounded-xl p-4">
             {[
-              { label: "Analysing room photo", done: true },
+              ...(photoUrl ? [{ label: "Analysing room photo", done: true }] : []),
               { label: "Estimating dimensions", done: true },
               { label: "Calculating cost range", done: false },
               { label: "Generating recommendations", done: false },
@@ -227,13 +233,13 @@ export default function GuestEstimate() {
       {/* Header */}
       <header className="border-b border-slate-800 px-6 py-4 flex items-center justify-between">
         <a href="/" className="text-xl font-bold text-[#FF6B2C]">Renolab</a>
-        <span className="text-sm text-slate-400">Free Estimate — No account needed</span>
+        <span className="text-sm text-slate-400">Free Estimate \u2014 No account needed</span>
       </header>
 
       <div className="max-w-2xl mx-auto px-4 py-10">
         <StepIndicator current={step} />
 
-        {/* ââ Step 1: User Type ââ */}
+        {/* ── Step 1: User Type ── */}
         {step === 1 && (
           <div className="text-center">
             <h1 className="text-3xl font-bold mb-2">Who are you?</h1>
@@ -263,8 +269,54 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ââ Step 2: Project Type ââ */}
+        {/* ── Step 2: Email Capture (moved early) ── */}
         {step === 2 && (
+          <div>
+            <h1 className="text-3xl font-bold mb-2 text-center">Where should we send your estimate?</h1>
+            <p className="text-slate-400 mb-8 text-center">
+              We'll email your results so you can refer back to them. No spam, ever.
+            </p>
+            <div className="bg-[#1E293B] rounded-xl p-6 mb-6 space-y-4">
+              <div>
+                <label className="block text-sm text-slate-400 mb-1">First name <span className="text-slate-500">(optional)</span></label>
+                <Input
+                  placeholder="e.g. Darren"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="bg-[#0F172A] border-slate-700 text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-slate-400 mb-1">Email address <span className="text-red-400">*</span></label>
+                <Input
+                  type="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-[#0F172A] border-slate-700 text-white"
+                />
+              </div>
+            </div>
+            <p className="text-xs text-slate-500 text-center mb-6">
+              We'll never sell your data. Unsubscribe anytime.
+            </p>
+            <div className="flex gap-3">
+              <Button variant="outline" onClick={() => setStep(1)} className="flex-1 border-slate-700 text-slate-300 hover:bg-slate-800">
+                <ChevronLeft className="w-4 h-4 mr-1" /> Back
+              </Button>
+              <Button
+                onClick={() => setStep(3)}
+                disabled={!email || !/\S+@\S+\.\S+/.test(email)}
+                className="flex-1 bg-[#FF6B2C] hover:bg-[#e55a1f] text-white"
+              >
+                Next <ChevronRight className="w-4 h-4 ml-1" />
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {/* ── Step 3: Project Type ── */}
+        {step === 3 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">What are you renovating?</h1>
             <p className="text-slate-400 mb-8 text-center">Select the room or project type.</p>
@@ -283,11 +335,11 @@ export default function GuestEstimate() {
               ))}
             </div>
             <div className="flex gap-3">
-              <Button variant="outline" onClick={() => setStep(1)} className="flex-1 border-slate-700 text-slate-300 hover:bg-slate-800">
+              <Button variant="outline" onClick={() => setStep(2)} className="flex-1 border-slate-700 text-slate-300 hover:bg-slate-800">
                 <ChevronLeft className="w-4 h-4 mr-1" /> Back
               </Button>
               <Button
-                onClick={() => setStep(3)}
+                onClick={() => setStep(4)}
                 disabled={!projectType}
                 className="flex-1 bg-[#FF6B2C] hover:bg-[#e55a1f] text-white"
               >
@@ -297,12 +349,12 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ââ Step 3: Photo Upload ââ */}
-        {step === 3 && (
+        {/* ── Step 4: Photo Upload (with skip option) ── */}
+        {step === 4 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Upload a room photo</h1>
             <p className="text-slate-400 mb-8 text-center">
-              A clear photo helps our AI estimate dimensions and scope accurately.
+              A photo helps our AI give a more accurate estimate. Don't have one? You can skip this step.
             </p>
             <div
               onClick={() => !photoFile && fileRef.current?.click()}
@@ -314,7 +366,7 @@ export default function GuestEstimate() {
                 <div className="relative">
                   <img src={photoPreview} alt="Room" className="max-h-64 mx-auto rounded-lg object-contain" />
                   <button
-                    onClick={(e) => { e.stopPropagation(); setPhotoFile(null); setPhotoPreview(null); setPhotoUrl(null); }}
+                    onClick={(e) => { e.stopPropagation(); setPhotoFile(null); setPhotoPreview(null); setPhotoUrl(null); setPhotoSkipped(false); }}
                     className="absolute top-2 right-2 bg-slate-900/80 rounded-full p-1 hover:bg-red-600 transition-colors"
                   >
                     <X className="w-4 h-4" />
@@ -329,7 +381,7 @@ export default function GuestEstimate() {
                 <>
                   <ImageIcon className="w-12 h-12 mx-auto mb-3 text-slate-500" />
                   <p className="text-slate-300 font-medium">Click to upload a photo</p>
-                  <p className="text-slate-500 text-sm mt-1">JPG, PNG or HEIC — max 10MB</p>
+                  <p className="text-slate-500 text-sm mt-1">JPG, PNG or HEIC \u2014 max 10MB</p>
                 </>
               )}
             </div>
@@ -340,13 +392,25 @@ export default function GuestEstimate() {
               className="hidden"
               onChange={(e) => { const f = e.target.files?.[0]; if (f) handlePhotoSelect(f); }}
             />
-            <div className="flex gap-3 mt-6">
-              <Button variant="outline" onClick={() => setStep(2)} className="flex-1 border-slate-700 text-slate-300 hover:bg-slate-800">
+
+            {/* Skip photo option */}
+            {!photoUrl && !uploadingPhoto && (
+              <button
+                onClick={() => { setPhotoSkipped(true); setStep(5); }}
+                className="w-full mt-4 py-2.5 text-sm text-slate-400 hover:text-slate-200 transition-colors flex items-center justify-center gap-2"
+              >
+                <SkipForward className="w-4 h-4" />
+                Skip \u2014 estimate without a photo
+              </button>
+            )}
+
+            <div className="flex gap-3 mt-4">
+              <Button variant="outline" onClick={() => setStep(3)} className="flex-1 border-slate-700 text-slate-300 hover:bg-slate-800">
                 <ChevronLeft className="w-4 h-4 mr-1" /> Back
               </Button>
               <Button
-                onClick={() => setStep(4)}
-                disabled={!photoUrl || uploadingPhoto}
+                onClick={() => setStep(5)}
+                disabled={(!photoUrl && !photoSkipped) || uploadingPhoto}
                 className="flex-1 bg-[#FF6B2C] hover:bg-[#e55a1f] text-white"
               >
                 {uploadingPhoto ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
@@ -356,15 +420,17 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ââ Step 4: Measurements ââ */}
-        {step === 4 && (
+        {/* ── Step 5: Room Details (measurements + guided questions + style) ── */}
+        {step === 5 && (
           <div>
-            <h1 className="text-3xl font-bold mb-2 text-center">Add measurements</h1>
-            <p className="text-slate-400 mb-2 text-center">
-              Optional — but more accurate measurements mean a better estimate.
+            <h1 className="text-3xl font-bold mb-2 text-center">Tell us about the room</h1>
+            <p className="text-slate-400 mb-8 text-center">
+              The more detail you provide, the more accurate your estimate.
             </p>
-            <p className="text-xs text-slate-500 text-center mb-8">Leave blank and our AI will estimate from your photo.</p>
+
+            {/* Measurements */}
             <div className="bg-[#1E293B] rounded-xl p-6 space-y-4 mb-6">
+              <p className="font-medium text-sm text-slate-300">Measurements <span className="text-slate-500 font-normal">(optional)</span></p>
               <div className="grid grid-cols-3 gap-4">
                 <div>
                   <label className="block text-sm text-slate-400 mb-1">Width (m)</label>
@@ -399,66 +465,16 @@ export default function GuestEstimate() {
               </div>
               {dimensions.width && dimensions.length && (
                 <p className="text-sm text-[#FF6B2C] font-medium">
-                  Floor area: {(parseFloat(dimensions.width) * parseFloat(dimensions.length)).toFixed(1)} mÂ²
+                  Floor area: {(parseFloat(dimensions.width) * parseFloat(dimensions.length)).toFixed(1)} m\u00B2
                 </p>
               )}
             </div>
-            <div className="flex gap-3">
-              <Button variant="outline" onClick={() => setStep(3)} className="flex-1 border-slate-700 text-slate-300 hover:bg-slate-800">
-                <ChevronLeft className="w-4 h-4 mr-1" /> Back
-              </Button>
-              <Button onClick={() => setStep(5)} className="flex-1 bg-[#FF6B2C] hover:bg-[#e55a1f] text-white">
-                Next <ChevronRight className="w-4 h-4 ml-1" />
-              </Button>
-            </div>
-          </div>
-        )}
 
-        {/* ââ Step 5: Style ââ */}
-        {step === 5 && (
-          <div>
-            <h1 className="text-3xl font-bold mb-2 text-center">Describe your vision</h1>
-            <p className="text-slate-400 mb-8 text-center">
-              Tell us how you want the finished room to look. The more detail, the better.
-            </p>
-            <div className="bg-[#1E293B] rounded-xl p-6 mb-6">
-              <label className="block text-sm text-slate-400 mb-2">
-                <MessageSquare className="w-4 h-4 inline mr-1" />
-                Style description <span className="text-slate-500">(optional)</span>
-              </label>
-              <Textarea
-                placeholder={`e.g. "Modern Scandi kitchen with white cabinets, oak worktops, and matte black hardware. Bright and minimal."`}
-                value={stylePrompt}
-                onChange={(e) => setStylePrompt(e.target.value)}
-                rows={5}
-                className="bg-[#0F172A] border-slate-700 text-white resize-none"
-              />
-              <p className="text-xs text-slate-500 mt-2">
-                Describe colours, materials, style influences, or anything specific you want.
-              </p>
-            </div>
-            <div className="flex gap-3">
-              <Button variant="outline" onClick={() => setStep(4)} className="flex-1 border-slate-700 text-slate-300 hover:bg-slate-800">
-                <ChevronLeft className="w-4 h-4 mr-1" /> Back
-              </Button>
-              <Button onClick={() => setStep(6)} className="flex-1 bg-[#FF6B2C] hover:bg-[#e55a1f] text-white">
-                Next <ChevronRight className="w-4 h-4 ml-1" />
-              </Button>
-            </div>
-          </div>
-        )}
-
-        {/* ââ Step 6: Guided Questions ââ */}
-        {step === 6 && (
-          <div>
-            <h1 className="text-3xl font-bold mb-2 text-center">A few quick questions</h1>
-            <p className="text-slate-400 mb-8 text-center">
-              These help us give you a more accurate estimate.
-            </p>
-            <div className="space-y-6 mb-8">
+            {/* Guided questions */}
+            <div className="space-y-4 mb-6">
               {questions.map((q, qi) => (
                 <div key={qi} className="bg-[#1E293B] rounded-xl p-5">
-                  <p className="font-medium mb-3">{q.question}</p>
+                  <p className="font-medium mb-3 text-sm">{q.question}</p>
                   <div className="space-y-2">
                     {q.options.map((opt) => (
                       <button
@@ -477,47 +493,53 @@ export default function GuestEstimate() {
                 </div>
               ))}
             </div>
+
+            {/* Style description */}
+            <div className="bg-[#1E293B] rounded-xl p-6 mb-6">
+              <label className="block text-sm text-slate-400 mb-2">
+                <MessageSquare className="w-4 h-4 inline mr-1" />
+                Style description <span className="text-slate-500">(optional)</span>
+              </label>
+              <Textarea
+                placeholder={'e.g. "Modern Scandi kitchen with white cabinets, oak worktops, and matte black hardware."'}
+                value={stylePrompt}
+                onChange={(e) => setStylePrompt(e.target.value)}
+                rows={3}
+                className="bg-[#0F172A] border-slate-700 text-white resize-none"
+              />
+            </div>
+
             <div className="flex gap-3">
-              <Button variant="outline" onClick={() => setStep(5)} className="flex-1 border-slate-700 text-slate-300 hover:bg-slate-800">
+              <Button variant="outline" onClick={() => setStep(4)} className="flex-1 border-slate-700 text-slate-300 hover:bg-slate-800">
                 <ChevronLeft className="w-4 h-4 mr-1" /> Back
               </Button>
-              <Button onClick={() => setStep(7)} className="flex-1 bg-[#FF6B2C] hover:bg-[#e55a1f] text-white">
+              <Button onClick={() => setStep(6)} className="flex-1 bg-[#FF6B2C] hover:bg-[#e55a1f] text-white">
                 Next <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
             </div>
           </div>
         )}
 
-        {/* ââ Step 7: Email Gate ââ */}
-        {step === 7 && (
+        {/* ── Step 6: Review & Submit ── */}
+        {step === 6 && (
           <div>
-            <h1 className="text-3xl font-bold mb-2 text-center">Where do we send your estimate?</h1>
+            <h1 className="text-3xl font-bold mb-2 text-center">Review & get your estimate</h1>
             <p className="text-slate-400 mb-8 text-center">
-              Enter your email and we'll run your AI estimate now. No spam, no account required.
+              Check your details below, then hit the button to generate your AI estimate.
             </p>
-            <div className="bg-[#1E293B] rounded-xl p-6 mb-6 space-y-4">
-              <div>
-                <label className="block text-sm text-slate-400 mb-1">First name <span className="text-slate-500">(optional)</span></label>
-                <Input
-                  placeholder="e.g. Darren"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  className="bg-[#0F172A] border-slate-700 text-white"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-slate-400 mb-1">Email address <span className="text-red-400">*</span></label>
-                <Input
-                  type="email"
-                  placeholder="you@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-[#0F172A] border-slate-700 text-white"
-                />
-              </div>
+
+            {/* Summary */}
+            <div className="bg-[#1E293B] rounded-xl p-5 mb-6 space-y-3 text-sm">
+              <div className="flex justify-between"><span className="text-slate-400">Type</span><span className="text-white capitalize">{userType}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Email</span><span className="text-white">{email}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Project</span><span className="text-white capitalize">{projectType?.replace("_", " ")}</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Photo</span><span className={photoUrl ? "text-green-400" : "text-slate-500"}>{photoUrl ? "Uploaded" : "Skipped"}</span></div>
+              {dimensions.width && dimensions.length && (
+                <div className="flex justify-between"><span className="text-slate-400">Floor area</span><span className="text-white">{(parseFloat(dimensions.width) * parseFloat(dimensions.length)).toFixed(1)} m{"\u00B2"}</span></div>
+              )}
             </div>
 
-            {/* Summary card */}
+            {/* What's included */}
             <div className="bg-[#1E293B] rounded-xl p-4 mb-6 text-sm space-y-1.5">
               <p className="text-slate-400 font-medium mb-2">Your estimate includes:</p>
               <div className="flex items-center gap-2 text-slate-300"><CheckCircle2 className="w-4 h-4 text-[#FF6B2C]" /> AI-powered cost range</div>
@@ -530,7 +552,7 @@ export default function GuestEstimate() {
             </div>
 
             <div className="flex gap-3">
-              <Button variant="outline" onClick={() => setStep(6)} className="flex-1 border-slate-700 text-slate-300 hover:bg-slate-800">
+              <Button variant="outline" onClick={() => setStep(5)} className="flex-1 border-slate-700 text-slate-300 hover:bg-slate-800">
                 <ChevronLeft className="w-4 h-4 mr-1" /> Back
               </Button>
               <Button
@@ -541,7 +563,7 @@ export default function GuestEstimate() {
                 {isAnalysing ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                    Analysing your room…
+                    Analysing{"\u2026"}
                   </>
                 ) : (
                   <>

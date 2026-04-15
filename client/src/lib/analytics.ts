@@ -2,26 +2,80 @@
  * analytics.ts
  * Centralised helpers for Meta Pixel and Google Analytics 4 events.
  *
- * Both tracking scripts are loaded via index.html.
- * These helpers are safe to call even before the scripts load — they queue
- * events internally until the SDK is ready.
+ * Scripts are dynamically injected at runtime using Vite environment variables:
+ *   - VITE_GA4_ID        → Google Analytics 4 Measurement ID (G-XXXXXXXXXX)
+ *   - VITE_META_PIXEL_ID → Meta (Facebook) Pixel ID
  *
- * IMPORTANT: Replace placeholder IDs in index.html before going live:
- *   - REPLACE_WITH_META_PIXEL_ID → your Meta Pixel ID
- *   - REPLACE_WITH_GA4_ID → your GA4 Measurement ID (G-XXXXXXXXXX)
+ * Call initAnalytics() once from main.tsx to load the scripts.
+ * All track* helpers are safe to call before or after init — they silently
+ * no-op when the underlying SDK is unavailable.
  */
 
-// ─── Type declarations ────────────────────────────────────────────────────────
+// ─── Type declarations ─────────────────────────────────────────────────────────────────
 
 declare global {
   interface Window {
-    fbq?: (...args: any[]) => void;
-    gtag?: (...args: any[]) => void;
-    dataLayer?: any[];
+    fbq: (...args: any[]) => void;
+    gtag: (...args: any[]) => void;
+    dataLayer: any[];
   }
 }
 
-// ─── Meta Pixel ───────────────────────────────────────────────────────────────
+// ─── Script injection ─────────────────────────────────────────────────────────────────
+
+let _initialised = false;
+
+/**
+ * Dynamically inject GA4 and Meta Pixel scripts.
+ * Safe to call multiple times — only runs once.
+ */
+export function initAnalytics() {
+  if (_initialised || typeof document === "undefined") return;
+  _initialised = true;
+
+  const ga4Id = import.meta.env.VITE_GA4_ID as string | undefined;
+  const metaPixelId = import.meta.env.VITE_META_PIXEL_ID as string | undefined;
+
+  // ── Google Analytics 4 ──
+  if (ga4Id) {
+    const gtagScript = document.createElement("script");
+    gtagScript.async = true;
+    gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${ga4Id}`;
+    document.head.appendChild(gtagScript);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function (...args: any[]) {
+      window.dataLayer.push(args);
+    };
+    window.gtag("js", new Date());
+    window.gtag("config", ga4Id, { send_page_view: false });
+  }
+
+  // ── Meta Pixel ──
+  if (metaPixelId) {
+    (function (f: any, b: any, e: any, v: any) {
+      if (f.fbq) return;
+      const n: any = (f.fbq = function (...args: any[]) {
+        n.callMethod ? n.callMethod(...args) : n.queue.push(args);
+      });
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = true;
+      n.version = "2.0";
+      n.queue = [];
+      const t = b.createElement(e) as HTMLScriptElement;
+      t.async = true;
+      t.src = v;
+      const s = b.getElementsByTagName(e)[0];
+      s?.parentNode?.insertBefore(t, s);
+    })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+
+    window.fbq("init", metaPixelId);
+    window.fbq("track", "PageView");
+  }
+}
+
+// ─── Safe wrappers ─────────────────────────────────────────────────────────────────────
 
 function fbq(...args: any[]) {
   if (typeof window !== "undefined" && typeof window.fbq === "function") {
@@ -29,17 +83,14 @@ function fbq(...args: any[]) {
   }
 }
 
-// ─── Google Analytics 4 ───────────────────────────────────────────────────────
-
 function gtag(...args: any[]) {
   if (typeof window !== "undefined" && typeof window.gtag === "function") {
     window.gtag(...args);
   }
 }
 
-// ─── Unified event helpers ────────────────────────────────────────────────────
+// ─── Unified event helpers ───────────────────────────────────────────────────────────────
 
-/** Fire on every page load (called in each page component via useEffect) */
 export function trackPageView(pageName?: string) {
   fbq("track", "PageView");
   if (pageName) {
@@ -47,116 +98,128 @@ export function trackPageView(pageName?: string) {
   }
 }
 
-// ── Estimate Funnel ──────────────────────────────────────────────────────────
+// ── Estimate Funnel ────────────────────────────────────────────────────────────────
 
-/** User clicks any "Get My Free Estimate" / "Start Your Project" CTA */
 export function trackEstimateStart(estimateType: "renovation" | "new_build" | "kitchen" = "renovation") {
-  fbq("track", "Lead", { content_name: "estimate_start", content_category: estimateType });
-  gtag("event", "estimate_start", { event_category: "engagement", estimate_type: estimateType });
+  fbq("track", "Lead", { content_name: estimateType });
+  gtag("event", "estimate_start", { estimate_type: estimateType });
 }
 
-/** User completes a step in the estimate wizard */
 export function trackEstimateStep(step: number, estimateType: string) {
-  gtag("event", "estimate_step", { event_category: "engagement", step_number: step, estimate_type: estimateType });
+  gtag("event", "estimate_step", { step, estimate_type: estimateType });
 }
 
-/** User reaches the estimate results page */
 export function trackEstimateComplete(estimateType: "renovation" | "new_build" | "kitchen" = "renovation") {
-  fbq("track", "Lead", { content_name: "estimate_complete", content_category: estimateType });
-  gtag("event", "estimate_complete", { event_category: "conversion", estimate_type: estimateType });
+  fbq("track", "CompleteRegistration", { content_name: estimateType });
+  gtag("event", "estimate_complete", { estimate_type: estimateType });
 }
 
-/** User abandons estimate wizard (fires on unmount if not completed) */
 export function trackEstimateAbandon(step: number, estimateType: string) {
-  gtag("event", "estimate_abandon", { event_category: "engagement", step_number: step, estimate_type: estimateType });
+  gtag("event", "estimate_abandon", { step, estimate_type: estimateType });
 }
 
-// ── Kitchen Estimator ────────────────────────────────────────────────────────
+// ── Kitchen Estimator ──────────────────────────────────────────────────────────────
 
-/** User lands on the kitchen estimator page */
 export function trackKitchenEstimatorView() {
   fbq("track", "ViewContent", { content_name: "kitchen_estimator" });
-  gtag("event", "kitchen_estimator_view", { event_category: "engagement" });
+  gtag("event", "kitchen_estimator_view");
 }
 
-/** User submits a kitchen estimate calculation */
 export function trackKitchenEstimateComplete(supplyMode: string) {
-  fbq("track", "Lead", { content_name: "kitchen_estimate_complete", content_category: supplyMode });
-  gtag("event", "kitchen_estimate_complete", { event_category: "conversion", supply_mode: supplyMode });
+  fbq("track", "Lead", { content_name: "kitchen_estimate" });
+  gtag("event", "kitchen_estimate_complete", { supply_mode: supplyMode });
 }
 
-/** User submits a formal quote request */
+// ── Quote & Contact ────────────────────────────────────────────────────────────────
+
 export function trackQuoteRequest(category: string) {
-  fbq("track", "Lead", { content_name: "quote_request", content_category: category });
-  gtag("event", "quote_request", { event_category: "conversion", quote_category: category });
+  fbq("track", "Contact", { content_name: category });
+  gtag("event", "quote_request", { category });
 }
 
-// ── Waitlist & Signups ───────────────────────────────────────────────────────
+// ── Signups & Waitlist ──────────────────────────────────────────────────────────────
 
-/** User submits email on any waitlist form */
 export function trackWaitlistSignup(source?: string) {
-  fbq("track", "Lead", { content_name: "waitlist_signup", content_category: source });
-  gtag("event", "waitlist_signup", { event_category: "conversion", signup_source: source });
+  fbq("track", "Lead", { content_name: source || "waitlist" });
+  gtag("event", "waitlist_signup", { source: source || "general" });
 }
 
-/** User clicks "Join the Waitlist" for Pro tier */
 export function trackProWaitlist() {
-  fbq("track", "InitiateCheckout", { content_name: "pro_waitlist" });
-  gtag("event", "pro_waitlist", { event_category: "conversion" });
+  fbq("track", "Lead", { content_name: "pro_waitlist" });
+  gtag("event", "pro_waitlist_signup");
 }
 
-/** User clicks "Join the Waitlist" for Trade tier */
 export function trackTradeWaitlist() {
-  fbq("track", "InitiateCheckout", { content_name: "trade_waitlist" });
-  gtag("event", "trade_waitlist", { event_category: "conversion" });
+  fbq("track", "Lead", { content_name: "trade_waitlist" });
+  gtag("event", "trade_waitlist_signup");
 }
 
-// ── Subscription & Payment ───────────────────────────────────────────────────
+// ── Email Capture ──────────────────────────────────────────────────────────────────
 
-/** User clicks upgrade / subscribe button */
+export function trackEmailCapture(source: string) {
+  fbq("track", "Lead", { content_name: `email_capture_${source}` });
+  gtag("event", "email_capture", { source });
+}
+
+// ── CTA Clicks ─────────────────────────────────────────────────────────────────────
+
+export function trackCtaClick(ctaName: string, location: string) {
+  gtag("event", "cta_click", { cta_name: ctaName, location });
+}
+
+export function trackEarlyAccessClick(source: string) {
+  fbq("track", "Lead", { content_name: "early_access" });
+  gtag("event", "early_access_click", { source });
+}
+
+// ── Subscription & Renovation Pass ─────────────────────────────────────────────────
+
 export function trackSubscriptionStart(tier: string) {
-  fbq("track", "InitiateCheckout", { content_name: "subscription_start", content_category: tier });
-  gtag("event", "begin_checkout", { event_category: "conversion", subscription_tier: tier });
+  fbq("track", "InitiateCheckout", { content_name: tier });
+  gtag("event", "subscription_start", { tier });
 }
 
-/** Subscription successfully completed */
 export function trackSubscriptionComplete(tier: string) {
-  fbq("track", "Purchase", { content_name: "subscription_complete", content_category: tier });
-  gtag("event", "purchase", { event_category: "conversion", subscription_tier: tier });
+  fbq("track", "Purchase", { content_name: tier });
+  gtag("event", "subscription_complete", { tier });
 }
 
-// ── Content & Navigation ─────────────────────────────────────────────────────
+export function trackRenovationPassClick() {
+  fbq("track", "InitiateCheckout", { content_name: "renovation_pass" });
+  gtag("event", "renovation_pass_click");
+}
 
-/** User lands on the New Build page */
+export function trackRenovationPassPurchase() {
+  fbq("track", "Purchase", { content_name: "renovation_pass" });
+  gtag("event", "renovation_pass_purchase");
+}
+
+// ── Page-specific views ──────────────────────────────────────────────────────────────
+
 export function trackNewBuildView() {
-  fbq("track", "ViewContent", { content_name: "new_build" });
-  gtag("event", "new_build_view", { event_category: "engagement" });
+  fbq("track", "ViewContent", { content_name: "new_build_estimator" });
+  gtag("event", "new_build_view");
 }
 
-/** User submits the tradesperson application form */
 export function trackTradeApplication() {
   fbq("track", "Lead", { content_name: "trade_application" });
-  gtag("event", "trade_application", { event_category: "conversion" });
+  gtag("event", "trade_application");
 }
 
-/** User views a supplier profile */
 export function trackSupplierView(supplierId: number) {
-  gtag("event", "supplier_view", { event_category: "engagement", supplier_id: supplierId });
+  gtag("event", "supplier_view", { supplier_id: supplierId });
 }
 
-/** User clicks a supplier affiliate link */
 export function trackAffiliateClick(supplierId: number) {
-  fbq("track", "ViewContent", { content_name: "affiliate_click" });
-  gtag("event", "affiliate_click", { event_category: "engagement", supplier_id: supplierId });
+  gtag("event", "affiliate_click", { supplier_id: supplierId });
 }
 
-/** User generates a 3D visualisation */
+// ── Visualisation & Upload ───────────────────────────────────────────────────────────
+
 export function trackVisualisationGenerate() {
-  fbq("track", "ViewContent", { content_name: "visualisation_generate" });
-  gtag("event", "visualisation_generate", { event_category: "engagement" });
+  gtag("event", "visualisation_generate");
 }
 
-/** User uploads a file (photo, floor plan) */
 export function trackFileUpload(fileType: string) {
-  gtag("event", "file_upload", { event_category: "engagement", file_type: fileType });
+  gtag("event", "file_upload", { file_type: fileType });
 }

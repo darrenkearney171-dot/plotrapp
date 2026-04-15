@@ -331,7 +331,7 @@ export default function Tradespeople() {
       {/* Footer */}
       <footer className="border-t border-border py-8 mt-8">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>Â© {new Date().getFullYear()} Renolab. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Renolab. All rights reserved.</p>
           <p className="mt-1 font-medium text-foreground">Built on the island of Ireland. renolab.co.uk</p>
         </div>
       </footer>

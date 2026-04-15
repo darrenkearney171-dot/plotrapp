@@ -8,9 +8,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { getLoginUrl } from "@/const";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { toast } from "sonner";
 import NavBar from "@/components/NavBar";
+import { trackPageView, trackEstimateComplete } from "@/lib/analytics";
 import {
   CheckCircle2,
   ChevronRight,
@@ -190,6 +191,11 @@ export default function EstimateResult() {
   const [visStylePrompt, setVisStylePrompt] = useState("");
   const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  useEffect(() => {
+    trackPageView("Estimate Result");
+    trackEstimateComplete("renovation");
+  }, []);
 
   const generateVisMutation = trpc.visualisation.generate.useMutation({
     onSuccess: (data) => {

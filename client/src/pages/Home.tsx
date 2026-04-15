@@ -43,7 +43,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Renolab — Home. The Renovation Platform for the island of Ireland.</title>
+      <title>Renolab — Home. The Renovation Platform for Northern Ireland.</title>
       <NavBar />
 
       {/* ── Hero ───────────────────────────────────────────────────────── */}
@@ -51,7 +51,7 @@ export default function HomePage() {
         <div className="container max-w-4xl mx-auto text-center">
           <Badge className="mb-6 bg-primary/20 text-primary border-primary/30 text-sm px-4 py-1.5">
             <Zap className="w-3.5 h-3.5 mr-1.5" />
-            Built on the island of Ireland
+            Built on Northern Ireland
           </Badge>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
             Plan smarter. Buy at trade prices. Renovate with confidence.
@@ -68,8 +68,8 @@ export default function HomePage() {
           </div>
           <p className="mt-5 text-sm text-white/40">
             {waitlistData && waitlistData.count > 0
-              ? `Join ${waitlistData.count} homeowners and tradespeople across the island of Ireland already on the waitlist.`
-              : "Join homeowners and tradespeople across the island of Ireland already on the waitlist."}
+              ? `Join ${waitlistData.count} homeowners and tradespeople across Northern Ireland already on the waitlist.`
+              : "Join homeowners and tradespeople across Northern Ireland already on the waitlist."}
           </p>
         </div>
       </section>
@@ -276,7 +276,7 @@ export default function HomePage() {
           <div className="relative">
             <Quote className="w-10 h-10 text-primary/40 mb-4" />
             <blockquote className="text-lg text-white/80 leading-relaxed">
-              Renolab was built by Darren Kearney — a joiner, carpenter, and tradesman from the island of Ireland who spent years watching homeowners get ripped off and tradespeople waste hours on admin that should take minutes. After a career in joinery, fitted furniture, kitchens, and construction, Darren built Renolab to solve the problems he lived every day on site.
+              Renolab was built by Darren Kearney — a joiner, carpenter, and tradesman from Northern Ireland who spent years watching homeowners get ripped off and tradespeople waste hours on admin that should take minutes. After a career in joinery, fitted furniture, kitchens, and construction, Darren built Renolab to solve the problems he lived every day on site.
             </blockquote>
             <p className="mt-6 text-white/60 leading-relaxed">
               Renolab is not a tech company that discovered construction. It is a trade platform built from the inside out — by someone who has priced a job at 9pm, sourced timber at 7am, and built things with his own hands. That is the difference.
@@ -427,7 +427,7 @@ export default function HomePage() {
             Renolab is not just an estimating tool.<br />It helps you turn a project into a buying plan.
           </p>
           <p className="text-white/55 mb-10 leading-relaxed max-w-xl mx-auto">
-            Members can access agreed discounts and offers with partner suppliers, helping both DIY users and tradespeople buy with more confidence. Supplier partnerships are currently being onboarded across the island of Ireland.
+            Members can access agreed discounts and offers with partner suppliers, helping both DIY users and tradespeople buy with more confidence. Supplier partnerships are currently being onboarded across Northern Ireland.
           </p>
           <Link href="/suppliers">
             <Button size="lg" className="px-8 bg-primary hover:bg-primary/90">
@@ -464,7 +464,7 @@ export default function HomePage() {
         </div>
         <p className="mb-1">Smart planning tools. Guided estimates. Supplier discounts.</p>
         <p>For homeowners and tradespeople.</p>
-        <p className="mt-2 font-semibold text-white/60">Built on the island of Ireland. renolab.co.uk</p>
+        <p className="mt-2 font-semibold text-white/60">Built on Northern Ireland. renolab.co.uk</p>
         <div className="flex justify-center gap-6 mt-6 text-white/30">
           <Link href="/how-it-works" className="hover:text-white/60 transition-colors">How It Works</Link>
           <Link href="/pricing" className="hover:text-white/60 transition-colors">Pricing</Link>

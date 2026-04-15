@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,7 @@ import {
   X,
   SkipForward,
 } from "lucide-react";
+import { trackPageView, trackEstimateStart, trackEstimateStep, trackEstimateAbandon, trackEmailCapture } from "@/lib/analytics";
 
 // Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Types Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
@@ -142,6 +143,26 @@ export default function GuestEstimate() {
   const [firstName, setFirstName] = useState("");
   const [isAnalysing, setIsAnalysing] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  // ── Analytics ──
+  const stepRef = useRef(step);
+  stepRef.current = step;
+
+  useEffect(() => {
+    trackPageView("Renovation Estimate");
+    trackEstimateStart("renovation");
+    return () => {
+      if (stepRef.current < 7) {
+        trackEstimateAbandon(stepRef.current, "renovation");
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (step > 1) {
+      trackEstimateStep(step, "renovation");
+    }
+  }, [step]);
 
   const startEstimate = trpc.guest.startEstimate.useMutation();
 

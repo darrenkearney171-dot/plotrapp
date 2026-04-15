@@ -101,7 +101,7 @@ ${resultUrl}
 
 This link will take you straight back to your estimate result any time.
 
-Want the full materials list, PDF export, and supplier discounts? Upgrade to Pro from just £9.99/month.
+Want the full materials list, PDF export, and trade pricing? Get early access to Pro and be first in when paid plans go live: ${APP_URL}/pricing
 
 Need a formal quote for fitted furniture or a kitchen? Use our kitchen estimator at ${APP_URL}/kitchen-estimator — it's free to try.
 
@@ -117,7 +117,7 @@ export async function sendTradeApplicationConfirmationEmail(toEmail: string, nam
 
 Thanks for applying to join the Renolab trade network as a ${trade.replace(/_/g, " ")}.
 
-We're building our founding network of tradespeople across the island of Ireland. We review every application personally and will be in touch once we're ready to onboard the next group.
+We're building our founding network of tradespeople across Northern Ireland. We review every application personally and will be in touch once we're ready to onboard the next group.
 
 As a founding trade member you'll get priority listing and special rates.
 

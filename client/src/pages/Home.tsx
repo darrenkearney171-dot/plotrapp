@@ -23,6 +23,7 @@ import { trackWaitlistSignup, trackEstimateStart, trackNewBuildView } from "@/li
 export default function HomePage() {
   const [waitlistEmail, setWaitlistEmail] = useState("");
   const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
+  const { data: waitlistData } = trpc.waitlist.count.useQuery();
 
   const joinWaitlist = trpc.waitlist.join.useMutation({
     onSuccess: () => {
@@ -45,7 +46,7 @@ export default function HomePage() {
       <title>Renolab — Home. The Renovation Platform for the island of Ireland.</title>
       <NavBar />
 
-      {/* ââ Hero âââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── Hero ───────────────────────────────────────────────────────── */}
       <section className="bg-[#0f1c2e] text-white pt-24 pb-20 px-4">
         <div className="container max-w-4xl mx-auto text-center">
           <Badge className="mb-6 bg-primary/20 text-primary border-primary/30 text-sm px-4 py-1.5">
@@ -64,25 +65,22 @@ export default function HomePage() {
                 Get My Free Estimate
               </Button>
             </Link>
-            <Link href="/pricing">
-              <Button size="sm" variant="outline" className="w-full sm:w-auto border-white/20 text-white/70 hover:bg-white/10 bg-transparent px-6">
-                See Membership Plans
-              </Button>
-            </Link>
           </div>
           <p className="mt-5 text-sm text-white/40">
-            Join homeowners and tradespeople across the island of Ireland already on the waitlist.
+            {waitlistData && waitlistData.count > 0
+              ? `Join ${waitlistData.count} homeowners and tradespeople across the island of Ireland already on the waitlist.`
+              : "Join homeowners and tradespeople across the island of Ireland already on the waitlist."}
           </p>
         </div>
       </section>
 
-      {/* ââ Trust line âââââââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── Trust line ─────────────────────────────────────────────────── */}
       <section className="bg-[#0a1520] text-white/60 py-5 text-center text-sm border-b border-white/5">
         <p className="font-medium text-white/80">Built for real projects in the real world.</p>
         <p className="mt-1">Made for DIY homeowners and tradespeople who want faster planning, better buying, and less guesswork.</p>
       </section>
 
-      {/* ââ Who is Renolab for âââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── Who is Renolab for ─────────────────────────────────────────── */}
       <section className="py-20 bg-muted/30">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-4">Who is Renolab for?</h2>
@@ -115,7 +113,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ How it works âââââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── How it works ───────────────────────────────────────────────── */}
       <section className="py-20 bg-background">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-4">How Renolab works</h2>
@@ -156,7 +154,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ What a Renolab estimate looks like ââââââââââââââââââââââââââ */}
+      {/* ── What a Renolab estimate looks like ────────────────────────── */}
       <section className="py-20 bg-muted/30">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-4">What a Renolab estimate looks like</h2>
@@ -179,12 +177,12 @@ export default function HomePage() {
                 <span className="col-span-3 text-right">Total</span>
               </div>
               {[
-                { material: "Wall tiles (600×300mm)", qty: "18 mÂ²", unit: "Â£22.50", total: "Â£405.00" },
-                { material: "Floor tiles (porcelain)", qty: "6 mÂ²", unit: "Â£28.00", total: "Â£168.00" },
-                { material: "Tile adhesive (20kg bag)", qty: "6 bags", unit: "Â£12.00", total: "Â£72.00" },
-                { material: "Shower enclosure (1200mm)", qty: "1 unit", unit: "Â£320.00", total: "Â£320.00" },
-                { material: "Vanity unit + basin", qty: "1 unit", unit: "Â£285.00", total: "Â£285.00" },
-                { material: "Plasterboard (2400×1200)", qty: "8 sheets", unit: "Â£18.50", total: "Â£148.00" },
+                { material: "Wall tiles (600×300mm)", qty: "18 m²", unit: "£22.50", total: "£405.00" },
+                { material: "Floor tiles (porcelain)", qty: "6 m²", unit: "£28.00", total: "£168.00" },
+                { material: "Tile adhesive (20kg bag)", qty: "6 bags", unit: "£12.00", total: "£72.00" },
+                { material: "Shower enclosure (1200mm)", qty: "1 unit", unit: "£320.00", total: "£320.00" },
+                { material: "Vanity unit + basin", qty: "1 unit", unit: "£285.00", total: "£285.00" },
+                { material: "Plasterboard (2400×1200)", qty: "8 sheets", unit: "£18.50", total: "£148.00" },
               ].map((row) => (
                 <div key={row.material} className="grid grid-cols-12 px-6 py-3 text-sm hover:bg-muted/30 transition-colors">
                   <span className="col-span-5 font-medium text-foreground">{row.material}</span>
@@ -196,7 +194,7 @@ export default function HomePage() {
               {/* Total row */}
               <div className="grid grid-cols-12 px-6 py-4 bg-primary/5 border-t-2 border-primary/20">
                 <span className="col-span-9 font-bold text-base">Estimated Materials Total</span>
-                <span className="col-span-3 text-right font-extrabold text-primary text-base">Â£1,398.00</span>
+                <span className="col-span-3 text-right font-extrabold text-primary text-base">£1,398.00</span>
               </div>
             </div>
           </div>
@@ -214,13 +212,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ New Build section âââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── New Build section ─────────────────────────────────────────── */}
       <section className="py-20 bg-background">
         <div className="container max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 text-sm px-3 py-1">
-                🏗ï¸ New Build Mode
+                🏗️ New Build Mode
               </Badge>
               <h2 className="text-3xl font-extrabold mb-4 leading-tight">
                 Building a new house? We've got you covered too.
@@ -248,12 +246,12 @@ export default function HomePage() {
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-4">New Build — 3-bed house example</p>
               <div className="flex flex-col gap-3">
                 {[
-                  { room: "Kitchen", range: "Â£4,200 â Â£6,800" },
-                  { room: "Master Bathroom", range: "Â£2,800 â Â£4,500" },
-                  { room: "En-Suite", range: "Â£1,600 â Â£2,800" },
-                  { room: "Living Room", range: "Â£1,200 â Â£2,200" },
-                  { room: "3× Bedrooms", range: "Â£900 â Â£1,800" },
-                  { room: "Hallway", range: "Â£600 â Â£1,100" },
+                  { room: "Kitchen", range: "£4,200 – £6,800" },
+                  { room: "Master Bathroom", range: "£2,800 – £4,500" },
+                  { room: "En-Suite", range: "£1,600 – £2,800" },
+                  { room: "Living Room", range: "£1,200 – £2,200" },
+                  { room: "3× Bedrooms", range: "£900 – £1,800" },
+                  { room: "Hallway", range: "£600 – £1,100" },
                 ].map((row) => (
                   <div key={row.room} className="flex items-center justify-between text-sm">
                     <span className="text-foreground font-medium">{row.room}</span>
@@ -262,7 +260,7 @@ export default function HomePage() {
                 ))}
                 <div className="border-t border-border pt-3 mt-1 flex items-center justify-between">
                   <span className="font-bold">Total estimate</span>
-                  <span className="text-primary font-extrabold text-base">Â£11,300 â Â£19,200</span>
+                  <span className="text-primary font-extrabold text-base">£11,300 – £19,200</span>
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-4">Indicative estimate only. Actual costs vary by specification and contractor.</p>
@@ -271,7 +269,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ Why Renolab exists — Founder story ââââââââââââââââââââââââââ */}
+      {/* ── Why Renolab exists — Founder story ────────────────────────── */}
       <section className="py-20 bg-[#0f1c2e] text-white">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-10">Why Renolab exists.</h2>
@@ -287,7 +285,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ Value propositions âââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── Value propositions ─────────────────────────────────────────── */}
       <section className="py-20 bg-muted/30">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-12">Why people use Renolab</h2>
@@ -309,7 +307,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ Two paths ââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── Two paths ──────────────────────────────────────────────────── */}
       <section className="py-20 bg-background">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-12">Built for two types of user</h2>
@@ -350,7 +348,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ Membership âââââââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── Membership ─────────────────────────────────────────────────── */}
       <section className="py-20 bg-muted/30">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-3xl font-extrabold text-center mb-4">Memberships built around real value</h2>
@@ -360,7 +358,7 @@ export default function HomePage() {
             <div className="bg-card border border-border rounded-2xl p-8 flex flex-col">
               <h3 className="font-bold text-xl mb-1">Free</h3>
               <p className="text-muted-foreground text-sm mb-4">Perfect for trying Renolab out</p>
-              <div className="text-3xl font-extrabold mb-6">Â£0</div>
+              <div className="text-3xl font-extrabold mb-6">£0</div>
               <ul className="space-y-2.5 flex-1 mb-8">
                 {["Limited project estimate", "Basic cost range", "Preview shopping list", "Browse partner suppliers"].map(f => (
                   <li key={f} className="flex items-start gap-2 text-sm">
@@ -379,7 +377,7 @@ export default function HomePage() {
               <h3 className="font-bold text-xl mb-1">Pro</h3>
               <p className="text-muted-foreground text-sm mb-4">For homeowners and DIY users</p>
               <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-3xl font-extrabold">Â£9.99</span>
+                <span className="text-3xl font-extrabold">£9.99</span>
                 <span className="text-muted-foreground text-sm">/month</span>
               </div>
               <ul className="space-y-2.5 flex-1 mb-8">
@@ -391,7 +389,7 @@ export default function HomePage() {
                 ))}
               </ul>
               <Link href="/pricing">
-                <Button className="w-full">Join the Waitlist</Button>
+                <Button className="w-full">Get Early Access</Button>
               </Link>
             </div>
             {/* Trade */}
@@ -399,7 +397,7 @@ export default function HomePage() {
               <h3 className="font-bold text-xl mb-1">Trade</h3>
               <p className="text-muted-foreground text-sm mb-4">For installers, joiners, builders, and repeat users</p>
               <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-3xl font-extrabold">Â£24.99</span>
+                <span className="text-3xl font-extrabold">£24.99</span>
                 <span className="text-muted-foreground text-sm">/month</span>
               </div>
               <ul className="space-y-2.5 flex-1 mb-8">
@@ -411,14 +409,14 @@ export default function HomePage() {
                 ))}
               </ul>
               <Link href="/pricing">
-                <Button variant="outline" className="w-full">Join the Waitlist</Button>
+                <Button variant="outline" className="w-full">Get Early Access</Button>
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ââ Supplier discounts âââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── Supplier discounts ─────────────────────────────────────────── */}
       <section className="py-20 bg-[#0f1c2e] text-white">
         <div className="container max-w-3xl mx-auto text-center">
           <div className="w-14 h-14 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto mb-6">
@@ -439,7 +437,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ââ Final CTA ââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── Final CTA ──────────────────────────────────────────────────── */}
       <section className="py-20 bg-primary text-white">
         <div className="container max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-4">Stop guessing. Start planning properly.</h2>
@@ -452,16 +450,11 @@ export default function HomePage() {
                 Get My Free Estimate
               </Button>
             </Link>
-            <Link href="/pricing">
-              <Button size="sm" variant="outline" className="w-full sm:w-auto border-white/30 text-white hover:bg-white/10 bg-transparent px-6">
-                See Plans
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* ââ Footer âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── Footer ─────────────────────────────────────────────────────── */}
       <footer className="bg-[#0a1520] text-white/40 py-10 text-center text-sm border-t border-white/5">
         <div className="flex items-center justify-center gap-2 mb-3">
           <div className="w-6 h-6 rounded bg-primary flex items-center justify-center">
@@ -478,7 +471,7 @@ export default function HomePage() {
           <Link href="/suppliers" className="hover:text-white/60 transition-colors">Suppliers</Link>
           <Link href="/tradespeople" className="hover:text-white/60 transition-colors">Tradespeople</Link>
         </div>
-        <p className="mt-6 text-white/20">Â© {new Date().getFullYear()} Renolab. All rights reserved.</p>
+        <p className="mt-6 text-white/20">© {new Date().getFullYear()} Renolab. All rights reserved.</p>
       </footer>
     </div>
   );

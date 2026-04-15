@@ -19,10 +19,10 @@ const PLANS = [
     period: "",
     badge: null,
     features: [
-      "Limited project estimate",
-      "Basic cost range",
-      "Preview shopping list",
-      "Browse partner suppliers",
+      "AI-powered cost range for any room",
+      "Recommended work summary",
+      "Key materials preview",
+      "3 free AI room visualisations",
     ],
     cta: "Get Started Free",
     highlight: false,
@@ -35,14 +35,14 @@ const PLANS = [
     period: "/month",
     badge: "Most Popular",
     features: [
-      "Full guided estimates",
-      "Full shopping lists",
-      "Downloadable PDFs",
-      "Saved projects",
-      "Member-only supplier discounts",
-      "Unlimited project visualisations",
+      "Full itemised materials list with quantities",
+      "Downloadable PDF estimates",
+      "Unlimited saved projects",
+      "Unlimited AI room visualisations",
+      "Trade pricing on all materials",
+      "Priority access to new features",
     ],
-    cta: "Join Pro",
+    cta: "Get Early Access",
     highlight: true,
     desc: "For homeowners and DIY users",
   },
@@ -54,14 +54,14 @@ const PLANS = [
     badge: "For Professionals",
     features: [
       "Everything in Pro",
-      "Faster workflow",
-      "More saved projects",
-      "Labour and margin options",
+      "Add labour costs and margin to any estimate",
+      "Generate client-facing PDF quotes",
       "Reusable project templates",
-      "Trade-focused supplier deals",
-      "Unlimited visualisations — save to client project folders",
+      "Save visualisations to client project folders",
+      "Trade-exclusive supplier pricing",
+      "Bulk estimate workflow — price multiple rooms fast",
     ],
-    cta: "Join Trade",
+    cta: "Get Early Access",
     highlight: false,
     desc: "For installers, joiners, builders, and repeat users",
   },
@@ -108,7 +108,7 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Renolab — Pricing. The Renovation Platform for the island of Ireland.</title>
+      <title>Renolab — Pricing. The Renovation Platform for Northern Ireland.</title>
       <NavBar />
 
       <main className="container py-16">
@@ -192,7 +192,7 @@ export default function Pricing() {
               },
               {
                 q: "Are the material prices accurate?",
-                a: "Prices are based on realistic UK trade market data and are intended as a planning guide. Actual costs will vary by supplier, region, and specification.",
+                a: "Prices are based on Northern Ireland trade market data and are intended as a planning guide. Actual costs will vary by supplier, region, and specification.",
               },
               {
                 q: "Can I cancel anytime?",
@@ -220,7 +220,7 @@ export default function Pricing() {
       <footer className="border-t border-border py-8 mt-8">
         <div className="container text-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} Renolab. All rights reserved.</p>
-          <p className="mt-1 font-medium text-foreground">Built on the island of Ireland. renolab.co.uk</p>
+          <p className="mt-1 font-medium text-foreground">Built for Northern Ireland. renolab.co.uk</p>
         </div>
       </footer>
 
@@ -247,7 +247,7 @@ export default function Pricing() {
           ) : (
             <>
               <p className="text-sm text-muted-foreground mb-4">
-                Renolab launches soon. Enter your email below to join the waitlist and be first to access this plan.
+                Join early access and be first in when paid plans go live. Enter your email below.
               </p>
               <form onSubmit={handleModalSubmit} className="flex flex-col gap-3">
                 <Input

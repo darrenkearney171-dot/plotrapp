@@ -91,7 +91,7 @@ export default function Tradespeople() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Renolab — Tradespeople. The Renovation Platform for the island of Ireland.</title>
+      <title>Renolab — Tradespeople. The Renovation Platform for Northern Ireland.</title>
       <NavBar />
 
       {/* Launch banner */}
@@ -105,7 +105,7 @@ export default function Tradespeople() {
       <main className="container py-10">
         <div className="mb-8">
           <h1 className="text-2xl font-bold mb-1">Find a Tradesperson</h1>
-          <p className="text-muted-foreground text-sm">Vetted tradespeople across the island of Ireland. All verified by Renolab.</p>
+          <p className="text-muted-foreground text-sm">Vetted tradespeople across Northern Ireland. All verified by Renolab.</p>
         </div>
 
         {/* Filters */}
@@ -190,7 +190,7 @@ export default function Tradespeople() {
         {/* ââ Apply to join section âââââââââââââââââââââââââââââââââââââââ */}
         <section className="mt-20 bg-[#0f1c2e] text-white rounded-2xl p-10">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-2xl font-extrabold mb-3">Are you a tradesperson in the island of Ireland?</h2>
+            <h2 className="text-2xl font-extrabold mb-3">Are you a tradesperson in Northern Ireland?</h2>
             <p className="text-white/70 mb-8 leading-relaxed">
               Get listed on Renolab and receive verified job leads from homeowners in your area. Free to apply during our founding launch period.
             </p>
@@ -332,7 +332,7 @@ export default function Tradespeople() {
       <footer className="border-t border-border py-8 mt-8">
         <div className="container text-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} Renolab. All rights reserved.</p>
-          <p className="mt-1 font-medium text-foreground">Built on the island of Ireland. renolab.co.uk</p>
+          <p className="mt-1 font-medium text-foreground">Built on Northern Ireland. renolab.co.uk</p>
         </div>
       </footer>
     </div>

@@ -276,7 +276,21 @@ export default function EstimateResult() {
           </p>
         </div>
 
-        {/* Summary — always visible */}
+        
+          {/* ── Accuracy reassurance ── */}
+          <div className="flex flex-wrap gap-2 justify-center mb-6">
+            <span className="inline-flex items-center gap-1.5 text-xs bg-slate-800/60 text-slate-400 px-3 py-1.5 rounded-full border border-slate-700/50">
+              <CheckCircle2 className="w-3 h-3 text-green-500" /> Based on NI trade rates
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-xs bg-slate-800/60 text-slate-400 px-3 py-1.5 rounded-full border border-slate-700/50">
+              <CheckCircle2 className="w-3 h-3 text-green-500" /> Updated Q2 2026
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-xs bg-slate-800/60 text-slate-400 px-3 py-1.5 rounded-full border border-slate-700/50">
+              <CheckCircle2 className="w-3 h-3 text-green-500" /> Built by a working tradesman
+            </span>
+          </div>
+
+          {/* Summary — always visible */}
         {result?.aiSummary && (
           <div className="bg-[#1E293B] rounded-xl p-5 mb-6 border border-slate-700">
             <h3 className="font-semibold mb-2 text-slate-200">AI Summary</h3>

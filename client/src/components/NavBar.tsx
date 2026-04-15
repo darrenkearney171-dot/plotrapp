@@ -31,13 +31,13 @@ export default function NavBar() {
     e.preventDefault();
     if (!email) return;
     trackWaitlistSignup();
-    joinWaitlist.mutate({ email, source: "nav", buttonLabel: "Join Waitlist (nav bar)" });
+    joinWaitlist.mutate({ email, source: "nav", buttonLabel: "Get Early Access (nav bar)" });
   };
 
   const navLinks = [
     { href: "/how-it-works", label: "How It Works" },
     { href: "/new-build", label: "New Build" },
-    { href: "/suppliers", label: "Suppliers" },
+    // { href: "/suppliers", label: "Suppliers" }, // Hidden until supplier partnerships are live
     { href: "/tradespeople", label: "Tradespeople" },
     { href: "/pricing", label: "Pricing" },
   ];
@@ -104,7 +104,7 @@ export default function NavBar() {
                     className="border-white/20 text-white/80 hover:text-white hover:border-white/40 bg-transparent"
                     onClick={() => setWaitlistOpen(true)}
                   >
-                    Join Waitlist
+                    Get Early Access
                   </Button>
                   <Link href="/estimate">
                     <Button size="sm" className="bg-[#f97316] hover:bg-[#ea6c0a] text-white font-semibold">
@@ -163,7 +163,7 @@ export default function NavBar() {
                     className="w-full border-white/20 text-white/80 hover:text-white bg-transparent"
                     onClick={() => { setWaitlistOpen(true); setMobileOpen(false); }}
                   >
-                    Join Waitlist
+                    Get Early Access
                   </Button>
                   <Link href="/estimate" onClick={() => setMobileOpen(false)}>
                     <Button size="sm" className="w-full bg-[#f97316] hover:bg-[#ea6c0a] text-white font-semibold">

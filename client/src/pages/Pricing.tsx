@@ -6,10 +6,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CheckCircle, X, Zap } from "lucide-react";
 import NavBar from "@/components/NavBar";
-import { trackWaitlistSignup, trackProWaitlist, trackTradeWaitlist } from "@/lib/analytics";
+import { trackPageView, trackWaitlistSignup, trackProWaitlist, trackTradeWaitlist, trackEarlyAccessClick } from "@/lib/analytics";
 
 const PLANS = [
   {
@@ -75,6 +75,8 @@ export default function Pricing() {
   const [modalPlan, setModalPlan] = useState<"pro" | "trade" | null>(null);
   const [modalEmail, setModalEmail] = useState("");
   const [modalSubmitted, setModalSubmitted] = useState(false);
+
+  useEffect(() => { trackPageView("Pricing"); }, []);
 
   const joinWaitlist = trpc.waitlist.join.useMutation({
     onSuccess: () => {

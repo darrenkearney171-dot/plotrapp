@@ -3,10 +3,11 @@ import { useParams, useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import NavBar from "@/components/NavBar";
-import { trackPageView, trackEstimateComplete } from "@/lib/analytics";
+import { trackPageView, trackEstimateComplete, trackRenovationPassClick } from "@/lib/analytics";
 import { useAuth } from "@/_core/hooks/useAuth";
 import {
   Home,
+  Lock,
   Bath,
   ChefHat,
   BedDouble,
@@ -388,6 +389,38 @@ export default function NewBuildResult() {
           </div>
         </div>
 
+        {/* ── Renovation Pass — primary one-time offer ── */}
+        <div className="bg-gradient-to-br from-[#FF6B2C]/10 to-[#1E293B] border border-[#FF6B2C]/30 rounded-xl p-6 text-center">
+          <div className="inline-flex items-center gap-1.5 bg-[#FF6B2C]/20 text-[#FF6B2C] text-xs font-semibold px-3 py-1 rounded-full mb-3">
+            <Lock className="w-3 h-3" /> One-time unlock
+          </div>
+          <h2 className="text-xl font-bold mb-1">Renovation Pass</h2>
+          <p className="text-slate-400 text-sm mb-2 max-w-md mx-auto">
+            Unlock the full breakdown for this build — itemised materials list, PDF export, and trade pricing. Valid for 90 days.
+          </p>
+          <div className="flex items-baseline justify-center gap-1 mb-4">
+            <span className="text-3xl font-extrabold text-white">£14.99</span>
+            <span className="text-slate-500 text-sm">one-time</span>
+          </div>
+          <Button
+            onClick={() => { trackRenovationPassClick(); navigate("/pricing"); }}
+            className="bg-[#FF6B2C] hover:bg-[#e55a1f] text-white font-semibold px-10 py-3 text-base mb-3"
+          >
+            Get Your Renovation Pass
+          </Button>
+          <p className="text-xs text-slate-500 mb-4">No subscription required. Pay once, access for 90 days.</p>
+          <div className="border-t border-slate-700/50 pt-4 mt-2">
+            <p className="text-xs text-slate-500 mb-2">Planning multiple projects?</p>
+            <Button
+              variant="ghost"
+              onClick={() => navigate("/pricing")}
+              className="text-[#FF6B2C] hover:text-[#e55a1f] text-sm"
+            >
+              View Pro & Trade plans →
+            </Button>
+          </div>
+        </div>
+
         {/* CTA */}
         <div className="bg-slate-800/50 rounded-2xl border border-slate-700 p-5 text-center">
           <p className="font-semibold text-white mb-1">Ready to start planning?</p>
@@ -414,7 +447,7 @@ export default function NewBuildResult() {
       </main>
 
       <footer className="text-center text-xs text-slate-600 py-4 border-t border-slate-800">
-        Built on the Northern Ireland. renolab.co.uk
+        Built for Northern Ireland. renolab.co.uk
       </footer>
     </div>
   );

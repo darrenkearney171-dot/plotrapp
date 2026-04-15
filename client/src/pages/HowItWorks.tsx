@@ -80,7 +80,7 @@ function FeatureRow({ icon: Icon, title, desc }: { icon: React.ElementType; titl
 export default function HowItWorks() {
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>How It Works — Renolab. The Renovation Platform for the island of Ireland.</title>
+      <title>How It Works — Renolab. The Renovation Platform for Northern Ireland.</title>
       <NavBar />
 
       {/* ââ Hero ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */}
@@ -101,7 +101,7 @@ export default function HowItWorks() {
             </Link>
             <Link href="/pricing">
               <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8">
-                See Membership Plans
+                Get Early Access
               </Button>
             </Link>
           </div>
@@ -271,7 +271,7 @@ export default function HowItWorks() {
                 number={6}
                 icon={MapPin}
                 title="Get found by local homeowners"
-                description="Join the Renolab tradesperson directory and get introduced to homeowners in the island of Ireland who are already priced, ready to proceed, and looking for someone they can trust."
+                description="Join the Renolab tradesperson directory and get introduced to homeowners in Northern Ireland who are already priced, ready to proceed, and looking for someone they can trust."
               />
               <div className="mt-2">
                 <Link href="/tradespeople">
@@ -377,8 +377,8 @@ export default function HowItWorks() {
               />
               <FeatureRow
                 icon={MapPin}
-                title="Built for the island of Ireland"
-                desc="Renolab is built by an Irish tradesman, with Irish suppliers, tradespeople, and pricing in mind. Not a generic UK tool with Ireland bolted on."
+                title="Built for Northern Ireland"
+                desc="Renolab is built by a Northern Ireland tradesman, with Irish suppliers, tradespeople, and pricing in mind. Not a generic UK tool with Ireland bolted on."
               />
               <FeatureRow
                 icon={ShoppingBag}
@@ -430,7 +430,7 @@ export default function HowItWorks() {
                 price: "£9.99/mo",
                 desc: "For homeowners and DIY users",
                 features: ["Full guided estimates", "Full itemised shopping lists", "Downloadable PDFs", "Saved projects", "Unlimited AI visualisations", "Member-only supplier discounts"],
-                cta: "Join the Waitlist",
+                cta: "Get Early Access",
                 href: "/pricing",
                 highlight: true,
               },
@@ -439,7 +439,7 @@ export default function HowItWorks() {
                 price: "£24.99/mo",
                 desc: "For installers, joiners, and builders",
                 features: ["Everything in Pro", "Labour and margin options", "Client-facing estimates", "Reusable project templates", "Unlimited visualisations — save to client folders", "Trade-focused supplier deals"],
-                cta: "Join the Waitlist",
+                cta: "Get Early Access",
                 href: "/pricing",
                 highlight: false,
               },
@@ -500,8 +500,8 @@ export default function HowItWorks() {
                 a: "Renolab is currently in pre-launch. The estimate tool and directory are live. Full Pro and Trade memberships, supplier discount access, and the complete feature set will be available at launch. Join the waitlist to be notified first and lock in founding member pricing.",
               },
               {
-                q: "Is Renolab only for the island of Ireland?",
-                a: "For now, yes. Renolab is built specifically for the island of Ireland — with local suppliers, local tradespeople, and pricing that reflects the local trade market. We may expand to GB in the future.",
+                q: "Is Renolab only for Northern Ireland?",
+                a: "For now, yes. Renolab is built specifically for Northern Ireland — with local suppliers, local tradespeople, and pricing that reflects the local trade market. We may expand to GB in the future.",
               },
             ].map(({ q, a }) => (
               <div key={q} className="border-b border-border pb-6">
@@ -529,7 +529,7 @@ export default function HowItWorks() {
             </Link>
             <Link href="/pricing">
               <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8">
-                See Membership Plans
+                Get Early Access
               </Button>
             </Link>
           </div>
@@ -537,7 +537,7 @@ export default function HowItWorks() {
       </section>
 
       <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-        Built on the island of Ireland. renolab.co.uk
+        Built on Northern Ireland. renolab.co.uk
       </footer>
     </div>
   );

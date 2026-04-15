@@ -154,6 +154,13 @@ export default function GuestEstimate() {
     return () => {
       if (stepRef.current < 7) {
         trackEstimateAbandon(stepRef.current, "renovation");
+        // Send abandon recovery email if user provided email
+        const emailVal = document.querySelector<HTMLInputElement>('input[type="email"]')?.value;
+        if (emailVal) {
+          navigator.sendBeacon?.("/api/trpc/guest.reportAbandon?batch=1",
+            new Blob([JSON.stringify({ "0": { json: { email: emailVal, estimateType: "renovation", stepReached: stepRef.current } } })], { type: "application/json" })
+          );
+        }
       }
     };
   }, []);

@@ -25,6 +25,7 @@ import {
   Sparkles,
   Image as ImageIcon,
 } from "lucide-react";
+import { trackPageView, trackEstimateStart, trackEstimateStep, trackEstimateAbandon, trackNewBuildView } from "@/lib/analytics";
 
 // Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Room types Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
@@ -222,6 +223,27 @@ export default function NewBuildEstimate() {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [emailError, setEmailError] = useState("");
+
+  // ── Analytics ──
+  const stepRef = useRef(step);
+  stepRef.current = step;
+
+  useEffect(() => {
+    trackPageView("New Build Estimate");
+    trackNewBuildView();
+    trackEstimateStart("new_build");
+    return () => {
+      if (stepRef.current < 6) {
+        trackEstimateAbandon(stepRef.current, "new_build");
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (step > 1) {
+      trackEstimateStep(step, "new_build");
+    }
+  }, [step]);
 
   const scanMutation = trpc.guest.scanHousePlan.useMutation({
     onSuccess: (data) => {

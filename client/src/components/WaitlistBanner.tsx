@@ -32,7 +32,7 @@ export default function WaitlistBanner() {
     <div className="bg-[#0f1c2e] text-white py-3 px-4 relative">
       <div className="container flex flex-col sm:flex-row items-center justify-center gap-3 text-sm">
         <p className="font-medium text-white/90 text-center sm:text-left">
-          🚀 <span className="font-semibold">Renolab is launching soon</span> — join the waitlist for early access and founding member pricing.
+          🚀 <span className="font-semibold">Renolab is launching soon</span> — get early access and founding member pricing.
         </p>
         {submitted ? (
           <span className="text-green-400 font-semibold shrink-0">You’re on the list ✓</span>

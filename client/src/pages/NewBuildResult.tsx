@@ -3,6 +3,7 @@ import { useParams, useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import NavBar from "@/components/NavBar";
+import { trackPageView, trackEstimateComplete } from "@/lib/analytics";
 import { useAuth } from "@/_core/hooks/useAuth";
 import {
   Home,
@@ -170,8 +171,10 @@ export default function NewBuildResult() {
 
   useEffect(() => {
     document.title = "Your New Build Estimate — Renolab";
+    trackPageView("New Build Result");
+    trackEstimateComplete("new_build");
     return () => {
-      document.title = "Renolab — The Renovation Platform for the island of Ireland.";
+      document.title = "Renolab — The Renovation Platform for Northern Ireland.";
     };
   }, []);
 
@@ -389,7 +392,7 @@ export default function NewBuildResult() {
         <div className="bg-slate-800/50 rounded-2xl border border-slate-700 p-5 text-center">
           <p className="font-semibold text-white mb-1">Ready to start planning?</p>
           <p className="text-slate-400 text-sm mb-4">
-            Connect with vetted tradespeople on the island of Ireland through Renolab when we
+            Connect with vetted tradespeople on the Northern Ireland through Renolab when we
             launch.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -411,7 +414,7 @@ export default function NewBuildResult() {
       </main>
 
       <footer className="text-center text-xs text-slate-600 py-4 border-t border-slate-800">
-        Built on the island of Ireland. renolab.co.uk
+        Built on the Northern Ireland. renolab.co.uk
       </footer>
     </div>
   );

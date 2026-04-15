@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import {
   ArrowRight,
@@ -18,12 +18,14 @@ import {
   Quote,
 } from "lucide-react";
 import NavBar from "@/components/NavBar";
-import { trackWaitlistSignup, trackEstimateStart, trackNewBuildView } from "@/lib/analytics";
+import { trackPageView, trackWaitlistSignup, trackEstimateStart, trackNewBuildView, trackCtaClick } from "@/lib/analytics";
 
 export default function HomePage() {
   const [waitlistEmail, setWaitlistEmail] = useState("");
   const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
   const { data: waitlistData } = trpc.waitlist.count.useQuery();
+
+  useEffect(() => { trackPageView("Home"); }, []);
 
   const joinWaitlist = trpc.waitlist.join.useMutation({
     onSuccess: () => {

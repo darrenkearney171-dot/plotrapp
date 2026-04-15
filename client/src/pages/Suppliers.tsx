@@ -3,11 +3,11 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { Building2, Globe, MapPin, Search, ShoppingCart, Star } from "lucide-react";
 import NavBar from "@/components/NavBar";
-import { trackWaitlistSignup } from "@/lib/analytics";
+import { trackWaitlistSignup , trackPageView } from "@/lib/analytics";
 
 const CATEGORIES = [
   { value: "", label: "All Categories" },
@@ -30,6 +30,8 @@ export default function Suppliers() {
   const [search, setSearch] = useState("");
   const [waitlistEmail, setWaitlistEmail] = useState("");
   const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
+
+  useEffect(() => { trackPageView("Suppliers"); }, []);
 
   const { data: suppliers, isLoading } = trpc.suppliers.list.useQuery(
     category ? { category } : undefined

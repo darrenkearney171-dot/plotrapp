@@ -7,7 +7,7 @@ import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
 import { toast } from "sonner";
 import { useState } from "react";
-import { CheckCircle, X, Zap } from "lucide-react";
+import { CheckCircle, X, Zap, Loader2 } from "lucide-react";
 import NavBar from "@/components/NavBar";
 import { trackWaitlistSignup, trackProWaitlist, trackTradeWaitlist } from "@/lib/analytics";
 
@@ -15,7 +15,7 @@ const PLANS = [
   {
     id: "free" as const,
     name: "Free",
-    price: "£0",
+    price: "Â£0",
     period: "",
     badge: null,
     features: [
@@ -31,7 +31,7 @@ const PLANS = [
   {
     id: "pro" as const,
     name: "Pro",
-    price: "£9.99",
+    price: "Â£9.99",
     period: "/month",
     badge: "Most Popular",
     features: [
@@ -42,14 +42,14 @@ const PLANS = [
       "Member-only supplier discounts",
       "Unlimited project visualisations",
     ],
-    cta: "Join Pro",
+    cta: "Get Early Access",
     highlight: true,
     desc: "For homeowners and DIY users",
   },
   {
     id: "trade" as const,
     name: "Trade",
-    price: "£24.99",
+    price: "Â£24.99",
     period: "/month",
     badge: "For Professionals",
     features: [
@@ -59,9 +59,9 @@ const PLANS = [
       "Labour and margin options",
       "Reusable project templates",
       "Trade-focused supplier deals",
-      "Unlimited visualisations — save to client project folders",
+      "Unlimited visualisations â save to client project folders",
     ],
-    cta: "Join Trade",
+    cta: "Get Early Access",
     highlight: false,
     desc: "For installers, joiners, builders, and repeat users",
   },
@@ -79,10 +79,25 @@ export default function Pricing() {
   const joinWaitlist = trpc.waitlist.join.useMutation({
     onSuccess: () => {
       setModalSubmitted(true);
-      toast.success("You're on the list — we'll be in touch when your plan is ready.");
+      toast.success("You're on the list â we'll be in touch when your plan is ready.");
     },
     onError: () => toast.error("Something went wrong. Please try again."),
   });
+
+  const checkout = trpc.subscriptions.createCheckoutSession.useMutation({
+    onSuccess: (data) => {
+      if (data.checkoutUrl) window.location.href = data.checkoutUrl;
+    },
+    onError: (err) => toast.error(err.message ?? "Could not start checkout. Please try again."),
+  });
+
+  function handleUpgrade(tier: "pro" | "trade") {
+    if (!isAuthenticated) {
+      openModal(tier);
+      return;
+    }
+    checkout.mutate({ tier, origin: window.location.origin });
+  }
 
   function openModal(plan: "pro" | "trade") {
     setModalPlan(plan);
@@ -100,7 +115,7 @@ export default function Pricing() {
       joinWaitlist.mutate({
         email: modalEmail,
         source: `pricing-${modalPlan}`,
-        buttonLabel: `Join Waitlist — ${modalPlan.charAt(0).toUpperCase() + modalPlan.slice(1)} plan`,
+        buttonLabel: `Join Waitlist â ${modalPlan.charAt(0).toUpperCase() + modalPlan.slice(1)} plan`,
         tier: modalPlan,
       });
     }
@@ -108,7 +123,7 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Renolab — Pricing. The Renovation Platform for the island of Ireland.</title>
+      <title>Renolab â Pricing. The Renovation Platform for the island of Ireland.</title>
       <NavBar />
 
       <main className="container py-16">
@@ -119,7 +134,7 @@ export default function Pricing() {
           </Badge>
           <h1 className="text-4xl font-extrabold mb-4">Memberships built around real value</h1>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Start free. Upgrade when you need more. Pro and Trade memberships are launching soon — join the waitlist to be first.
+            Start free. Upgrade when you need more. Pro and Trade memberships are launching soon â join the waitlist to be first.
           </p>
           {subscription && subscription.tier !== "free" && (
             <div className="mt-4">
@@ -171,9 +186,10 @@ export default function Pricing() {
                   <Button
                     className="w-full"
                     variant={plan.highlight ? "default" : "outline"}
-                    onClick={() => openModal(plan.id as "pro" | "trade")}
+                    onClick={() => handleUpgrade(plan.id as "pro" | "trade")}
+                    disabled={checkout.isPending}
                   >
-                    {plan.cta}
+                    {checkout.isPending ? <><Loader2 className="w-4 h-4 animate-spin mr-2" />Redirecting...</> : plan.cta}
                   </Button>
                 )}
               </div>
@@ -219,7 +235,7 @@ export default function Pricing() {
       {/* Footer */}
       <footer className="border-t border-border py-8 mt-8">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>Â© {new Date().getFullYear()} Renolab. All rights reserved.</p>
+          <p>ÃÂ© {new Date().getFullYear()} Renolab. All rights reserved.</p>
           <p className="mt-1 font-medium text-foreground">Built on the island of Ireland. renolab.co.uk</p>
         </div>
       </footer>
@@ -235,7 +251,7 @@ export default function Pricing() {
           </button>
           <DialogHeader>
             <DialogTitle className="text-xl font-bold">
-              {modalPlan === "pro" ? "Join the Pro Waitlist" : "Join the Trade Waitlist"}
+              {modalPlan === "pro" ? "Sign up to unlock Pro" : "Sign up to unlock Trade"}
             </DialogTitle>
           </DialogHeader>
           {modalSubmitted ? (
@@ -262,7 +278,7 @@ export default function Pricing() {
                   className="w-full bg-primary hover:bg-primary/90 text-white font-semibold"
                   disabled={joinWaitlist.isPending}
                 >
-                  {joinWaitlist.isPending ? "Saving…" : "Save my spot"}
+                  {joinWaitlist.isPending ? "Savingâ¦" : "Save my spot"}
                 </Button>
               </form>
             </>

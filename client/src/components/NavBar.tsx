@@ -50,7 +50,7 @@ export default function NavBar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
               <div className="w-8 h-8 rounded-md bg-[#f97316] flex items-center justify-center">
-                <span className="text-white font-bold text-sm">P</span>
+                <span className="text-white font-bold text-sm">R</span>
               </div>
               <span className="text-white font-bold text-lg tracking-tight">Renolab</span>
             </Link>
@@ -200,7 +200,7 @@ export default function NavBar() {
               className="bg-[#f97316] hover:bg-[#ea6c0a] text-white font-semibold"
               disabled={joinWaitlist.isPending}
             >
-              {joinWaitlist.isPending ? "Saving…" : "Save my spot"}
+              {joinWaitlist.isPending ? "Savingâ¦" : "Save my spot"}
             </Button>
           </form>
         </DialogContent>

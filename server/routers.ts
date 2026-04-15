@@ -7,7 +7,7 @@ import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { invokeLLM } from "./_core/llm";
 import { generateImage } from "./_core/imageGeneration";
 import { notifyOwner } from "./_core/notification";
-import { sendOwnerEmail, sendUserConfirmationEmail, sendEstimateFollowUpEmail, sendTradeApplicationConfirmationEmail } from "./email";
+import { sendOwnerEmail, sendUserConfirmationEmail, sendEstimateFollowUpEmail, sendTradeApplicationConfirmationEmail, sendAbandonedEstimateEmail } from "./email";
 import { fittedRouter } from "./routers/fitted";
 import { storagePut } from "./storage";
 import {
@@ -1175,6 +1175,27 @@ All costs in GBP (ÃÂ£). Be realistic and conservative. costRangeLow and cos
       }),
 
     // ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ Generate AI Room Photo (renders a room based on style prompt)
+    // ── Report abandoned estimate (sends recovery email if email was provided)
+    reportAbandon: publicProcedure
+      .input(z.object({
+        email: z.string().email().optional(),
+        firstName: z.string().optional(),
+        estimateType: z.enum(["renovation", "new_build"]),
+        stepReached: z.number().int().min(1).max(7),
+      }))
+      .mutation(async ({ input }) => {
+        if (input.email && input.stepReached >= 2) {
+          sendAbandonedEstimateEmail(
+            input.email,
+            input.firstName || null,
+            input.estimateType,
+            input.stepReached
+          ).catch(() => {});
+        }
+        return { ok: true };
+      }),
+
+
     generateRoomPhoto: publicProcedure
       .input(z.object({
         roomLabel: z.string(),

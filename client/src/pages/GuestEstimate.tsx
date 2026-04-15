@@ -21,7 +21,7 @@ import {
   SkipForward,
 } from "lucide-react";
 
-// âââ Types ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Types Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
 type UserType = "homeowner" | "tradesperson";
 
@@ -61,7 +61,7 @@ const GUIDED_QUESTIONS: Record<string, { question: string; options: string[] }[]
   ],
 };
 
-// âââ Step indicator âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Step indicator Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
 const STEPS = [
   { id: 1, label: "About you" },
@@ -73,39 +73,57 @@ const STEPS = [
 ];
 
 function StepIndicator({ current }: { current: number }) {
+  const currentLabel = STEPS.find(s => s.id === current)?.label ?? "";
+  const progress = ((current - 1) / (STEPS.length - 1)) * 100;
+
   return (
     <div className="mb-8">
-      <div className="flex items-start justify-center gap-1">
-        {STEPS.map((step, i) => (
-          <div key={step.id} className="flex items-start">
-            <div className="flex flex-col items-center">
-              <div
-                className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-all ${
-                  step.id < current
-                    ? "bg-[#FF6B2C] text-white"
-                    : step.id === current
-                    ? "bg-[#FF6B2C] text-white ring-2 ring-[#FF6B2C]/30"
-                    : "bg-[#1E293B] text-slate-400 border border-slate-700"
-                }`}
-              >
-                {step.id < current ? <CheckCircle2 className="w-4 h-4" /> : step.id}
-              </div>
-              <span className={`text-[9px] mt-1 text-center w-14 leading-tight ${
-                step.id === current ? "text-[#FF6B2C] font-semibold" : "text-slate-500"
-              }`}>{step.label}</span>
-            </div>
-            {i < STEPS.length - 1 && (
-              <div className={`w-4 h-0.5 mx-0.5 mt-3.5 shrink-0 ${step.id < current ? "bg-[#FF6B2C]" : "bg-slate-700"}`} />
-            )}
-          </div>
-        ))}
+      {/* Mobile: compact progress bar + step label */}
+      <div className="flex flex-col items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-semibold text-[#FF6B2C]">Step {current} of {STEPS.length}</span>
+          <span className="text-xs text-slate-500">{currentLabel}</span>
+        </div>
+        <div className="w-full max-w-xs h-1.5 bg-slate-700 rounded-full overflow-hidden">
+          <div className="h-full bg-[#FF6B2C] rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
+        </div>
+        <p className="text-center text-xs text-slate-500">Takes about 3 minutes to complete.</p>
       </div>
-      <p className="text-center text-xs text-slate-500 mt-3">Takes about 3 minutes to complete.</p>
+
+      {/* Desktop: full horizontal stepper */}
+      <div className="hidden md:block">
+        <div className="flex items-start justify-center gap-1">
+          {STEPS.map((step, i) => (
+            <div key={step.id} className="flex items-start">
+              <div className="flex flex-col items-center">
+                <div
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-all ${
+                    step.id < current
+                      ? "bg-[#FF6B2C] text-white"
+                      : step.id === current
+                      ? "bg-[#FF6B2C] text-white ring-2 ring-[#FF6B2C]/30"
+                      : "bg-[#1E293B] text-slate-400 border border-slate-700"
+                  }`}
+                >
+                  {step.id < current ? <CheckCircle2 className="w-4 h-4" /> : step.id}
+                </div>
+                <span className={`text-[9px] mt-1 text-center w-14 leading-tight ${
+                  step.id === current ? "text-[#FF6B2C] font-semibold" : "text-slate-500"
+                }`}>{step.label}</span>
+              </div>
+              {i < STEPS.length - 1 && (
+                <div className={`w-4 h-0.5 mx-0.5 mt-3.5 shrink-0 ${step.id < current ? "bg-[#FF6B2C]" : "bg-slate-700"}`} />
+              )}
+            </div>
+          ))}
+        </div>
+        <p className="text-center text-xs text-slate-500 mt-3">Takes about 3 minutes to complete.</p>
+      </div>
     </div>
   );
 }
 
-// âââ Main Component âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Main Component Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
 export default function GuestEstimate() {
   const [, navigate] = useLocation();
@@ -129,7 +147,7 @@ export default function GuestEstimate() {
 
   const questions = GUIDED_QUESTIONS[projectType ?? ""] ?? GUIDED_QUESTIONS.default;
 
-  // ââ Photo upload ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // Ã¢ÂÂÃ¢ÂÂ Photo upload Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
   async function handlePhotoSelect(file: File) {
     setPhotoFile(file);
     setPhotoPreview(URL.createObjectURL(file));
@@ -157,7 +175,7 @@ export default function GuestEstimate() {
     }
   }
 
-  // ââ Submit ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // Ã¢ÂÂÃ¢ÂÂ Submit Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
   async function handleSubmit() {
     if (!userType || !projectType || !email) return;
     if (!photoUrl && !photoSkipped) return;
@@ -186,7 +204,7 @@ export default function GuestEstimate() {
     }
   }
 
-  // ââ Render ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // Ã¢ÂÂÃ¢ÂÂ Render Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 
   // Full-screen progress screen while AI is running
   if (isAnalysing) {
@@ -233,13 +251,13 @@ export default function GuestEstimate() {
       {/* Header */}
       <header className="border-b border-slate-800 px-6 py-4 flex items-center justify-between">
         <a href="/" className="text-xl font-bold text-[#FF6B2C]">Renolab</a>
-        <span className="text-sm text-slate-400">Free Estimate — No account needed</span>
+        <span className="text-sm text-slate-400">Free Estimate â No account needed</span>
       </header>
 
       <div className="max-w-2xl mx-auto px-4 py-10">
         <StepIndicator current={step} />
 
-        {/* ââ Step 1: User Type ââ */}
+        {/* Ã¢ÂÂÃ¢ÂÂ Step 1: User Type Ã¢ÂÂÃ¢ÂÂ */}
         {step === 1 && (
           <div className="text-center">
             <h1 className="text-3xl font-bold mb-2">Who are you?</h1>
@@ -269,7 +287,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ââ Step 2: Email Capture (moved early) ââ */}
+        {/* Ã¢ÂÂÃ¢ÂÂ Step 2: Email Capture (moved early) Ã¢ÂÂÃ¢ÂÂ */}
         {step === 2 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Where should we send your estimate?</h1>
@@ -315,7 +333,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ââ Step 3: Project Type ââ */}
+        {/* Ã¢ÂÂÃ¢ÂÂ Step 3: Project Type Ã¢ÂÂÃ¢ÂÂ */}
         {step === 3 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">What are you renovating?</h1>
@@ -349,7 +367,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ââ Step 4: Photo Upload (with skip option) ââ */}
+        {/* Ã¢ÂÂÃ¢ÂÂ Step 4: Photo Upload (with skip option) Ã¢ÂÂÃ¢ÂÂ */}
         {step === 4 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Upload a room photo</h1>
@@ -381,7 +399,7 @@ export default function GuestEstimate() {
                 <>
                   <ImageIcon className="w-12 h-12 mx-auto mb-3 text-slate-500" />
                   <p className="text-slate-300 font-medium">Click to upload a photo</p>
-                  <p className="text-slate-500 text-sm mt-1">JPG, PNG or HEIC — max 10MB</p>
+                  <p className="text-slate-500 text-sm mt-1">JPG, PNG or HEIC â max 10MB</p>
                 </>
               )}
             </div>
@@ -400,7 +418,7 @@ export default function GuestEstimate() {
                 className="w-full mt-4 py-2.5 text-sm text-slate-400 hover:text-slate-200 transition-colors flex items-center justify-center gap-2"
               >
                 <SkipForward className="w-4 h-4" />
-                Skip — estimate without a photo
+                Skip â estimate without a photo
               </button>
             )}
 
@@ -420,7 +438,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ââ Step 5: Room Details (measurements + guided questions + style) ââ */}
+        {/* Ã¢ÂÂÃ¢ÂÂ Step 5: Room Details (measurements + guided questions + style) Ã¢ÂÂÃ¢ÂÂ */}
         {step === 5 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Tell us about the room</h1>
@@ -520,7 +538,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ââ Step 6: Review & Submit ââ */}
+        {/* Ã¢ÂÂÃ¢ÂÂ Step 6: Review & Submit Ã¢ÂÂÃ¢ÂÂ */}
         {step === 6 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Review & get your estimate</h1>

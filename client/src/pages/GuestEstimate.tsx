@@ -21,7 +21,7 @@ import {
   SkipForward,
 } from "lucide-react";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+// âââ Types ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 type UserType = "homeowner" | "tradesperson";
 
@@ -61,7 +61,7 @@ const GUIDED_QUESTIONS: Record<string, { question: string; options: string[] }[]
   ],
 };
 
-// ─── Step indicator ───────────────────────────────────────────────────────────
+// âââ Step indicator âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 const STEPS = [
   { id: 1, label: "About you" },
@@ -105,7 +105,7 @@ function StepIndicator({ current }: { current: number }) {
   );
 }
 
-// ─── Main Component ───────────────────────────────────────────────────────────
+// âââ Main Component âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
 export default function GuestEstimate() {
   const [, navigate] = useLocation();
@@ -129,7 +129,7 @@ export default function GuestEstimate() {
 
   const questions = GUIDED_QUESTIONS[projectType ?? ""] ?? GUIDED_QUESTIONS.default;
 
-  // ── Photo upload ──────────────────────────────────────────────────────────
+  // ââ Photo upload ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   async function handlePhotoSelect(file: File) {
     setPhotoFile(file);
     setPhotoPreview(URL.createObjectURL(file));
@@ -157,7 +157,7 @@ export default function GuestEstimate() {
     }
   }
 
-  // ── Submit ────────────────────────────────────────────────────────────────
+  // ââ Submit ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
   async function handleSubmit() {
     if (!userType || !projectType || !email) return;
     if (!photoUrl && !photoSkipped) return;
@@ -186,7 +186,7 @@ export default function GuestEstimate() {
     }
   }
 
-  // ── Render ────────────────────────────────────────────────────────────────
+  // ââ Render ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 
   // Full-screen progress screen while AI is running
   if (isAnalysing) {
@@ -233,13 +233,13 @@ export default function GuestEstimate() {
       {/* Header */}
       <header className="border-b border-slate-800 px-6 py-4 flex items-center justify-between">
         <a href="/" className="text-xl font-bold text-[#FF6B2C]">Renolab</a>
-        <span className="text-sm text-slate-400">Free Estimate \u2014 No account needed</span>
+        <span className="text-sm text-slate-400">Free Estimate — No account needed</span>
       </header>
 
       <div className="max-w-2xl mx-auto px-4 py-10">
         <StepIndicator current={step} />
 
-        {/* ── Step 1: User Type ── */}
+        {/* ââ Step 1: User Type ââ */}
         {step === 1 && (
           <div className="text-center">
             <h1 className="text-3xl font-bold mb-2">Who are you?</h1>
@@ -269,7 +269,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ── Step 2: Email Capture (moved early) ── */}
+        {/* ââ Step 2: Email Capture (moved early) ââ */}
         {step === 2 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Where should we send your estimate?</h1>
@@ -315,7 +315,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ── Step 3: Project Type ── */}
+        {/* ââ Step 3: Project Type ââ */}
         {step === 3 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">What are you renovating?</h1>
@@ -349,7 +349,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ── Step 4: Photo Upload (with skip option) ── */}
+        {/* ââ Step 4: Photo Upload (with skip option) ââ */}
         {step === 4 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Upload a room photo</h1>
@@ -381,7 +381,7 @@ export default function GuestEstimate() {
                 <>
                   <ImageIcon className="w-12 h-12 mx-auto mb-3 text-slate-500" />
                   <p className="text-slate-300 font-medium">Click to upload a photo</p>
-                  <p className="text-slate-500 text-sm mt-1">JPG, PNG or HEIC \u2014 max 10MB</p>
+                  <p className="text-slate-500 text-sm mt-1">JPG, PNG or HEIC — max 10MB</p>
                 </>
               )}
             </div>
@@ -400,7 +400,7 @@ export default function GuestEstimate() {
                 className="w-full mt-4 py-2.5 text-sm text-slate-400 hover:text-slate-200 transition-colors flex items-center justify-center gap-2"
               >
                 <SkipForward className="w-4 h-4" />
-                Skip \u2014 estimate without a photo
+                Skip — estimate without a photo
               </button>
             )}
 
@@ -420,7 +420,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ── Step 5: Room Details (measurements + guided questions + style) ── */}
+        {/* ââ Step 5: Room Details (measurements + guided questions + style) ââ */}
         {step === 5 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Tell us about the room</h1>
@@ -520,7 +520,7 @@ export default function GuestEstimate() {
           </div>
         )}
 
-        {/* ── Step 6: Review & Submit ── */}
+        {/* ââ Step 6: Review & Submit ââ */}
         {step === 6 && (
           <div>
             <h1 className="text-3xl font-bold mb-2 text-center">Review & get your estimate</h1>

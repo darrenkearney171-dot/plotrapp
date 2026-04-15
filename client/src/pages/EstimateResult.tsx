@@ -10,6 +10,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { getLoginUrl } from "@/const";
 import { useState, useMemo } from "react";
 import { toast } from "sonner";
+import NavBar from "@/components/NavBar";
 import {
   CheckCircle2,
   ChevronRight,
@@ -199,7 +200,7 @@ export default function EstimateResult() {
     },
     onError: (e) => {
       if (e.message === "FREE_LIMIT_REACHED") {
-        toast.error("You've used your 3 free renders. Upgrade for unlimited.");
+        toast.error("You've used your 3 free renders. Get Early Access.");
       } else {
         toast.error("Generation failed: " + e.message);
       }
@@ -239,23 +240,7 @@ export default function EstimateResult() {
   return (
     <div className="min-h-screen bg-[#0F172A] text-white">
       {/* Header */}
-      <header className="border-b border-slate-800 px-6 py-4 flex items-center justify-between">
-        <a href="/" className="text-xl font-bold text-[#FF6B2C]">Renolab</a>
-        <div className="flex items-center gap-3">
-          {!user && (
-            <a href={getLoginUrl()} className="text-sm text-slate-400 hover:text-white transition-colors">
-              Sign in
-            </a>
-          )}
-          <Button
-            onClick={() => navigate("/pricing")}
-            size="sm"
-            className="bg-[#FF6B2C] hover:bg-[#e55a1f] text-white text-sm"
-          >
-            Upgrade to Pro
-          </Button>
-        </div>
-      </header>
+      <NavBar />
 
       <div className="max-w-3xl mx-auto px-4 py-10">
         {/* Success banner */}
@@ -380,16 +365,16 @@ export default function EstimateResult() {
 
             {/* Upgrade CTA — softer, less wall-like */}
             <div className="bg-gradient-to-br from-[#FF6B2C]/10 to-[#1E293B] border border-[#FF6B2C]/30 rounded-2xl p-6 text-center mb-8">
-              <h2 className="text-xl font-bold mb-1">Unlock the full estimate</h2>
+              <h2 className="text-xl font-bold mb-1">Unlock your full estimate</h2>
               <p className="text-slate-400 text-sm mb-4 max-w-sm mx-auto">
-                Complete materials list with trade prices, PDF export, and supplier discounts — from £9.99/month.
+                Get the full itemised materials list, downloadable PDF, and trade pricing. Join early access and be first in when paid plans go live.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button
                   onClick={() => navigate("/pricing")}
                   className="bg-[#FF6B2C] hover:bg-[#e55a1f] text-white font-semibold px-8"
                 >
-                  See Pro plans <ChevronRight className="w-4 h-4 ml-1" />
+                  Get Early Access <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
                 {!user && (
                   <Button
@@ -447,7 +432,7 @@ export default function EstimateResult() {
               <div className="flex items-center gap-3">
                 <Lock className="w-4 h-4 text-slate-400" />
                 <span className="text-sm text-slate-400">You've used all 3 free renders.</span>
-                <Button size="sm" onClick={() => navigate("/pricing")} className="bg-[#FF6B2C] hover:bg-[#e55a1f] text-white">Upgrade for unlimited</Button>
+                <Button size="sm" onClick={() => navigate("/pricing")} className="bg-[#FF6B2C] hover:bg-[#e55a1f] text-white">Get Early Access</Button>
               </div>
             )
           ) : (
@@ -461,15 +446,30 @@ export default function EstimateResult() {
           )}
         </div>
 
-        {/* Start another */}
-        <div className="text-center">
+        {/* Post-estimate actions */}
+        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-4 mb-8">
+          <Button
+            onClick={() => navigate("/estimate")}
+            className="bg-[#FF6B2C] hover:bg-[#e55a1f] text-white font-semibold px-8"
+          >
+            Start another estimate
+          </Button>
           <Button
             variant="outline"
-            onClick={() => navigate("/estimate")}
+            onClick={() => navigate("/pricing")}
             className="border-slate-700 text-slate-300 hover:bg-slate-800"
           >
-            Start a new estimate
+            See pricing
           </Button>
+          {!user && (
+            <Button
+              variant="outline"
+              onClick={() => window.location.href = getLoginUrl()}
+              className="border-slate-700 text-slate-300 hover:bg-slate-800"
+            >
+              Save my results — sign in free
+            </Button>
+          )}
         </div>
       </div>
 

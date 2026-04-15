@@ -287,6 +287,20 @@ export default function NewBuildResult() {
           </p>
         </div>
 
+        
+        {/* ── Accuracy reassurance ── */}
+        <div className="flex flex-wrap gap-2 justify-center mb-4">
+          <span className="inline-flex items-center gap-1.5 text-xs bg-slate-800/60 text-slate-400 px-3 py-1.5 rounded-full border border-slate-700/50">
+            <CheckCircle2 className="w-3 h-3 text-green-500" /> Based on NI trade rates
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-xs bg-slate-800/60 text-slate-400 px-3 py-1.5 rounded-full border border-slate-700/50">
+            <CheckCircle2 className="w-3 h-3 text-green-500" /> Updated Q2 2026
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-xs bg-slate-800/60 text-slate-400 px-3 py-1.5 rounded-full border border-slate-700/50">
+            <CheckCircle2 className="w-3 h-3 text-green-500" /> Built by a working tradesman
+          </span>
+        </div>
+
         {/* Plan scan notes */}
         {planNotes && (
           <div className="bg-blue-900/20 border border-blue-700/40 rounded-xl p-4 mb-4">

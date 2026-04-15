@@ -21,6 +21,7 @@ import {
   Wrench,
   ShoppingCart,
   FileText,
+  Lock,
   Tag,
   X,
 } from "lucide-react";
@@ -278,8 +279,8 @@ export default function EstimateResult() {
               : "Calculating…"}
           </div>
           <p className="text-slate-400 text-sm">
-            {result?.roomType && <span className="capitalize">{result.roomType} Â· </span>}
-            {result?.estimatedArea && <span>{result.estimatedArea} mÂ² Â· </span>}
+            {result?.roomType && <span className="capitalize">{result.roomType} · </span>}
+            {result?.estimatedArea && <span>{result.estimatedArea} m² · </span>}
             {result?.condition && <ConditionBadge condition={result.condition} />}
           </p>
         </div>
@@ -425,7 +426,7 @@ export default function EstimateResult() {
           {generatedImageUrl && (
             <div className="mb-5 rounded-xl overflow-hidden border border-slate-700 cursor-pointer" onClick={() => setLightboxOpen(true)}>
               <img src={generatedImageUrl} alt="AI Visualisation" className="w-full object-cover max-h-72" />
-              <p className="text-xs text-slate-500 text-center py-2">Click to view full size Â· Saved to your dashboard</p>
+              <p className="text-xs text-slate-500 text-center py-2">Click to view full size · Saved to your dashboard</p>
             </div>
           )}
 

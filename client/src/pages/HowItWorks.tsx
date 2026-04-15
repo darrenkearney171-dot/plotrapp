@@ -501,7 +501,7 @@ export default function HowItWorks() {
               },
               {
                 q: "Is Renolab only for the island of Ireland?",
-                a: "For now, yes. Renolab is built specifically for the the island of Ireland market — with local suppliers, local tradespeople, and pricing that reflects the NI trade market. We may expand to the Republic of Ireland and GB in the future.",
+                a: "For now, yes. Renolab is built specifically for the island of Ireland — with local suppliers, local tradespeople, and pricing that reflects the local trade market. We may expand to GB in the future.",
               },
             ].map(({ q, a }) => (
               <div key={q} className="border-b border-border pb-6">

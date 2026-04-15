@@ -235,6 +235,12 @@ export default function NewBuildEstimate() {
     return () => {
       if (stepRef.current < 6) {
         trackEstimateAbandon(stepRef.current, "new_build");
+        const emailVal = document.querySelector<HTMLInputElement>('input[type="email"]')?.value;
+        if (emailVal) {
+          navigator.sendBeacon?.("/api/trpc/guest.reportAbandon?batch=1",
+            new Blob([JSON.stringify({ "0": { json: { email: emailVal, estimateType: "new_build", stepReached: stepRef.current } } })], { type: "application/json" })
+          );
+        }
       }
     };
   }, []);

@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Textarea } from "@/components/ui/textarea";
 import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import {
   CheckCircle,
@@ -17,6 +17,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import NavBar from "@/components/NavBar";
+import { trackPageView } from "@/lib/analytics";
 
 const TRADES = [
   { value: "", label: "All Trades" },
@@ -40,6 +41,8 @@ export default function Tradespeople() {
   const [trade, setTrade] = useState("");
   const [region, setRegion] = useState("");
   const [search, setSearch] = useState("");
+
+  useEffect(() => { trackPageView("Tradespeople"); }, []);
 
   // Introduction request state
   const [introTarget, setIntroTarget] = useState<any>(null);

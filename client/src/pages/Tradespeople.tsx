@@ -94,7 +94,7 @@ export default function Tradespeople() {
 
   return (
     <div className="min-h-screen bg-background font-[Inter,sans-serif]">
-      <title>Renolab — Tradespeople. The Renovation Platform for Northern Ireland.</title>
+      <title>Renolab  Tradespeople. The Renovation Platform for Northern Ireland.</title>
       <NavBar />
 
       {/* Launch banner */}
@@ -159,7 +159,7 @@ export default function Tradespeople() {
                   </div>
                 </div>
 
-                {/* Vetted badge — replaces star rating */}
+                {/* Vetted badge  replaces star rating */}
                 <div className="flex items-center gap-2">
                   <Badge className="bg-green-100 text-green-800 border-green-200 text-xs">
                     <ShieldCheck className="w-3 h-3 mr-1" />
@@ -190,7 +190,7 @@ export default function Tradespeople() {
           </div>
         )}
 
-        {/* ââ Apply to join section âââââââââââââââââââââââââââââââââââââââ */}
+        {/* ── Apply to join section ─────────────────────────────────────── */}
         <section className="mt-20 bg-[#0f1c2e] text-white rounded-2xl p-10">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-2xl font-extrabold mb-3">Are you a tradesperson in Northern Ireland?</h2>
@@ -265,7 +265,7 @@ export default function Tradespeople() {
                     className="w-full bg-primary hover:bg-primary/90 text-white font-bold"
                     disabled={submitApplication.isPending}
                   >
-                    {submitApplication.isPending ? "Submitting…" : "Apply to join Renolab"}
+                    {submitApplication.isPending ? "Submitting&" : "Apply to join Renolab"}
                   </Button>
                 </div>
               </form>
@@ -334,7 +334,7 @@ export default function Tradespeople() {
       {/* Footer */}
       <footer className="border-t border-border py-8 mt-8">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Renolab. All rights reserved.</p>
+          <p>� {new Date().getFullYear()} Renolab. All rights reserved.</p>
           <p className="mt-1 font-medium text-foreground">Built for Northern Ireland. renolab.co.uk</p>
         </div>
       </footer>

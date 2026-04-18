@@ -27,7 +27,7 @@ import {
 } from "lucide-react";
 import { trackPageView, trackEstimateStart, trackEstimateStep, trackEstimateAbandon, trackNewBuildView } from "@/lib/analytics";
 
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Room types Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ─── Room types ──────────────────────────────────────────────────────────────
 
 const ROOM_TYPES = [
   { type: "kitchen", label: "Kitchen", icon: ChefHat },
@@ -44,7 +44,7 @@ const ROOM_TYPES = [
   { type: "other", label: "Other Room", icon: Layers },
 ];
 
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Steps Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ─── Steps ───────────────────────────────────────────────────────────────────
 
 const STEPS = [
   { id: 1, label: "About you" },
@@ -104,7 +104,7 @@ function StepIndicator({ current }: { current: number }) {
   );
 }
 
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Types Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 interface PlanFile {
   file: File;
@@ -126,7 +126,7 @@ interface RoomEntry {
   photoGenerating?: boolean;
 }
 
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Room dimension row Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ─── Room dimension row ───────────────────────────────────────────────────────
 
 function RoomDimensionRow({
   room,
@@ -183,7 +183,7 @@ function RoomDimensionRow({
   );
 }
 
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Spinner Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ─── Spinner ──────────────────────────────────────────────────────────────────
 
 function Spinner({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -194,37 +194,37 @@ function Spinner({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Main component Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ─── Main component ───────────────────────────────────────────────────────────
 
 export default function NewBuildEstimate() {
   const [, navigate] = useLocation();
   const [step, setStep] = useState(1);
 
-  // Step 1 â user info
+  // Step 1  user info
   const [userType, setUserType] = useState<"homeowner" | "tradesperson">("homeowner");
 
-  // Step 2 â plan upload (multiple files)
+  // Step 2  plan upload (multiple files)
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [planFiles, setPlanFiles] = useState<PlanFile[]>([]);
   const [scanError, setScanError] = useState("");
   const [planNotes, setPlanNotes] = useState("");
 
-  // Step 3 â room confirmation
+  // Step 3  room confirmation
   const [selectedRooms, setSelectedRooms] = useState<RoomEntry[]>([]);
 
-  // Step 4 â style prompt
+  // Step 4  style prompt
   const [stylePrompt, setStylePrompt] = useState("");
   const [generatePhotos, setGeneratePhotos] = useState(true);
 
-  // Step 5 â finish level
+  // Step 5  finish level
   const [finishLevel, setFinishLevel] = useState<"standard" | "mid" | "premium">("mid");
 
-  // Step 6 â email gate
+  // Step 6  email gate
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  // ── Analytics ──
+  //    Analytics   
   const stepRef = useRef(step);
   stepRef.current = step;
 
@@ -283,7 +283,7 @@ export default function NewBuildEstimate() {
     },
   });
 
-  // Ã¢ÂÂÃ¢ÂÂ Upload a single file to S3 Ã¢ÂÂÃ¢ÂÂ
+  // ── Upload a single file to S3 ──
   const uploadFile = useCallback(async (file: File, index: number) => {
     setPlanFiles((prev) =>
       prev.map((pf, i) => (i === index ? { ...pf, uploading: true, error: "" } : pf))
@@ -314,7 +314,7 @@ export default function NewBuildEstimate() {
     }
   }, []);
 
-  // Ã¢ÂÂÃ¢ÂÂ Add files from input/drop Ã¢ÂÂÃ¢ÂÂ
+  // ── Add files from input/drop ──
   function addFiles(files: FileList | File[]) {
     const arr = Array.from(files);
     const remaining = 5 - planFiles.length;
@@ -337,12 +337,12 @@ export default function NewBuildEstimate() {
     });
   }
 
-  // Ã¢ÂÂÃ¢ÂÂ Remove a plan file Ã¢ÂÂÃ¢ÂÂ
+  // ── Remove a plan file ──
   function removePlanFile(index: number) {
     setPlanFiles((prev) => prev.filter((_, i) => i !== index));
   }
 
-  // Ã¢ÂÂÃ¢ÂÂ Scan all uploaded plans Ã¢ÂÂÃ¢ÂÂ
+  // ── Scan all uploaded plans ──
   function handleScanPlans() {
     const uploaded = planFiles.filter((pf) => pf.url);
     if (uploaded.length === 0) return;
@@ -355,13 +355,13 @@ export default function NewBuildEstimate() {
     });
   }
 
-  // Ã¢ÂÂÃ¢ÂÂ Skip to manual Ã¢ÂÂÃ¢ÂÂ
+  // ── Skip to manual ──
   function skipToManual() {
     setSelectedRooms([]);
     setStep(3);
   }
 
-  // Ã¢ÂÂÃ¢ÂÂ Room management Ã¢ÂÂÃ¢ÂÂ
+  // ── Room management ──
   function addRoom(type: string, label: string) {
     const count = selectedRooms.filter((r) => r.type === type).length;
     setSelectedRooms((prev) => [
@@ -384,7 +384,7 @@ export default function NewBuildEstimate() {
     setSelectedRooms((prev) => prev.filter((_, i) => i !== index));
   }
 
-  // Ã¢ÂÂÃ¢ÂÂ Generate AI photos for all rooms Ã¢ÂÂÃ¢ÂÂ
+  // ── Generate AI photos for all rooms ──
   async function handleGeneratePhotos() {
     if (!stylePrompt.trim()) return;
     const updated = [...selectedRooms];
@@ -408,7 +408,7 @@ export default function NewBuildEstimate() {
     }
   }
 
-  // Ã¢ÂÂÃ¢ÂÂ Final submit Ã¢ÂÂÃ¢ÂÂ
+  // ── Final submit ──
   function handleSubmit() {
     if (!email.includes("@")) {
       setEmailError("Please enter a valid email address.");
@@ -433,9 +433,9 @@ export default function NewBuildEstimate() {
 
   useEffect(() => {
     document.title =
-      "New Build Estimate â Renolab. The Renovation Platform for the island of Ireland.";
+      "New Build Estimate  Renolab. The Renovation Platform for the island of Ireland.";
     return () => {
-      document.title = "Renolab â The Renovation Platform for the island of Ireland.";
+      document.title = "Renolab  The Renovation Platform for the island of Ireland.";
     };
   }, []);
 
@@ -448,21 +448,21 @@ export default function NewBuildEstimate() {
           {/* Header */}
           <div className="text-center mb-6 max-w-xl">
             <span className="inline-block bg-[#FF6B2C]/10 text-[#FF6B2C] text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-[#FF6B2C]/20">
-              ðÃ¯Â¸Â New Build Estimator
+              <�️ New Build Estimator
             </span>
             <h1 className="text-2xl font-extrabold text-white mb-2">
               Get a room-by-room cost estimate for your new build
             </h1>
             <p className="text-slate-400 text-sm">
               Upload your house plans and our AI will scan them, extract every room and its
-              dimensions, and generate a realistic cost estimate â all in under 3 minutes.
+              dimensions, and generate a realistic cost estimate  all in under 3 minutes.
             </p>
           </div>
 
           <div className="w-full max-w-lg">
             <StepIndicator current={step} />
 
-            {/* Ã¢ÂÂÃ¢ÂÂ Step 1: User Type Ã¢ÂÂÃ¢ÂÂ */}
+            {/* ── Step 1: User Type ── */}
             {step === 1 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-4">Who is this estimate for?</h2>
@@ -477,7 +477,7 @@ export default function NewBuildEstimate() {
                           : "border-slate-600 text-slate-300 hover:border-slate-400"
                       }`}
                     >
-                      {type === "homeowner" ? "ð  Homeowner" : "ð§ Tradesperson / Builder"}
+                      {type === "homeowner" ? "<� Homeowner" : "=' Tradesperson / Builder"}
                     </button>
                   ))}
                 </div>
@@ -490,7 +490,7 @@ export default function NewBuildEstimate() {
               </div>
             )}
 
-            {/* Ã¢ÂÂÃ¢ÂÂ Step 2: Plan Upload (multi-file) Ã¢ÂÂÃ¢ÂÂ */}
+            {/* ── Step 2: Plan Upload (multi-file) ── */}
             {step === 2 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-1">Upload your house plans</h2>
@@ -533,7 +533,7 @@ export default function NewBuildEstimate() {
                       : "Click to upload or drag and drop"}
                   </p>
                   <p className="text-xs text-slate-500 mt-1">
-                    JPEG, PNG, WebP or PDF ÃÂ· Max 20 MB per file ÃÂ· Up to 5 files
+                    JPEG, PNG, WebP or PDF · Max 20 MB per file · Up to 5 files
                   </p>
                 </div>
 
@@ -550,7 +550,7 @@ export default function NewBuildEstimate() {
                           <p className="text-sm text-white truncate">{pf.file.name}</p>
                           {pf.uploading && (
                             <p className="text-xs text-slate-400 flex items-center gap-1">
-                              <Spinner className="w-3 h-3" /> Uploadingâ¦
+                              <Spinner className="w-3 h-3" /> Uploading&
                             </p>
                           )}
                           {pf.url && !pf.uploading && (
@@ -585,7 +585,7 @@ export default function NewBuildEstimate() {
                       <span className="flex items-center gap-2">
                         <Spinner />
                         Scanning {planFiles.filter((p) => p.url).length} plan
-                        {planFiles.filter((p) => p.url).length !== 1 ? "s" : ""}â¦ ~15 seconds
+                        {planFiles.filter((p) => p.url).length !== 1 ? "s" : ""}& ~15 seconds
                       </span>
                     ) : (
                       <>
@@ -623,7 +623,7 @@ export default function NewBuildEstimate() {
               </div>
             )}
 
-            {/* Ã¢ÂÂÃ¢ÂÂ Step 3: Confirm / Edit Rooms Ã¢ÂÂÃ¢ÂÂ */}
+            {/* ── Step 3: Confirm / Edit Rooms ── */}
             {step === 3 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-1">
@@ -649,7 +649,7 @@ export default function NewBuildEstimate() {
                     <p className="text-slate-400 text-sm mb-4">
                       We found {selectedRooms.length} room
                       {selectedRooms.length !== 1 ? "s" : ""} in your plans. Review and adjust
-                      dimensions below â or add more rooms.
+                      dimensions below  or add more rooms.
                     </p>
                     <div className="flex flex-col gap-3 mb-4 max-h-[45vh] overflow-y-auto pr-1">
                       {selectedRooms.map((room, i) => (
@@ -708,12 +708,12 @@ export default function NewBuildEstimate() {
               </div>
             )}
 
-            {/* Ã¢ÂÂÃ¢ÂÂ Step 4: Style Prompt + AI Photos Ã¢ÂÂÃ¢ÂÂ */}
+            {/* ── Step 4: Style Prompt + AI Photos ── */}
             {step === 4 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-1">How do you want your rooms finished?</h2>
                 <p className="text-slate-400 text-sm mb-5">
-                  Describe your vision in plain language â our AI will generate a photo of each
+                  Describe your vision in plain language  our AI will generate a photo of each
                   room styled exactly as you describe, alongside your cost estimate.
                 </p>
 
@@ -724,7 +724,7 @@ export default function NewBuildEstimate() {
                   </label>
                   <textarea
                     rows={3}
-                    placeholder="e.g. Scandinavian kitchen with oak worktops, underfloor heating throughout, modern grey bathrooms with walk-in shower, warm living room with exposed brick feature wallâ¦"
+                    placeholder="e.g. Scandinavian kitchen with oak worktops, underfloor heating throughout, modern grey bathrooms with walk-in shower, warm living room with exposed brick feature wall&"
                     value={stylePrompt}
                     onChange={(e) => setStylePrompt(e.target.value)}
                     className="w-full bg-slate-900 border border-slate-600 rounded-xl px-3 py-2.5 text-white text-sm placeholder-slate-500 resize-none focus:outline-none focus:border-[#FF6B2C] transition-colors"
@@ -780,7 +780,7 @@ export default function NewBuildEstimate() {
                         {photosGenerating ? (
                           <span className="flex items-center gap-2">
                             <Spinner />
-                            Generating room photosâ¦ ({selectedRooms.filter((r) => r.photoUrl).length}/{selectedRooms.length})
+                            Generating room photos& ({selectedRooms.filter((r) => r.photoUrl).length}/{selectedRooms.length})
                           </span>
                         ) : (
                           <>
@@ -835,7 +835,7 @@ export default function NewBuildEstimate() {
               </div>
             )}
 
-            {/* Ã¢ÂÂÃ¢ÂÂ Step 5: Finish Level Ã¢ÂÂÃ¢ÂÂ */}
+            {/* ── Step 5: Finish Level ── */}
             {step === 5 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-1">What finish level are you aiming for?</h2>
@@ -900,11 +900,11 @@ export default function NewBuildEstimate() {
               </div>
             )}
 
-            {/* Ã¢ÂÂÃ¢ÂÂ Step 6: Email Gate + Submit Ã¢ÂÂÃ¢ÂÂ */}
+            {/* ── Step 6: Email Gate + Submit ── */}
             {step === 6 && (
               <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                 <h2 className="text-lg font-bold mb-1">
-                  Almost there â where should we send your estimate?
+                  Almost there  where should we send your estimate?
                 </h2>
                 <p className="text-slate-400 text-sm mb-5">
                   Your free estimate covers {selectedRooms.length} room
@@ -918,7 +918,7 @@ export default function NewBuildEstimate() {
                       First name (optional)
                     </label>
                     <Input
-                      placeholder="e.g. CiarÃÂ¡n"
+                      placeholder="e.g. Ciarán"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       className="bg-slate-900 border-slate-600 text-white"
@@ -955,7 +955,7 @@ export default function NewBuildEstimate() {
                     {generateMutation.isPending ? (
                       <span className="flex items-center gap-2">
                         <Spinner />
-                        Generating estimateâ¦
+                        Generating estimate&
                       </span>
                     ) : (
                       <>

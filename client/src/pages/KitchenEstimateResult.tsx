@@ -15,20 +15,20 @@ import {
   ArrowLeft, CheckCircle2, Lock, Ruler, Truck, Wrench, ChevronDown, ChevronUp, Phone, Mail,
 } from "lucide-react";
 
-// âââ Helpers ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function fmt(n: number | null | undefined) {
-  if (n == null) return "—";
-  return `£${n.toLocaleString("en-GB", { maximumFractionDigits: 0 })}`;
+  if (n == null) return "";
+  return `�${n.toLocaleString("en-GB", { maximumFractionDigits: 0 })}`;
 }
 
 function fmtRange(lo: number | null | undefined, hi: number | null | undefined) {
-  if (lo == null || hi == null) return "—";
+  if (lo == null || hi == null) return "";
   if (lo === hi) return fmt(lo);
-  return `${fmt(lo)} – ${fmt(hi)}`;
+  return `${fmt(lo)}  ${fmt(hi)}`;
 }
 
-// âââ Quote Request Modal ââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Quote Request Modal ──────────────────────────────────────────────────────
 
 function QuoteModal({
   estimateId, userType, category, supplyMode, estimateLow, estimateHigh, aiSummary,
@@ -97,7 +97,7 @@ function QuoteModal({
             <Label>Additional notes (optional)</Label>
             <Textarea
               value={notes} onChange={e => setNotes(e.target.value)}
-              placeholder="Any specific requirements, site access details, preferred start date…"
+              placeholder="Any specific requirements, site access details, preferred start date&"
               rows={3}
             />
           </div>
@@ -126,7 +126,7 @@ function QuoteModal({
               disabled={!name || !email || requestQuote.isPending}
               className="flex-1"
             >
-              {requestQuote.isPending ? "Sending…" : "Send quote request"}
+              {requestQuote.isPending ? "Sending&" : "Send quote request"}
             </Button>
           </div>
         </CardContent>
@@ -135,7 +135,7 @@ function QuoteModal({
   );
 }
 
-// âââ Upsell Banner ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Upsell Banner ────────────────────────────────────────────────────────────
 
 function UpsellBanner({ tier, userType }: { tier: string; userType: string }) {
   const [, navigate] = useLocation();
@@ -162,7 +162,7 @@ function UpsellBanner({ tier, userType }: { tier: string; userType: string }) {
   );
 }
 
-// âââ Main Component âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function KitchenEstimateResult() {
   const { id } = useParams<{ id: string }>();
@@ -194,7 +194,7 @@ export default function KitchenEstimateResult() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center space-y-3">
           <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="text-muted-foreground text-sm">Loading your estimate…</p>
+          <p className="text-muted-foreground text-sm">Loading your estimate&</p>
         </div>
       </div>
     );
@@ -228,7 +228,7 @@ export default function KitchenEstimateResult() {
           <div className="flex-1">
             <h1 className="text-xl font-bold text-foreground">Kitchen Estimate</h1>
             <p className="text-xs text-muted-foreground">
-              {result?.runLengthMetres}m run Â· {result?.supplyMode === "supply_and_fit" ? "Supply & Fit" : "Supply Only"}
+              {result?.runLengthMetres}m run · {result?.supplyMode === "supply_and_fit" ? "Supply & Fit" : "Supply Only"}
             </p>
           </div>
           <Badge variant={isTrade ? "default" : isPro ? "secondary" : "outline"} className="capitalize">
@@ -239,7 +239,7 @@ export default function KitchenEstimateResult() {
 
       <div className="max-w-3xl mx-auto px-4 py-8 space-y-6">
 
-        {/* ââ TRADE OUTPUT âââââââââââââââââââââââââââââââââââââââââââââââ */}
+        {/* ── TRADE OUTPUT ─────────────────────────────────────────────── */}
         {isTrade && (
           <>
             {/* Per-LM hero card */}
@@ -254,7 +254,7 @@ export default function KitchenEstimateResult() {
                     <span className="text-lg font-normal text-muted-foreground ml-2">/ linear metre</span>
                   </div>
                   <p className="text-xs text-muted-foreground mt-2">
-                    Based on {result.runLengthMetres}m run Â· dynamically calculated from selected spec
+                    Based on {result.runLengthMetres}m run · dynamically calculated from selected spec
                   </p>
                 </div>
 
@@ -278,7 +278,7 @@ export default function KitchenEstimateResult() {
                   </div>
                 </div>
 
-                {/* Optional extras — separated out */}
+                {/* Optional extras  separated out */}
                 <div className="space-y-2">
                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Optional extras</p>
                   <div className="grid grid-cols-3 gap-2">
@@ -338,7 +338,7 @@ export default function KitchenEstimateResult() {
                   <div>
                     <p className="font-semibold text-foreground">Ready to proceed?</p>
                     <p className="text-sm text-muted-foreground mt-0.5">
-                      Request a formal written quote — we'll confirm pricing and lead time within 1 business day.
+                      Request a formal written quote  we'll confirm pricing and lead time within 1 business day.
                     </p>
                   </div>
                   <Button onClick={() => setShowQuote(true)} size="lg" className="shrink-0">
@@ -350,7 +350,7 @@ export default function KitchenEstimateResult() {
           </>
         )}
 
-        {/* ââ PRO OUTPUT âââââââââââââââââââââââââââââââââââââââââââââââââ */}
+        {/* ── PRO OUTPUT ───────────────────────────────────────────────── */}
         {isPro && (
           <>
             <Card>
@@ -361,7 +361,7 @@ export default function KitchenEstimateResult() {
                     {fmtRange(result.grandTotalLow, result.grandTotalHigh)}
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {result.supplyMode === "supply_and_fit" ? "Supply & fit" : "Supply only"} Â· {result.runLengthMetres}m run
+                    {result.supplyMode === "supply_and_fit" ? "Supply & fit" : "Supply only"} · {result.runLengthMetres}m run
                   </p>
                 </div>
 
@@ -456,7 +456,7 @@ export default function KitchenEstimateResult() {
           </>
         )}
 
-        {/* ââ FREE OUTPUT ââââââââââââââââââââââââââââââââââââââââââââââââ */}
+        {/* ── FREE OUTPUT ──────────────────────────────────────────────── */}
         {tier === "free" && (
           <>
             <Card>
@@ -467,7 +467,7 @@ export default function KitchenEstimateResult() {
                     {fmtRange(result.grandTotalLow, result.grandTotalHigh)}
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {result.supplyMode === "supply_and_fit" ? "Supply & fit" : "Supply only"} Â· {result.runLengthMetres}m run
+                    {result.supplyMode === "supply_and_fit" ? "Supply & fit" : "Supply only"} · {result.runLengthMetres}m run
                   </p>
                 </div>
 
@@ -480,7 +480,7 @@ export default function KitchenEstimateResult() {
               </CardContent>
             </Card>
 
-            {/* Preview list — names + quantities only */}
+            {/* Preview list  names + quantities only */}
             {result.shoppingListPreview?.length > 0 && (
               <Card>
                 <CardHeader className="pb-2">
@@ -513,7 +513,7 @@ export default function KitchenEstimateResult() {
                 <div className="flex items-center justify-between gap-4 flex-wrap">
                   <div>
                     <p className="font-semibold text-foreground">Want a confirmed price?</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">Request a formal quote — no account needed.</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">Request a formal quote  no account needed.</p>
                   </div>
                   <Button onClick={() => setShowQuote(true)} size="lg" className="shrink-0">
                     Request formal quote
@@ -527,7 +527,7 @@ export default function KitchenEstimateResult() {
         {/* Contact info */}
         <div className="flex items-center gap-4 text-xs text-muted-foreground justify-center pt-2">
           <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> Call us for a quick chat</span>
-          <span>Â·</span>
+          <span>·</span>
           <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> hello@renolab.co.uk</span>
         </div>
 

@@ -1,1 +1,0 @@
-ALTER TABLE `room_analyses` ADD `styleRecommendations` json;

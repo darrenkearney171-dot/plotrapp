@@ -3,7 +3,6 @@ builder = "nixpacks"
 buildCommand = "pnpm install --no-frozen-lockfile && pnpm build"
 
 [deploy]
-preDeploy = "npx drizzle-kit push --force"
 startCommand = "node dist/index.js"
 healthcheckPath = "/"
 healthcheckTimeout = 300
